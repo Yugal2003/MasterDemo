@@ -1,0 +1,177 @@
+login.js
+
+
+import React, { useState } from 'react';
+import { loginUser } from '../../api';
+import toast from 'react-hot-toast';
+import { NavLink } from 'react-router-dom';
+
+const Login = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    role : ''
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await loginUser(formData.email, formData.password, formData.role);
+      
+      if (response && response.data.length > 0) {
+        const user = response.data[0];
+        if(user.name){
+            toast.success(`Welcome, ${user.name}`);
+        }
+        else{
+            toast.success(`Welcome, ${user.role.toUpperCase()}`);
+        }
+      } 
+      else {
+        toast.error('Invalid User !');
+      }
+      setFormData({email : '',password : '',role : ''})
+    } 
+    catch (error) {
+      toast.error('Login failed.');
+    }
+  };
+  
+
+  return (
+    <div>
+        <h1 className='text-3xl my-4 flexs'>Login Page</h1>
+        <form onSubmit={handleSubmit} className='flexs gap-4'>
+            <input
+                className='border'
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+            />
+            <input
+                className='border'
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+            />
+            <select className='w-40 p-1.5 rounded-md bg-slate-300 text-center' name="role" value={formData.role} onChange={handleInputChange}>
+                <option>Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="hod">Staff</option>
+                <option value="student">Student</option>
+            </select>
+            <button type="submit" className='border-2 border-black px-2.5 py-1.5 rounded-md my-2'>Login</button>
+        </form>
+        
+        {/* <div className='flexs py-2'>
+            OR With
+        </div> */}
+
+        <div className='flexs mt-2'>
+            <h2>Already have an account? <span className='underline text-sky-600'><NavLink to='/signup'>SignUp</NavLink></span></h2>
+        </div>
+    </div>
+  );
+};
+
+export default Login;
+
+
+
+api.js
+
+
+import axios from 'axios';
+
+const API = axios.create({
+  baseURL: 'http://localhost:3001',  
+});
+
+export const registerUser = (data) => API.post('/students', data);
+
+export const loginUser = (email, password, role) => {
+    if(role === 'student'){
+        API.get(`/students?email=${email}&password=${password}&role=${role}`)
+    }
+    else if(role === 'hod'){
+        API.get(`/hods?email=${email}&password=${password}&role=${role}`)
+    }
+    else if(role === 'admin'){
+        API.get(`/admins?email=${email}&password=${password}&role=${role}`)
+    }
+}
+
+
+
+db.json
+
+
+{
+  "admins": [
+    {
+      "id": "6832",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin@123",
+      "department": "admin"
+    }
+  ],
+
+  "hods": [
+    {
+      "id": "hod1",
+      "name": "hod1",
+      "email": "hod1@gmail.com",
+      "password": "hod1@123",
+      "department": "hod1"
+    },
+    {
+      "id": "hod2",
+      "name": "hod2",
+      "email": "hod2@gmail.com",
+      "password": "hod2@123",
+      "department": "hod2"
+    },
+    {
+      "id": "hod3",
+      "name": "hod3",
+      "email": "hod3@gmail.com",
+      "password": "hod3@123",
+      "department": "hod3"
+    },
+    {
+      "id": "hod4",
+      "name": "hod4",
+      "email": "hod4@gmail.com",
+      "password": "hod4@123",
+      "department": "hod4"
+    }
+  ],
+  "students": [
+    {
+      "id": "827a",
+      "name": "Yugal",
+      "email": "yugalramesh6832@gmail.com",
+      "password": "123",
+      "gender": "male",
+      "image": "data:image/jpeg;base64,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",
+      "phone": "2323232323",
+      "department": "hod2",
+      "address": "Habs  cdfdc  fdvfd",
+      "role": "student"
+    }
+  ]
+}
+
+
+why my login form is not working properly?? they always get an error is Invalid User even i pass right email and password ?
