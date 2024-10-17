@@ -1,3 +1,5 @@
+// current code
+
 import React, { useState } from 'react';
 import { registerUser } from '../../api';
 import { toast } from 'react-hot-toast';  
@@ -119,16 +121,18 @@ const Signup = () => {
                     />
                     <label className='pl-1'>Female</label>
                 </div>
-                <div className='flex flex-col'>
-                    <label for="department">Department:</label>
-                    <select id="department" name="department" 
-                    value={formData.department} onChange={handleInputChange}>
-                        <option value="hod1">HOD1</option>
-                        <option value="hod2">HOD2</option>
-                        <option value="hod3">HOD3</option>
-                        <option value="hod3">HOD4</option>
-                    </select>
-                </div>
+                {formData.role === 'student' && (
+                  <div className='flex flex-col'>
+                      <label for="department">Department:</label>
+                      <select id="department" name="department" 
+                      value={formData.department} onChange={handleInputChange}>
+                          <option value="hod1">HOD1</option>
+                          <option value="hod2">HOD2</option>
+                          <option value="hod3">HOD3</option>
+                          <option value="hod3">HOD4</option>
+                      </select>
+                  </div>
+                )}
            </div>
 
             
@@ -144,27 +148,7 @@ const Signup = () => {
                 required
             ></textarea>
             
-            {/* <div className='flex flex-row gap-2'>
-                <label>Gender :</label>
-                <input  
-                    type="radio" 
-                    name="gender" 
-                    placeholder='Gender' 
-                    value="male"
-                    onChange={handleInputChange}
-                    required
-                />
-                <label>Male</label>
-                <input  
-                    type="radio" 
-                    name="gender" 
-                    placeholder='Gender' 
-                    value="female"
-                    onChange={handleInputChange}
-                    required
-                />
-                <label>Female</label>
-            </div> */}
+
             
             <div className='ml-16'>
                 <input type="file" name="image" onChange={uploadImage}/>

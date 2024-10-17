@@ -1,0 +1,190 @@
+login.js
+
+
+
+import React, { useState } from 'react';
+import { loginUser } from '../../api';
+import toast from 'react-hot-toast';
+import { useNavigate, NavLink } from 'react-router-dom';
+
+const Login = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        role: ''
+    });
+
+    const navigate = useNavigate();
+
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+const handleSubmit = async (e) => {
+            e.preventDefault();
+            try {
+                const response = await loginUser(formData.email, formData.password, formData.role);
+        
+                if (response && response.data.length > 0) {
+                    const user = response.data[0];
+                    toast.success(`Welcome, ${user.name || user.role.toUpperCase()}`);
+        
+                    // Store user details in localStorage (including student ID)
+                    localStorage.setItem('user', JSON.stringify(user));
+        
+                    // Redirect based on user role
+                    if (user.role === 'admin') {
+                        navigate('/admin-dashboard');
+                    } else if (user.role === 'hod') {
+                        navigate(`/hod-dashboard`);
+                    } else if (user.role === 'student') {
+                        // Use the student ID for specific routing if needed
+                        navigate(`/student-dashboard/${user.id}`); // Assume `user.id` is the student's unique ID
+                    }
+                } else {
+                    toast.error('Invalid User!');
+                }
+        
+                setFormData({ email: '', password: '', role: '' });
+            } catch (error) {
+                toast.error('Login failed.');
+            }
+        };
+        
+        
+
+    return (
+        <div>
+            <h1 className='text-3xl my-4 flexs'>Login Page</h1>
+            <form onSubmit={handleSubmit} className='flexs gap-4'>
+                <input
+                    className='border'
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                />
+                <input
+                    className='border'
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    required
+                />
+                <select className='w-40 p-1.5 rounded-md bg-slate-300 text-center' name="role" value={formData.role} onChange={handleInputChange}>
+                    <option>Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="hod">HOD</option>
+                    <option value="student">Student</option>
+                </select>
+                <button type="submit" className='border-2 border-black px-2.5 py-1.5 rounded-md my-2'>Login</button>
+            </form>
+
+            <div className='flexs mt-2'>
+                <h2>Already have an account? <span className='underline text-sky-600'><NavLink to='/signup'>SignUp</NavLink></span></h2>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
+
+
+
+
+
+
+StudentDashboard.js
+
+
+
+import React from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+
+const StudentDashboard = () => {
+    const { studentId } = useParams();
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user.role !== 'student' || user.id !== studentId) {
+        // Redirect or show an error if the user doesn't match
+        return <Navigate to="/login" />; // or display an error message
+    }
+
+    return (
+        <div>
+            <h1>Welcome to your Dashboard, Student ID: {studentId}</h1>
+            
+            <h1>dashboard CALENDER show karo</h1>
+        </div>
+    );
+};
+
+
+export default StudentDashboard;
+
+
+
+
+
+
+
+api.js
+
+
+
+import axios from 'axios';
+
+const API = axios.create({
+  baseURL: 'http://localhost:3001',
+});
+
+// Register User
+export const registerUser = (data) => API.post('/users', data);
+
+// Login User
+export const loginUser = async (email, password, role) => {
+    try {
+        // Fetch users based on email and password
+        const response = await API.get(`/users?email=${email}&password=${password}`);
+
+        // Check if the user exists and has the correct role
+        if (response.data.length > 0) {
+            const user = response.data[0]; // Assuming there's only one user for the given email and password
+            if (user.role === role) {
+                return { data: [user] }; // Return the user if the role matches
+            } else {
+                throw new Error('Role mismatch!'); // Throw an error if the role doesn't match
+            }
+        } else {
+            throw new Error('Invalid credentials!'); // Throw an error if no user is found
+        }
+    } catch (error) {
+        throw error; // Rethrow the error to be handled in the calling function
+    }
+};
+
+// Fetch all students based on department
+export const fetchAllStudents = async (department) => {
+    try {
+        const response = await API.get(`/students?department=${department}`); // Adjusted endpoint
+        return response; // Return response to be handled in the calling function
+    } catch (error) {
+        throw new Error('Failed to fetch students: ' + error.message); // Enhanced error message
+    }
+};
+
+// Fetch students function that requires department to be passed
+export const fetchStudents = async (department) => {
+    try {
+        const response = await fetchAllStudents(department);
+        return response.data; // Return the fetched student data
+    } catch (error) {
+        console.error('Failed to fetch students:', error.message);
+    }
+};
+
+
+when students login so that go to thier specific page of StudentDashboard.js so page how i can implement big calender react npm package on that page 

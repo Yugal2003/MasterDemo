@@ -14,13 +14,11 @@ root.render(
   <>
     <BrowserRouter>
         <Routes>
-            <Route>
               <Route path='/' element={<Login/>} />
               <Route path="/signup" element={<Signup/>} />
-              <Route path="/admin/dashboard/*" element={<AdminDashbaord/>} />
-              <Route path="/hod/dashboard/*" element={<HodDashboard />} />
-              <Route path="/student/dashboard/*" element={<StudentDashboard />} />
-            </Route>
+              <Route path="/admin-dashboard" element={<AdminDashbaord/>} />
+              <Route path="/hod-dashboard/:department" element={<HodDashboard />} />
+              <Route path="/student-dashboard/:studentId" element={<StudentDashboard />} />
         </Routes>
     </BrowserRouter>
     <Toaster/>
