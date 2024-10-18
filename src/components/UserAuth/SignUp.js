@@ -27,6 +27,8 @@ const Signup = () => {
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
+    console.log(reader);
+    
 
     reader.onloadend = () => {
       setFormData({ ...formData, image: reader.result }); // Store base64 string
@@ -54,9 +56,14 @@ const Signup = () => {
         role: 'student',
       });
     } catch (error) {
-      toast.error('Registration failed.');
+      if (error.message === 'Email already registered') {
+        toast.error('Email is Already Registered !');
+      } else {
+        toast.error('Registration failed.');
+      }
     }
   };
+  
 
   return (
     <div>
@@ -129,7 +136,7 @@ const Signup = () => {
                           <option value="hod1">HOD1</option>
                           <option value="hod2">HOD2</option>
                           <option value="hod3">HOD3</option>
-                          <option value="hod3">HOD4</option>
+                          <option value="hod4">HOD4</option>
                       </select>
                   </div>
                 )}

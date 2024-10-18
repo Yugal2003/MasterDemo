@@ -62,7 +62,25 @@ const API = axios.create({
 });
 
 // Register User
-export const registerUser = (data) => API.post('/users', data);
+// Check if email already exists before registering
+export const registerUser = async (data) => {
+    try {
+      // Check if the user with the same email already exists
+      const existingUserResponse = await API.get(`/users?email=${data.email}`);
+      
+      if (existingUserResponse.data.length > 0) {
+        // If a user with the same email exists, throw an error
+        throw new Error('Email already registered');
+      }
+  
+      // If the email is not found, proceed with registration
+      return await API.post('/users', data);
+  
+    } catch (error) {
+      throw error; 
+    }
+  };
+  
 
 // Login User
 export const loginUser = async (email, password, role) => {
@@ -85,6 +103,25 @@ export const loginUser = async (email, password, role) => {
         throw error; // Rethrow the error to be handled in the calling function
     }
 };
+
+//updateuserdata
+
+export const updateUserData = async(data)=>{
+    try {
+        const existingUserResponse = await API.get(`/users?email=${data.email}`);
+
+        if(existingUserResponse){
+            return await API.put(`/users/${data.id}`, data); 
+        }
+        else{
+            throw new Error('User Not Found !');
+        }
+    } 
+    catch (error) {
+        throw error; 
+    }
+}
+
 
 // Fetch all students based on department
 export const fetchAllStudents = async (department) => {
