@@ -659,6 +659,7 @@ const StudentDashboard = () => {
                             </div>
                         </div>
                         <ul className="flex flex-col w-full mt-0">
+                            {/* <li onClick={() => handleNavigation('dashboard')} className={`py-3 px-6 cursor-pointer w-full flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Dashboard</span>}</li> */}
                             <li onClick={() => handleNavigation('myprofile')} className={`py-3 px-6 cursor-pointer w-full flex justify-start items-center text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>My Profile</span>}</li>
                             <li onClick={() => handleNavigation('applyForLeave')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'applyForLeave' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Apply For Leave</span>}</li>
                             <li onClick={() => handleNavigation('viewLeaveStatus')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveStatus' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Status</span>}</li>
@@ -696,32 +697,76 @@ const StudentDashboard = () => {
                                                     </div>
                                                     <div className='flex flex-row text-center pt-4 gap-1'>
                                                         <label>Gender :</label><br/>
-                                                        <input type="radio" name="gender" value="male" checked={formData.gender === "male"} onChange={handleChange} /> Male
-                                                        <input type="radio" name="gender" value="female" checked={formData.gender === "female"} onChange={handleChange} /> Female
+                                                        <input type="radio" name="gender" value="male" checked={formData.gender === "male"} onChange={handleChange} />
+                                                        <label className='px-1'>Male</label>
+                                                        <input type="radio" name="gender" value="female" checked={formData.gender === "female"} onChange={handleChange} />
+                                                        <label className='pl-1'>Female</label>
                                                     </div>
                                                     <div className="flex flex-row gap-4 pt-4">
-                                                        <label>Phone :</label>
-                                                        <input type="text" name='phone' value={formData.phone} onChange={handleChange} />
+                                                        <label>Mobile :</label>
+                                                        <input type='number' name='phone' value={formData.phone} onChange={handleChange} />
                                                     </div>
-                                                    <div className="flex flex-row gap-4 pt-4">
+                                                    <div className='flex flex-row gaps items-center'>
                                                         <label>Address :</label>
-                                                        <input type="text" name='address' value={formData.address} onChange={handleChange} />
+                                                        <textarea cols={25} rows={3} className='border' type="text" name="address" value={formData.address} onChange={handleChange}></textarea>
                                                     </div>
-                                                    <button type="submit" className='register-btn w-full mt-4'>Update</button>
                                                 </form>
+                                                <button onClick={changeUserProfile} className="buttons">Update</button>
                                             </div>
                                         ) : (
-                                            <div className="user_data flex flex-col gap-6">
-                                                <p>Name: {user.name}</p>
-                                                <p>ID: {user.id}</p>
-                                                <p>Gender: {user.gender}</p>
-                                                <p>Phone: {user.phone}</p>
-                                                <p>Address: {user.address}</p>
+                                            <div className="mt-2">
+                                                <div className="flex flex-row gap-4 pb-4">
+                                                    <label>User ID :</label>
+                                                    <p>{user.id}</p>
+                                                </div>
+                                                <div className="flex flex-row gap-4">
+                                                    <label>Name :</label>
+                                                    <p>{user.name}</p>
+                                                </div>
+                                                <div className="flex flex-row gap-4 pt-4">
+                                                    <label>Gender :</label>
+                                                    <p>{user.gender}</p>
+                                                </div>
+                                                <div className="flex flex-row gap-4 pt-4">
+                                                    <label>Mobile :</label>
+                                                    <p>{user.phone}</p>
+                                                </div>
+                                                <div className="flex flex-row gap-4 pt-4">
+                                                    <label>Address :</label>
+                                                    <p>{user.address}</p>
+                                                </div>
+                                                <button onClick={changeUserProfile} className="buttons">Edit</button>
                                             </div>
                                         )
                                     }
                                 </div>
-                                <button className='register-btn mt-4 w-full' onClick={changeUserProfile}>{userDataShow ? 'Cancel' : 'Update User Data'}</button>
+                            </div>
+                        )}
+                        {/* Calendar Section */}
+                        {activeSection === 'applyForLeave' && (
+                            <div className="flex flex-col justify-center items-center">
+                                <h1 className="text-3xl font-bold">Apply For Leave</h1>
+                                {/* Your content for the View Leave Status section */}
+                            </div>
+                        )}
+                        {activeSection === 'viewLeaveStatus' && (
+                            <div className="flex flex-col justify-center items-center">
+                                <h1 className="text-3xl font-bold">View Leave Status</h1>
+                                {/* Your content for the View Leave Status section */}
+                            </div>
+                        )}
+                        {activeSection === 'logout' && (
+                            <div className="flex flex-col justify-center items-center">
+                                <h1 className="text-3xl font-bold mb-4">Logout</h1>
+                                {/* <div className="h-96 w-full">
+                                    <Calendar
+                                        localizer={localizer}
+                                        events={events}
+                                        startAccessor="start"
+                                        endAccessor="end"
+                                        style={{ height: 500 }}
+                                    />
+                                </div> */}
                             </div>
                         )}
                     </div>
