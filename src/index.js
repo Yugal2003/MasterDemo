@@ -16,8 +16,8 @@ root.render(
         <Routes>
               <Route path='/' element={<Login/>} />
               <Route path="/signup" element={<Signup/>} />
-              <Route path="/admin-dashboard" element={<AdminDashbaord/>} />
-              <Route path="/hod-dashboard/:department" element={<HodDashboard />} />
+              <Route path="/admin-dashboard/:adminId" element={<AdminDashbaord/>} />
+              <Route path="/hod-dashboard/:hodId" element={<HodDashboard />} />
               <Route path="/student-dashboard/:studentId" element={<StudentDashboard />} />
         </Routes>
     </BrowserRouter>

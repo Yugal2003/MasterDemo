@@ -133,10 +133,11 @@ const Signup = () => {
                       <label for="department">Department:</label>
                       <select id="department" name="department" 
                       value={formData.department} onChange={handleInputChange}>
-                          <option value="hod1">HOD1</option>
-                          <option value="hod2">HOD2</option>
-                          <option value="hod3">HOD3</option>
-                          <option value="hod4">HOD4</option>
+                          <option value="">Select HOD</option>
+                          <option value="hod1">Raman Sir</option>
+                          <option value="hod2">Shyam Sir</option>
+                          <option value="hod3">Radhika Mam</option>
+                          <option value="hod4">Karina Mam</option>
                       </select>
                   </div>
                 )}
