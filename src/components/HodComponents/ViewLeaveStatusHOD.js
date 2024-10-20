@@ -44,11 +44,12 @@ const ViewLeaveStatusHOD = () => {
         <table className="min-w-full table-auto border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
+            <th className="px-2 py-2 border border-gray-300 text-left">ID</th>
               <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">ID</th>
+              <th className="px-2 py-2 border border-gray-300 text-left">Reason</th>
               <th className="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
               <th className="px-2 py-2 border border-gray-300 text-left">Available Leave</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Phone Number</th>
+              <th className="px-2 py-2 border border-gray-300 text-left">Attendance Percentage</th>
               <th className="px-2 py-2 border border-gray-300 text-left">Status</th>
             </tr>
           </thead>
@@ -60,13 +61,14 @@ const ViewLeaveStatusHOD = () => {
                 </td>
               </tr>
             ) : (
-              leaveRequests.map((request) => (
+              leaveRequests.map((request,index) => (
                 <tr key={request.id}>
+                  <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
                   <td className="px-2 py-2 border border-gray-300">{request.name}</td>
-                  {/* <td className="px-2 py-2 border border-gray-300">{request.department}</td> */}
-                  {/* <td className="px-2 py-2 border border-gray-300">{request.gender}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.role}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.phone}</td> */}
+                  <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
+                  <td className="px-2 py-2 border border-gray-300">12</td>
+                  <td className="px-2 py-2 border border-gray-300">2</td>
+                  <td className="px-2 py-2 border border-gray-300">88%</td>
                   <td className="px-2 py-2 border border-gray-300">
                     <select className='rounded-md border-2 p-1 border-black font-bold'>
                       <option className='bg-gray-400 px-2 py-1 rounded-md font-bold'>Select</option>

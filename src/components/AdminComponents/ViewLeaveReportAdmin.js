@@ -76,10 +76,10 @@ const ViewLeaveReportAdmin = () => {
                   </td>
                 </tr>
               ) : (
-                leaveRequestsHOD.map((request) => (
+                leaveRequestsHOD.map((request,index) => (
                 <tr key={request.id}>
                   <td className="px-2 py-2 border border-gray-300">{request.name}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.id}</td>
+                  <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
                   <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
                   <td className="px-2 py-2 border border-gray-300">2</td>
                   <td className="px-2 py-2 border border-gray-300">26</td>
@@ -115,10 +115,10 @@ const ViewLeaveReportAdmin = () => {
                     </td>
                   </tr>
                 ) : (
-                leaveRequestsStudent.map((request) => (
+                leaveRequestsStudent.map((request,index) => (
                 <tr key={request.id}>
                   <td className="px-2 py-2 border border-gray-300">{request.name}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.id}</td>
+                  <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
                   <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
                   <td className="px-2 py-2 border border-gray-300">2</td>
                   <td className="px-2 py-2 border border-gray-300">26</td>
