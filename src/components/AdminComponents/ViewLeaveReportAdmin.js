@@ -1,6 +1,57 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const ViewLeaveReportAdmin = () => {
+  const [leaveRequestsHOD, setLeaveRequestsHOD] = useState([]);
+  const [hodError, setHodError] = useState('');
+  const [leaveRequestsStudent, setLeaveRequestsStudent] = useState([]);
+  const [studentError, setStudentError] = useState('');
+
+  const API = axios.create({
+    baseURL: 'http://localhost:3001',
+  });
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user.name);
+
+  useEffect(() => {
+    const fetchLeaveRequestsStudent = async () => {
+      try {
+        const response = await API.get(`/userLeaveRequests`);
+
+        if (response) {
+          console.log("user data :",response.data);
+          setLeaveRequestsStudent(response.data);
+        }
+        else {
+          setStudentError('No Leave Data Availbale !');
+        }
+      } 
+      catch (err) {
+        setStudentError('Error fetching leave requests');
+      }
+    };
+    const fetchLeaveRequestsHOD = async () => {
+      try {
+        const response = await API.get(`/hodLeaveRequests`);
+
+        if (response) {
+          console.log("hod data :",response.data);
+          setLeaveRequestsHOD(response.data);
+        }
+        else {
+          setHodError('No Leave Data Availbale !');
+        }
+      } 
+      catch (err) {
+        setHodError('Error fetching leave requests');
+      }
+    };
+
+    fetchLeaveRequestsStudent();
+    fetchLeaveRequestsHOD();
+  }, []);
+
   return (
     <div className='flex flex-col'>
       {/* HOD */}
@@ -21,36 +72,24 @@ const ViewLeaveReportAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="px-1 py-2 border border-gray-300">Out of city</td>
-                <td class="px-4 py-2 border border-gray-300">Not Assigned</td>
-                <td class="px-4 py-2 border border-gray-300">Fullday</td>
-                <td class="px-4 py-2 border border-gray-300">07/10/2024</td>
-                <td class="px-4 py-2 border border-gray-300">07/10/2024</td>
-                <td class="px-4 py-2 border border-gray-300">
-                  <button class="bg-green-500 text-white px-3 py-1 rounded">Approved</button>
-                </td>
-                <td class="px-4 py-2 border border-gray-300">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded mr-1">+</button>
-                  <button class="bg-black text-white px-3 py-1 rounded">💬</button>
-                </td>
-                <td class="px-4 py-2 border border-gray-300">88%</td>
-              </tr>
-              <tr>
-                <td class="px-1 py-2 border border-gray-300">Health is not well</td>
-                <td class="px-4 py-2 border border-gray-300">Not Assigned</td>
-                <td class="px-4 py-2 border border-gray-300">Secondhalf</td>
-                <td class="px-4 py-2 border border-gray-300">18/09/2024</td>
-                <td class="px-4 py-2 border border-gray-300">18/09/2024</td>
-                <td class="px-4 py-2 border border-gray-300">
-                  <button class="bg-green-500 text-white px-3 py-1 rounded">Approved</button>
-                </td>
-                <td class="px-0 py-2 border border-gray-300">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded mr-1">+</button>
-                  <button class="bg-black text-white px-3 py-1 rounded">💬</button>
-                </td>
-                <td class="px-4 py-2 border border-gray-300">88%</td>
-              </tr>
+              {leaveRequestsHOD.length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="text-center py-4">
+                    No leave requests found.
+                  </td>
+                </tr>
+              ) : (
+                leaveRequestsHOD.map((request) => (
+                  <tr key={request.id}>
+                    <td className="px-2 py-2 border border-gray-300">{request.name}</td>
+                    <td className="px-2 py-2 border border-gray-300">{request.id}</td>
+                    <td className="px-2 py-2 border border-gray-300">{request.fromDate}</td>
+                    <td className="px-2 py-2 border border-gray-300">{request.toDate}</td>
+                    <td className="px-2 py-2 border border-gray-300">{request.requestTo}</td>
+                    {/* <td className="px-2 py-2 border border-gray-300">{request}</td> */}
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -74,36 +113,24 @@ const ViewLeaveReportAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="px-1 py-2 border border-gray-300">Out of city</td>
-                <td class="px-4 py-2 border border-gray-300">Not Assigned</td>
-                <td class="px-4 py-2 border border-gray-300">Fullday</td>
-                <td class="px-4 py-2 border border-gray-300">07/10/2024</td>
-                <td class="px-4 py-2 border border-gray-300">07/10/2024</td>
-                <td class="px-4 py-2 border border-gray-300">
-                  <button class="bg-green-500 text-white px-3 py-1 rounded">Approved</button>
-                </td>
-                <td class="px-4 py-2 border border-gray-300">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded mr-1">+</button>
-                  <button class="bg-black text-white px-3 py-1 rounded">💬</button>
-                </td>
-                <td class="px-4 py-2 border border-gray-300">88%</td>
-              </tr>
-              <tr>
-                <td class="px-1 py-2 border border-gray-300">Health is not well</td>
-                <td class="px-4 py-2 border border-gray-300">Not Assigned</td>
-                <td class="px-4 py-2 border border-gray-300">Secondhalf</td>
-                <td class="px-4 py-2 border border-gray-300">18/09/2024</td>
-                <td class="px-4 py-2 border border-gray-300">18/09/2024</td>
-                <td class="px-4 py-2 border border-gray-300">
-                  <button class="bg-green-500 text-white px-3 py-1 rounded">Approved</button>
-                </td>
-                <td class="px-0 py-2 border border-gray-300">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded mr-1">+</button>
-                  <button class="bg-black text-white px-3 py-1 rounded">💬</button>
-                </td>
-                <td class="px-4 py-2 border border-gray-300">88%</td>
-              </tr>
+              {leaveRequestsStudent.length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="text-center py-4">
+                    No leave requests found.
+                  </td>
+                </tr>
+              ) : (
+                leaveRequestsStudent.map((request) => (
+                  <tr key={request.id}>
+                    <td className="px-2 py-2 border border-gray-300">{request.name}</td>
+                    <td className="px-2 py-2 border border-gray-300">{request.id}</td>
+                    <td className="px-2 py-2 border border-gray-300">{request.fromDate}</td>
+                    <td className="px-2 py-2 border border-gray-300">{request.toDate}</td>
+                    <td className="px-2 py-2 border border-gray-300">{request.requestTo}</td>
+                    {/* <td className="px-2 py-2 border border-gray-300">{request}</td> */}
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

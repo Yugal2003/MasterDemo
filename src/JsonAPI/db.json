@@ -94,13 +94,56 @@
   ],
   "userLeaveRequests": [
     {
-      "id": "yppq0ype6",
-      "reason": "arraaa",
+      "id": "esd65sarh",
+      "reason": "bas",
+      "fromDate": "2024-10-24",
+      "toDate": "2024-10-26",
+      "leaveType": "Fullday",
+      "requestTo": "Karina Mam",
+      "status": "Pending",
+      "name": "hitesh"
+    },
+    {
+      "id": "qqae01ezl",
+      "reason": "nalla",
+      "fromDate": "2024-10-26",
+      "toDate": "2024-10-29",
+      "leaveType": "First Half",
+      "requestTo": "Raman Sir",
+      "status": "Pending",
+      "name": "hitesh"
+    },
+    {
+      "id": "0crxcxu0p",
+      "reason": "lol",
       "fromDate": "2024-10-20",
       "toDate": "2024-10-21",
       "leaveType": "Fullday",
-      "requestTo": "Radhika Mam",
-      "status": "Pending"
+      "requestTo": "Karina Mam",
+      "status": "Pending",
+      "name": "mahesh"
+    }
+  ],
+  "hodLeaveRequests": [
+    {
+      "id": "lpt3l0a5m",
+      "reason": "karina",
+      "fromDate": "2024-10-20",
+      "toDate": "2024-10-21",
+      "leaveType": "First Half",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Karina"
+    },
+    {
+      "id": "zf42cz2gs",
+      "reason": "jaddi",
+      "fromDate": "2024-10-22",
+      "toDate": "2024-10-24",
+      "leaveType": "Second Half",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Radhika"
     }
   ]
 }

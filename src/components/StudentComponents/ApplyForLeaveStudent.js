@@ -1,13 +1,10 @@
 // before leave apporvel code
 
 
-
-
-
-
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { leaveApplyUser } from "../../api";
+import { Navigate } from 'react-router-dom';
 
 const ApplyForLeaveStudent = () => {
 
@@ -20,6 +17,13 @@ const ApplyForLeaveStudent = () => {
     requestTo: '',
     status: 'Pending'
   });
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user.name);
+  
+  if (user?.role !== 'student') {
+    return <Navigate to="/login" />;
+  }
 
   const handleChangeApply = (e) => {
     setFormDataApply({ ...formDataApply, [e.target.name]: e.target.value });
@@ -48,11 +52,16 @@ const ApplyForLeaveStudent = () => {
   const handleSubmitApply = async (e) => {
     e.preventDefault();
   
+    if (new Date(formDataApply.fromDate) > new Date(formDataApply.toDate)) {
+      toast.error("'From' date cannot be later than the 'To' date.");
+      return;
+    }
+
     // Generate a random ID
     const randomId = Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
   
     // Include the generated ID in the form data
-    const updatedFormData = { ...formDataApply, id: randomId };
+    const updatedFormData = { ...formDataApply, id: randomId, name : user.name };
   
     try {
       await leaveApplyUser(updatedFormData); // Send formData including the random ID

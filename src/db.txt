@@ -1,0 +1,115 @@
+{
+  "users": [
+    {
+      "id": "6832",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin@123",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "9316110894",
+      "address": "AHAH",
+      "role": "admin"
+    },
+    {
+      "id": "hod1",
+      "name": "Raman",
+      "email": "raman@gmail.com",
+      "password": "raman@123",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "9845124578",
+      "address": "gfdgf",
+      "role": "hod"
+    },
+    {
+      "id": "hod2",
+      "name": "Shyam",
+      "email": "shyam@gmail.com",
+      "password": "shyam@123",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "9841236510",
+      "address": "gfdgf",
+      "role": "hod"
+    },
+    {
+      "id": "hod3",
+      "name": "Radhika",
+      "email": "radhika@gmail.com",
+      "password": "radhika@123",
+      "gender": "female",
+      "image": "data:image/jpeg,
+      "phone": "7541245891",
+      "address": "gfdgf",
+      "role": "hod"
+    },
+    {
+      "id": "hod4",
+      "name": "Karina",
+      "email": "karina@gmail.com",
+      "password": "karina@123",
+      "gender": "female",
+      "image": "data:image/jpeg,
+      "phone": "8210546910",
+      "address": "gfdgf",
+      "role": "hod"
+    },
+    {
+      "id": "44b9",
+      "name": "rakesh",
+      "email": "rakesh@gmail.com",
+      "password": "123",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "54454",
+      "department": "",
+      "address": "gfdgf",
+      "role": "student"
+    },
+    {
+      "id": "9360",
+      "name": "mahesh",
+      "email": "mahesh@gmail.com",
+      "password": "123",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "348764834",
+      "department": "hod2",
+      "address": "erer",
+      "role": "student"
+    },
+    {
+      "id": "792d",
+      "name": "hitesh",
+      "email": "hitesh@gmail.com",
+      "password": "123",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "32443234",
+      "department": "hod2",
+      "address": "Hello",
+      "role": "student"
+    }
+  ],
+  "userLeaveRequests": [
+    {
+      "id": "yppq0ype6",
+      "reason": "arraaa",
+      "fromDate": "2024-10-20",
+      "toDate": "2024-10-21",
+      "leaveType": "Fullday",
+      "requestTo": "Radhika Mam",
+      "status": "Pending"
+    },
+    {
+      "id": "3njg8lr1n",
+      "reason": "mahesh babu",
+      "fromDate": "2024-10-22",
+      "toDate": "2024-11-22",
+      "leaveType": "Fullday",
+      "requestTo": "Karina Mam",
+      "status": "Pending"
+    }
+  ]
+}

@@ -69,31 +69,43 @@
 
 // current code
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const ViewLeaveStatusStudent = () => {
-  const leaveRequests = [
-    {
-      reason: "Out of city",
-      leaveType: "Fullday",
-      fromDate: "07/10/2024",
-      toDate: "07/10/2024",
-      requestTo: "Radhika Mam",
-      status: "Approved",
-      balanceLeave: 8,
-      leavePercentage: "88%",
-    },
-    {
-      reason: "Health is not well",
-      leaveType: "Second Half",
-      fromDate: "18/09/2024",
-      toDate: "18/09/2024",
-      requestTo: "Raman Sir",
-      status: "Approved",
-      balanceLeave: 10,
-      leavePercentage: "80%",
-    },
-  ];
+
+  const [leaveRequests, setLeaveRequests] = useState([]);
+  const [error, setError] = useState('');
+
+  const API = axios.create({
+    baseURL: 'http://localhost:3001',
+  });
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user.name);
+
+  useEffect(() => {
+    const fetchLeaveRequests = async () => {
+      try {
+        // Replace with your API endpoint
+        const response = await API.get(`/userLeaveRequests?name=${user.name}`);
+        const filteredRequests = response.data.filter(
+          (request) => request.name === user.name
+        );
+        if (filteredRequests) {
+          setLeaveRequests(filteredRequests);
+        }
+        else {
+          setError('No Leave Data Availbale !');
+        }
+      } 
+      catch (err) {
+        setError('Error fetching leave requests');
+      }
+    };
+
+    fetchLeaveRequests();
+  }, []);
 
   return (
     <div className="container mx-auto p-4">
@@ -113,22 +125,24 @@ const ViewLeaveStatusStudent = () => {
             </tr>
           </thead>
           <tbody>
-            {leaveRequests.map((request, index) => (
-              <tr key={index}>
-                <td className="border border-gray-300 px-2 py-2">{request.reason}</td>
-                <td className="border border-gray-300 px-2 py-2">{request.leaveType}</td>
-                <td className="border border-gray-300 px-2 py-2">{request.fromDate}</td>
-                <td className="border border-gray-300 px-2 py-2">{request.toDate}</td>
-                <td className="border border-gray-300 px-2 py-2">{request.requestTo}</td>
-                <td className="border border-gray-300 px-2 py-2">
-                  <button className={`px-2 py-1 text-white rounded ${request.status === "Approved" ? "bg-green-500" : "bg-red-500"}`}>
-                    {request.status}
-                  </button>
+            {leaveRequests.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center py-4">
+                  No leave requests found.
                 </td>
-                <td className="border border-gray-300 px-2 py-2">{request.balanceLeave}</td>
-                <td className="border border-gray-300 px-2 py-2">{request.leavePercentage}</td>
               </tr>
-            ))}
+            ) : (
+              leaveRequests.map((request) => (
+                <tr key={request.id}>
+                  <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.leaveType}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.fromDate}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.toDate}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.requestTo}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.status}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
