@@ -29,6 +29,7 @@
 
 
 
+// old code but perfect
 
 // import React, { useState, useEffect } from 'react';
 // import { updateUserData } from '../../api';
@@ -258,8 +259,8 @@
 
 
 
-// old code but perfect
 
+// old but run code
 
 
 // import React, { useState, useEffect } from 'react';
@@ -512,75 +513,59 @@
 
 
 
-
 // current code
 
 
 
 import React, { useState, useEffect, useRef } from 'react';
-import { updateUserData } from '../../api';
-import { toast } from 'react-hot-toast';  
-import { Navigate, useParams } from 'react-router-dom';
-import moment from 'moment';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+// import { updateUserData } from '../../api';
+// import { toast } from 'react-hot-toast';  
+import { Navigate, useParams,useNavigate } from 'react-router-dom';
+// import moment from 'moment';
+// import { Calendar, momentLocalizer } from 'react-big-calendar';
+import 'react-big-calendar/lib/css/react-big-calendar.css'; // Calendar CSS styles
 import { FaBars } from 'react-icons/fa'; 
-import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { IoMdArrowDropdown } from "react-icons/io";
+import DashboardStudent from '../StudentComponents/DashboardStudent';
+import MyProfileStudent from '../StudentComponents/MyProfileStudent';
+import ApplyForLeaveStudent from '../StudentComponents/ApplyForLeaveStudent';
+import ViewLeaveStatusStudent from '../StudentComponents/ViewLeaveStatusStudent';
+import LogoutStudent from '../StudentComponents/LogoutStudent';
 
-const localizer = momentLocalizer(moment);
+// const localizer = momentLocalizer(moment);
 
 const StudentDashboard = () => {
-
-
-    // apply leave code start
-
-    const [formDataApply, setFormDataApply] = useState({
-        reason: '',
-        fromDate: '',
-        toDate: '',
-        leaveType: '',
-        // workingOn: '',
-        requestTo: '',
-        status: 'Pending'
-    });
-
-    const handleChangeApply = (e) => {
-        setFormDataApply({ ...formDataApply, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmitApply = (e) => {
-        e.preventDefault();
-        console.log(formDataApply); // You can handle form submission here
-    };
-
-    const [userDataShow, setUserDataShow] = useState(false);
-    const [isPopupVisible, setIsPopupVisible] = useState(false); 
-    const [formData, setFormData] = useState({
-        name: '',
-        id: '',
-        gender: '',
-        phone: '',
-        address: '',
-    });
+    // const [userDataShow, setUserDataShow] = useState(false);
+    const [isPopupVisible, setIsPopupVisible] = useState(false); // State for the popup menu
+    // const [formData, setFormData] = useState({
+    //     name: '',
+    //     id: '',
+    //     gender: '',
+    //     phone: '',
+    //     address: '',
+    // });
     const { studentId } = useParams();
     const user = JSON.parse(localStorage.getItem('user'));
 
     const [activeSection, setActiveSection] = useState('dashboard');
-    const [sidebarOpen, setSidebarOpen] = useState(true);
-    const popupRef = useRef(null);
+    const [sidebarOpen, setSidebarOpen] = useState(true); // State to toggle sidebar
+    const [showLogoutModal, setShowLogoutModal] = useState(false); // New state to handle logout modal
+    const popupRef = useRef(null); // Ref to track the popup element
 
-    useEffect(() => {
-        if (user) {
-            setFormData({
-                name: user.name || '',
-                id: user.id || '',
-                gender: user.gender || '',
-                phone: user.phone || '',
-                address: user.address || '',
-            });
-        }
-    }, [user]);    
+    // Initialize formData with user data when component loads
+    // useEffect(() => {
+    //     if (user) {
+    //         setFormData({
+    //             name: user.name,
+    //             id: user.id,
+    //             gender: user.gender,
+    //             phone: user.phone,
+    //             address: user.address,
+    //         });
+    //     }
+    // }, [user]);
 
+    // Hide popup when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -595,27 +580,34 @@ const StudentDashboard = () => {
         };
     }, [isPopupVisible]);
 
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await updateUserData(formData);
-            toast.success('User updated successfully!');
-        } catch (error) {
-            toast.error('Update failed.');
-        }
-    };
+    // const handleFormSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         await updateUserData(formData);
+    //         toast.success('User updated successfully!');
+    //     } catch (error) {
+    //         if (error.message === 'Email already registered') {
+    //             toast.error('Email is already registered!');
+    //         } else {
+    //             toast.error('Update failed.');
+    //         }
+    //     }
+    // };
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    // const handleChange = (e) => {
+    //     setFormData({ ...formData, [e.target.name]: e.target.value });
+    // };
 
-    const changeUserProfile = () => {
-        setUserDataShow(!userDataShow);
-    };
+    // const changeUserProfile = () => {
+    //     setUserDataShow(!userDataShow);
+    // };
 
     const handleNavigation = (section) => {
-        setIsPopupVisible(false); 
-        setActiveSection(section);
+        if (section === 'logout') {
+            setShowLogoutModal(true); // Show logout modal on logout navigation
+        } else {
+            setActiveSection(section);
+        }
     };
 
     const toggleSidebar = () => {
@@ -626,15 +618,14 @@ const StudentDashboard = () => {
         setIsPopupVisible(!isPopupVisible);
     };
 
-    const events = [
-        {
-            title: 'Math Class',
-            start: new Date(2023, 9, 18, 10, 0),
-            end: new Date(2023, 9, 18, 12, 0),
-        },
-    ];
+    const closeLogoutModal = () => {
+        setShowLogoutModal(false); // Function to close logout modal
+    };
+    // const events = [
+    //     // Events data
+    // ];
 
-    if (!user || user.role !== 'student' || user.id !== studentId) {
+    if (user.role !== 'student' || user.id !== studentId) {
         return <Navigate to="/login" />;
     }
 
@@ -644,13 +635,13 @@ const StudentDashboard = () => {
                 {/* profile page */}
                 <div className="h-[8%] bg-gray-800 flex flex-row justify-between items-center">
                     <div className='flex flex-row justify-between items-center w-[90%] mx-auto'>
-                        <h1 className="text-white"></h1>
+                        <h1 className="text-white">Dashboard</h1>
                         {/* profile */}
                         <div className="flex flex-row items-center justify-center gap-2">
                             <div onClick={togglePopup} className="flex items-center cursor-pointer gap-2">
                                 <img className='goal_circle2' src={`${user.image}`} alt='user_image' />
                                 <h2 className="text-white text-xl">{user.name}</h2>
-                                <IoIosArrowDropdownCircle className='text-white'/>
+                                <IoMdArrowDropdown />
                             </div>
                             {/* Popup menu */}
                             {isPopupVisible && (
@@ -681,7 +672,6 @@ const StudentDashboard = () => {
                             </div>
                         </div>
                         <ul className="flex flex-col w-full mt-0">
-                            {/* <li onClick={() => handleNavigation('dashboard')} className={`py-3 px-6 cursor-pointer w-full flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Dashboard</span>}</li> */}
                             <li onClick={() => handleNavigation('myprofile')} className={`py-3 px-6 cursor-pointer w-full flex justify-start items-center text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>My Profile</span>}</li>
                             <li onClick={() => handleNavigation('applyForLeave')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'applyForLeave' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Apply For Leave</span>}</li>
                             <li onClick={() => handleNavigation('viewLeaveStatus')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveStatus' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Status</span>}</li>
@@ -691,382 +681,17 @@ const StudentDashboard = () => {
 
                     {/* Main Content Area */}
                     <div className={`border-2 border-black pt-4 flex-1 p-6 overflow-y-auto transition-all duration-300 ${sidebarOpen ? 'ml-0' : 'ml-0'}`}>
-                        {activeSection === 'dashboard' && (
-                            <div>
-                                <Calendar localizer={localizer} events={events} startAccessor="start" endAccessor="end" style={{ height: 500 }} />
-                            </div>
-                        )}
-                        {activeSection === 'myprofile' && (
-                            <div className='flex flex-col'>
-                                <h1 className="text-3xl font-bold flex flex-col justify-center items-center mt-4">Welcome Dashboard Page</h1>
-                                <h1 className="border-2 border-black text-2xl font-medium flex flex-col items-start pl-8 mt-8">Profile Info</h1>
-
-                                <div className='flex flex-row gap-20 mt-8'>
-                                    <div>
-                                        <img className='goal_circle' src={`${user.image}`} alt='user_image'/>
-                                    </div>
-                                    {
-                                        userDataShow ? (
-                                            <div>
-                                                <form onSubmit={handleFormSubmit} className='userData_info'>
-                                                    <div className="flex flex-row gap-4 pb-4">
-                                                        <label>User ID :</label>
-                                                        <input type="number" name='id' value={formData.id} onChange={handleChange} />
-                                                    </div>
-                                                    <div className="flex flex-row gap-4">
-                                                        <label>Name :</label>
-                                                        <input type="text" name='name' value={formData.name} onChange={handleChange} />
-                                                    </div>
-                                                    <div className='flex flex-row text-center pt-4 gap-1'>
-                                                        <label>Gender :</label><br/>
-                                                        <input type="radio" name="gender" value="male" checked={formData.gender === "male"} onChange={handleChange} />
-                                                        <label className='px-1'>Male</label>
-                                                        <input type="radio" name="gender" value="female" checked={formData.gender === "female"} onChange={handleChange} />
-                                                        <label className='pl-1'>Female</label>
-                                                    </div>
-                                                    <div className="flex flex-row gap-4 pt-4">
-                                                        <label>Mobile :</label>
-                                                        <input type='number' name='phone' value={formData.phone} onChange={handleChange} />
-                                                    </div>
-                                                    <div className='flex flex-row gaps items-center'>
-                                                        <label>Address :</label>
-                                                        <textarea cols={25} rows={3} className='border' type="text" name="address" value={formData.address} onChange={handleChange}></textarea>
-                                                    </div>
-                                                </form>
-                                                <button onClick={changeUserProfile} className="buttons">Update</button>
-                                            </div>
-                                        ) : (
-                                            <div className="mt-2">
-                                                <div className="flex flex-row gap-4 pb-4">
-                                                    <label>User ID :</label>
-                                                    <p>{user.id}</p>
-                                                </div>
-                                                <div className="flex flex-row gap-4">
-                                                    <label>Name :</label>
-                                                    <p>{user.name}</p>
-                                                </div>
-                                                <div className="flex flex-row gap-4 pt-4">
-                                                    <label>Gender :</label>
-                                                    <p>{user.gender}</p>
-                                                </div>
-                                                <div className="flex flex-row gap-4 pt-4">
-                                                    <label>Mobile :</label>
-                                                    <p>{user.phone}</p>
-                                                </div>
-                                                <div className="flex flex-row gap-4 pt-4">
-                                                    <label>Address :</label>
-                                                    <p>{user.address}</p>
-                                                </div>
-                                                <button onClick={changeUserProfile} className="buttons">Edit</button>
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                            </div>
-                        )}
-                        {/* Calendar Section */}
-                        {activeSection === 'applyForLeave' && (
-                            <div className="max-w-4xl mx-auto my-10 bg-white p-8 rounded-lg shadow-lg">
-                                <h1 className="text-2xl font-bold text-green-600 mb-5">Apply Leave</h1>
-                    
-                                <form onSubmit={handleSubmitApply}>
-                                    {/* Reason Field */}
-                                    <div className="mb-5">
-                                        <label htmlFor="reason" className="block text-sm font-semibold text-gray-700">
-                                            Reason: <span className="text-red-500">*</span>
-                                        </label>
-                                        <textarea
-                                            id="reason"
-                                            name="reason"
-                                            value={formDataApply.reason}
-                                            onChange={handleChangeApply}
-                                            className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                                            rows="3"
-                                            required
-                                        ></textarea>
-                                    </div>
-                    
-                                    {/* Date Range Field */}
-                                    <div className="grid grid-cols-2 gap-4 mb-5">
-                                        <div>
-                                            <label htmlFor="fromDate" className="block text-sm font-semibold text-gray-700">
-                                                Date Range: <span className="text-red-500">*</span>
-                                            </label>
-                                            <input
-                                                type="date"
-                                                id="fromDate"
-                                                name="fromDate"
-                                                value={formDataApply.fromDate}
-                                                onChange={handleChangeApply}
-                                                className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                                                required
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="toDate" className="block text-sm font-semibold text-gray-700">
-                                                To: <span className="text-red-500">*</span>
-                                            </label>
-                                            <input
-                                                type="date"
-                                                id="toDate"
-                                                name="toDate"
-                                                value={formDataApply.toDate}
-                                                onChange={handleChangeApply}
-                                                className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                    
-                                    {/* Leave Type Field */}
-                                    <div className="mb-5">
-                                        <label className="block text-sm font-semibold text-gray-700">
-                                            Leave Type: <span className="text-red-500">*</span>
-                                        </label>
-                                        <div className="flex space-x-4 mt-1">
-                                            <label className="inline-flex items-center">
-                                                <input
-                                                    type="radio"
-                                                    name="leaveType"
-                                                    value="Fullday"
-                                                    checked={formDataApply.leaveType === 'Fullday'}
-                                                    onChange={handleChangeApply}
-                                                    className="form-radio text-green-500"
-                                                    required
-                                                />
-                                                <span className="ml-2">Fullday <span className="text-gray-500 text-sm">(9AM to 6PM)</span></span>
-                                            </label>
-                                            <label className="inline-flex items-center">
-                                                <input
-                                                    type="radio"
-                                                    name="leaveType"
-                                                    value="First Half"
-                                                    checked={formDataApply.leaveType === 'First Half'}
-                                                    onChange={handleChangeApply}
-                                                    className="form-radio text-green-500"
-                                                />
-                                                <span className="ml-2">First Half <span className="text-gray-500 text-sm">(9AM to 1PM)</span></span>
-                                            </label>
-                                            <label className="inline-flex items-center">
-                                                <input
-                                                    type="radio"
-                                                    name="leaveType"
-                                                    value="Second Half"
-                                                    checked={formDataApply.leaveType === 'Second Half'}
-                                                    onChange={handleChangeApply}
-                                                    className="form-radio text-green-500"
-                                                />
-                                                <span className="ml-2">Second Half <span className="text-gray-500 text-sm">(1PM to 6PM)</span></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                    
-                                    {/* Working On Field */}
-                                    {/* <div className="mb-5">
-                                        <label htmlFor="workingOn" className="block text-sm font-semibold text-gray-700">
-                                            Working ON: <span className="text-red-500">*</span>
-                                        </label>
-                                        <select
-                                            id="workingOn"
-                                            name="workingOn"
-                                            value={formDataApply.workingOn}
-                                            onChange={handleChangeApply}
-                                            className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                                            required
-                                        >
-                                            <option value="" disabled>Select</option>
-                                            <option value="Project A">Project A</option>
-                                            <option value="Project B">Project B</option>
-                                            <option value="Project C">Project C</option>
-                                        </select>
-                                    </div> */}
-                    
-                                    {/* Request To Field */}
-                                   <div className="mb-5">
-                                        <label htmlFor="requestTo" className="block text-sm font-semibold text-gray-700">
-                                            Request To: <span className="text-red-500">*</span>
-                                        </label>
-                                        <select
-                                            id="requestTo"
-                                            name="requestTo"
-                                            value={formData.requestTo}
-                                            onChange={handleChange}
-                                            className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                                            required
-                                        >
-                                            <option value={userDepartment}>{departments[userDepartment]}</option>
-                                        </select>
-                                    </div>
-                    
-                                    {/* Status Field */}
-                                    <div className="mb-5">
-                                        <label htmlFor="status" className="block text-sm font-semibold text-gray-700">
-                                            Status: <span className="text-red-500">*</span>
-                                        </label>
-                                        <select
-                                            id="status"
-                                            name="status"
-                                            value={formDataApply.status}
-                                            onChange={handleChangeApply}
-                                            className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                                            required
-                                        >
-                                            <option value="Pending">Pending</option>
-                                            <option value="Approved">Approved</option>
-                                            <option value="Rejected">Rejected</option>
-                                        </select>
-                                    </div>
-                    
-                                    {/* Submit Button */}
-                                    <div className="text-center">
-                                        <button
-                                            type="submit"
-                                            className="px-5 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                        >
-                                            Submit
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        )}
-
-                        {activeSection === 'viewLeaveStatus' && (
-                            <div className="flex flex-col justify-center items-center">
-                                <h1 className="text-3xl font-bold">View Leave Status</h1>
-                                {/* Your content for the View Leave Status section */}
-                            </div>
-                        )}
-                        {activeSection === 'logout' && (
-                            <div className="flex flex-col justify-center items-center">
-                                <h1 className="text-3xl font-bold mb-4">Logout</h1>
-                                {/* <div className="h-96 w-full">
-                                    <Calendar
-                                        localizer={localizer}
-                                        events={events}
-                                        startAccessor="start"
-                                        endAccessor="end"
-                                        style={{ height: 500 }}
-                                    />
-                                </div> */}
-                            </div>
-                        )}
+                        {activeSection === 'dashboard' && <DashboardStudent/>}
+                        {activeSection === 'myprofile' && <MyProfileStudent/>}
+                        {activeSection === 'applyForLeave' && <ApplyForLeaveStudent/>}
+                        {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusStudent/>}
                     </div>
                 </div>
             </div>
+            {/* Render Logout modal */}
+            {showLogoutModal && <LogoutStudent onCancel={closeLogoutModal} />}
         </div>
     );
 };
 
 export default StudentDashboard;
-
-
-
-
-
-
-// import React, { useState, useEffect, useRef } from 'react';
-// import { updateUserData } from '../../api';
-// import { toast } from 'react-hot-toast';  
-// import { Navigate,useParams } from 'react-router-dom';
-// import moment from 'moment';
-// import { Calendar, momentLocalizer } from 'react-big-calendar';
-// import 'react-big-calendar/lib/css/react-big-calendar.css'; // Calendar CSS styles
-// import {FaBars } from 'react-icons/fa'; 
-// import { IoIosArrowDropdownCircle } from "react-icons/io";
-
-
-// const localizer = momentLocalizer(moment);
-
-// const StudentDashboard = () => {
-//     const [userDataShow, setUserDataShow] = useState(false);
-//     const [isPopupVisible, setIsPopupVisible] = useState(false); // State for the popup menu
-//     const [formData, setFormData] = useState({
-//         name: '',
-//         id: '',
-//         gender: '',
-//         phone: '',
-//         address: '',
-//     });
-//     const { studentId } = useParams();
-//     const user = JSON.parse(localStorage.getItem('user'));
-
-//     const [activeSection, setActiveSection] = useState('dashboard');
-//     const [sidebarOpen, setSidebarOpen] = useState(true); // State to toggle sidebar
-//     const popupRef = useRef(null); // Ref to track the popup element
-
-//     // Initialize formData with user data when component loads
-//     useEffect(() => {
-//         if (user) {
-//             setFormData({
-//                 name: user.name,
-//                 id: user.id,
-//                 gender: user.gender,
-//                 phone: user.phone,
-//                 address: user.address,
-//             });
-//         }
-//     }, [user]);
-
-//     // Hide popup when clicking outside
-//     useEffect(() => {
-//         const handleClickOutside = (event) => {
-//             if (popupRef.current && !popupRef.current.contains(event.target)) {
-//                 setIsPopupVisible(false);
-//             }
-//         };
-//         if (isPopupVisible) {
-//             document.addEventListener('mousedown', handleClickOutside);
-//         }
-//         return () => {
-//             document.removeEventListener('mousedown', handleClickOutside);
-//         };
-//     }, [isPopupVisible]);
-
-//     const handleFormSubmit = async (e) => {
-//         e.preventDefault();
-//         try {
-//             await updateUserData(formData);
-//             toast.success('User updated successfully!');
-//         } catch (error) {
-//             if (error.message === 'Email already registered') {
-//                 toast.error('Email is already registered!');
-//             } else {
-//                 toast.error('Update failed.');
-//             }
-//         }
-//     };
-
-//     const handleChange = (e) => {
-//         setFormData({ ...formData, [e.target.name]: e.target.value });
-//     };
-
-//     const changeUserProfile = () => {
-//         setUserDataShow(!userDataShow);
-//     };
-
-//     const handleNavigation = (section) => {
-//         setActiveSection(section);
-//     };
-
-//     const toggleSidebar = () => {
-//         setSidebarOpen(!sidebarOpen);
-//     };
-
-//     const togglePopup = () => {
-//         setIsPopupVisible(!isPopupVisible);
-//     };
-
-//     const events = [
-//         // Events data
-//     ];
-
-//     if (user.role !== 'student' || user.id !== studentId) {
-//         return <Navigate to="/login" />;
-//     }
-
-    
-// };
-
-// export default StudentDashboard;
-
-

@@ -386,9 +386,9 @@ const Login = () => {
         
                     // Redirect based on user role
                     if (user.role === 'admin') {
-                        navigate('/admin-dashboard');
+                        navigate(`/admin-dashboard/${user.id}`);
                     } else if (user.role === 'hod') {
-                        navigate(`/hod-dashboard`);
+                        navigate(`/hod-dashboard/${user.id}`);
                     } else if (user.role === 'student') {
                         // Use the student ID for specific routing if needed
                         navigate(`/student-dashboard/${user.id}`); // Assume `user.id` is the student's unique ID

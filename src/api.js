@@ -80,6 +80,17 @@ export const registerUser = async (data) => {
       throw error; 
     }
   };
+
+
+  export const leaveApplyUser = async (data) => {
+    try {  
+      // If the email is not found, proceed with registration
+      await API.post('/userLeaveRequests', data);
+    } 
+    catch (error) {
+      throw error; 
+    }
+  };
   
 
 // Login User
@@ -142,3 +153,5 @@ export const fetchStudents = async (department) => {
         console.error('Failed to fetch students:', error.message);
     }
 };
+
+
