@@ -17,10 +17,11 @@ const ViewLeaveStatusHOD = () => {
     const fetchLeaveRequests = async () => {
       try {
         // Replace with your API endpoint
-        const response = await API.get(`/hodLeaveRequests?name=${user.name}`);
+        const response = await API.get(`/users?department=${user.id}`);
         const filteredRequests = response.data.filter(
-          (request) => request.name === user.name
+          (request) => request.department === user.id
         );
+        console.log(filteredRequests);
         if (filteredRequests) {
           setLeaveRequests(filteredRequests);
         }
@@ -43,14 +44,12 @@ const ViewLeaveStatusHOD = () => {
         <table className="min-w-full table-auto border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
-              <th className="px-2 py-2 border border-gray-300 text-left">Reason</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Leave Type</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Leave From</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Leave To</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Request To</th>
-              <th className="px-1 py-2 border border-gray-300 text-left">Status</th>
-              <th className="px-0 py-2 border border-gray-300 text-left">Balance Leave</th>
-              <th className="px-0 py-2 border border-gray-300 text-left">Leave Percentage</th>
+              <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
+              <th className="px-2 py-2 border border-gray-300 text-left">Department</th>
+              <th className="px-2 py-2 border border-gray-300 text-left">Gender</th>
+              <th className="px-2 py-2 border border-gray-300 text-left">Role</th>
+              <th className="px-2 py-2 border border-gray-300 text-left">Phone Number</th>
+              <th className="px-2 py-2 border border-gray-300 text-left">Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -63,12 +62,14 @@ const ViewLeaveStatusHOD = () => {
             ) : (
               leaveRequests.map((request) => (
                 <tr key={request.id}>
-                  <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.leaveType}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.fromDate}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.toDate}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.requestTo}</td>
-                  <td className="px-2 py-2 border border-gray-300">{request.status}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.department}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.gender}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.role}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.phone}</td>
+                  <td className="px-2 py-2 border border-gray-300">
+                    <button className='edit_btn'>Edit</button>
+                  </td>
                 </tr>
               ))
             )}
