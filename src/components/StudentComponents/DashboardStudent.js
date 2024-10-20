@@ -67,7 +67,7 @@ const DashboardStudent = () => {
 
   return (
     <div className='mt-8'>
-      <h3>{studentError ? studentError : <span className='text-3xl font-bold flex justify-center items-center underline mb-8'>Student Calendar-</span>}</h3>
+      <h3>{studentError ? studentError : <span className='text-3xl font-bold flex justify-center items-center mb-8'>Student Calendar</span>}</h3>
       <Calendar
         localizer={localizer}
         events={events}

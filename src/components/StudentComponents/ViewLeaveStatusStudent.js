@@ -134,6 +134,9 @@ const ViewLeaveStatusStudent = () => {
         if (totalLeaveData && balanceLeaveData) {
           setTotalLeave(totalLeaveData.totalLeave);
           setBalanceLeave(balanceLeaveData.balanceLeave - filteredRequests.length);
+          if(balanceLeave <= 0){
+            setBalanceLeave(0)
+          }
         } else {
           setError('No Leave Data Available!');
         }
