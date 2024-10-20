@@ -12,7 +12,6 @@ const ViewLeaveReportAdmin = () => {
   });
 
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user.name);
 
   useEffect(() => {
     const fetchLeaveRequestsStudent = async () => {
@@ -55,23 +54,21 @@ const ViewLeaveReportAdmin = () => {
   return (
     <div className='flex flex-col'>
       {/* HOD */}
-      <div class="container mx-auto p-4">
-        <div class="overflow-x-auto">
+      <div className="container mx-auto p-4">
+        <div className="overflow-x-auto">
           <h1 className='mt-10 mb-6 flex justify-left items-center text-2xl font-bold'>HOD Leave Report :-</h1>
-          <table class="min-w-full table-auto border-collapse border border-gray-300">
+          <table className="min-w-full table-auto border-collapse border border-gray-300">
             <thead>
               <tr class="bg-gray-200">
-                <th class="px-2 py-2 border border-gray-300 text-left">Name</th>
-                <th class="px-2 py-2 border border-gray-300 text-left">ID</th>
-                <th class="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
-                <th class="px-2 py-2 border border-gray-300 text-left">Available Leave</th>
-                <th class="px-1 py-2 border border-gray-300 text-left">Used Leave</th>
-                <th class="px-0 py-2 border border-gray-300 text-left">Year</th>
-                <th class="px-0 py-2 border border-gray-300 text-left">Total Working Days</th>
-                <th class="px-0 py-2 border border-gray-300 text-left">Attendance Percentage</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">ID</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Reason</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
+                <th className="px-0 py-2 border border-gray-300 text-left">Total Working Days</th>
+                <th className="px-0 py-2 border border-gray-300 text-left">Attendance Percentage</th>
               </tr>
             </thead>
-            <tbody>
+              <tbody>
               {leaveRequestsHOD.length === 0 ? (
                 <tr>
                   <td colSpan="6" className="text-center py-4">
@@ -80,16 +77,16 @@ const ViewLeaveReportAdmin = () => {
                 </tr>
               ) : (
                 leaveRequestsHOD.map((request) => (
-                  <tr key={request.id}>
-                    <td className="px-2 py-2 border border-gray-300">{request.name}</td>
-                    <td className="px-2 py-2 border border-gray-300">{request.id}</td>
-                    <td className="px-2 py-2 border border-gray-300">{request.fromDate}</td>
-                    <td className="px-2 py-2 border border-gray-300">{request.toDate}</td>
-                    <td className="px-2 py-2 border border-gray-300">{request.requestTo}</td>
-                    {/* <td className="px-2 py-2 border border-gray-300">{request}</td> */}
-                  </tr>
+                <tr key={request.id}>
+                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.id}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
+                  <td className="px-2 py-2 border border-gray-300">2</td>
+                  <td className="px-2 py-2 border border-gray-300">26</td>
+                  <td className="px-2 py-2 border border-gray-300">88%</td>
+                </tr>
                 ))
-              )}
+                )}
             </tbody>
           </table>
         </div>
@@ -104,33 +101,31 @@ const ViewLeaveReportAdmin = () => {
               <tr class="bg-gray-200">
                 <th class="px-2 py-2 border border-gray-300 text-left">Name</th>
                 <th class="px-2 py-2 border border-gray-300 text-left">ID</th>
+                <th class="px-2 py-2 border border-gray-300 text-left">Reason</th>
                 <th class="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
-                <th class="px-2 py-2 border border-gray-300 text-left">Available Leave</th>
-                <th class="px-1 py-2 border border-gray-300 text-left">Used Leave</th>
-                <th class="px-0 py-2 border border-gray-300 text-left">Year</th>
                 <th class="px-0 py-2 border border-gray-300 text-left">Total Working Days</th>
                 <th class="px-0 py-2 border border-gray-300 text-left">Attendance Percentage</th>
               </tr>
             </thead>
             <tbody>
               {leaveRequestsStudent.length === 0 ? (
-                <tr>
-                  <td colSpan="6" className="text-center py-4">
-                    No leave requests found.
-                  </td>
-                </tr>
-              ) : (
-                leaveRequestsStudent.map((request) => (
-                  <tr key={request.id}>
-                    <td className="px-2 py-2 border border-gray-300">{request.name}</td>
-                    <td className="px-2 py-2 border border-gray-300">{request.id}</td>
-                    <td className="px-2 py-2 border border-gray-300">{request.fromDate}</td>
-                    <td className="px-2 py-2 border border-gray-300">{request.toDate}</td>
-                    <td className="px-2 py-2 border border-gray-300">{request.requestTo}</td>
-                    {/* <td className="px-2 py-2 border border-gray-300">{request}</td> */}
+                  <tr>
+                    <td colSpan="6" className="text-center py-4">
+                      No leave requests found.
+                    </td>
                   </tr>
+                ) : (
+                leaveRequestsStudent.map((request) => (
+                <tr key={request.id}>
+                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.id}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
+                  <td className="px-2 py-2 border border-gray-300">2</td>
+                  <td className="px-2 py-2 border border-gray-300">26</td>
+                  <td className="px-2 py-2 border border-gray-300">88%</td>
+                </tr>
                 ))
-              )}
+                )}
             </tbody>
           </table>
         </div>

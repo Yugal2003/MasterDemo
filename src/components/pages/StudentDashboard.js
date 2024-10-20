@@ -518,11 +518,8 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
-// import { updateUserData } from '../../api';
-// import { toast } from 'react-hot-toast';  
+
 import { Navigate, useParams,useNavigate } from 'react-router-dom';
-// import moment from 'moment';
-// import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css'; // Calendar CSS styles
 import { FaBars } from 'react-icons/fa'; 
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -531,19 +528,12 @@ import MyProfileStudent from '../StudentComponents/MyProfileStudent';
 import ApplyForLeaveStudent from '../StudentComponents/ApplyForLeaveStudent';
 import ViewLeaveStatusStudent from '../StudentComponents/ViewLeaveStatusStudent';
 import LogoutStudent from '../StudentComponents/LogoutStudent';
+import ViewLeaveBalanceStudent from '../StudentComponents/ViewLeaveBalanceStudent';
 
 // const localizer = momentLocalizer(moment);
 
 const StudentDashboard = () => {
-    // const [userDataShow, setUserDataShow] = useState(false);
     const [isPopupVisible, setIsPopupVisible] = useState(false); // State for the popup menu
-    // const [formData, setFormData] = useState({
-    //     name: '',
-    //     id: '',
-    //     gender: '',
-    //     phone: '',
-    //     address: '',
-    // });
     const { studentId } = useParams();
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -552,18 +542,6 @@ const StudentDashboard = () => {
     const [showLogoutModal, setShowLogoutModal] = useState(false); // New state to handle logout modal
     const popupRef = useRef(null); // Ref to track the popup element
 
-    // Initialize formData with user data when component loads
-    // useEffect(() => {
-    //     if (user) {
-    //         setFormData({
-    //             name: user.name,
-    //             id: user.id,
-    //             gender: user.gender,
-    //             phone: user.phone,
-    //             address: user.address,
-    //         });
-    //     }
-    // }, [user]);
 
     // Hide popup when clicking outside
     useEffect(() => {
@@ -580,27 +558,6 @@ const StudentDashboard = () => {
         };
     }, [isPopupVisible]);
 
-    // const handleFormSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         await updateUserData(formData);
-    //         toast.success('User updated successfully!');
-    //     } catch (error) {
-    //         if (error.message === 'Email already registered') {
-    //             toast.error('Email is already registered!');
-    //         } else {
-    //             toast.error('Update failed.');
-    //         }
-    //     }
-    // };
-
-    // const handleChange = (e) => {
-    //     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // };
-
-    // const changeUserProfile = () => {
-    //     setUserDataShow(!userDataShow);
-    // };
 
     const handleNavigation = (section) => {
         if (section === 'logout') {
@@ -675,6 +632,7 @@ const StudentDashboard = () => {
                             <li onClick={() => handleNavigation('myprofile')} className={`py-3 px-6 cursor-pointer w-full flex justify-start items-center text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>My Profile</span>}</li>
                             <li onClick={() => handleNavigation('applyForLeave')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'applyForLeave' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Apply For Leave</span>}</li>
                             <li onClick={() => handleNavigation('viewLeaveStatus')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveStatus' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Status</span>}</li>
+                            <li onClick={() => handleNavigation('viewLeaveBalance')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveBalance' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Balance</span>}</li>
                             <li onClick={() => handleNavigation('logout')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'logout' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Logout</span>}</li>
                         </ul>
                     </div>
@@ -685,6 +643,7 @@ const StudentDashboard = () => {
                         {activeSection === 'myprofile' && <MyProfileStudent/>}
                         {activeSection === 'applyForLeave' && <ApplyForLeaveStudent/>}
                         {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusStudent/>}
+                        {activeSection === 'viewLeaveBalance' && <ViewLeaveBalanceStudent/>}
                     </div>
                 </div>
             </div>

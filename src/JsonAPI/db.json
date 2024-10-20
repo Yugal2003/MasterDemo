@@ -13,7 +13,7 @@
     },
     {
       "id": "hod1",
-      "name": "Raman",
+      "name": "Raman Sir",
       "email": "raman@gmail.com",
       "password": "raman@123",
       "gender": "male",
@@ -24,7 +24,7 @@
     },
     {
       "id": "hod2",
-      "name": "Shyam",
+      "name": "Shyam Sir",
       "email": "shyam@gmail.com",
       "password": "shyam@123",
       "gender": "male",
@@ -35,7 +35,7 @@
     },
     {
       "id": "hod3",
-      "name": "Radhika",
+      "name": "Radhika Mam",
       "email": "radhika@gmail.com",
       "password": "radhika@123",
       "gender": "female",
@@ -46,7 +46,7 @@
     },
     {
       "id": "hod4",
-      "name": "Karina",
+      "name": "Karina Mam",
       "email": "karina@gmail.com",
       "password": "karina@123",
       "gender": "female",
@@ -138,8 +138,8 @@
     {
       "id": "cgsnfm8pu",
       "reason": "lol2",
-      "fromDate": "2024-10-20",
-      "toDate": "2025-12-20",
+      "fromDate": "2024-10-23",
+      "toDate": "2024-10-26",
       "leaveType": "First Half",
       "requestTo": "Radhika Mam",
       "status": "Pending",
@@ -154,6 +154,16 @@
       "requestTo": "Radhika Mam",
       "status": "Pending",
       "name": "Vivek"
+    },
+    {
+      "id": "fomhv780f",
+      "reason": "kite",
+      "fromDate": "2025-01-14",
+      "toDate": "2025-01-16",
+      "leaveType": "Fullday",
+      "requestTo": "Shyam Sir",
+      "status": "Pending",
+      "name": "mahesh"
     }
   ],
   "hodLeaveRequests": [
