@@ -1,3 +1,4 @@
+
 import React,{useState,useEffect}from "react";
 // import { useParams } from 'react-router-dom';
 import { updateUserData } from "../../api";
@@ -55,7 +56,7 @@ const MyProfileAdmin = () => {
   return (
     <div className="flex flex-col">
       <h1 className="text-3xl font-bold flex flex-col justify-center items-center mt-4">
-        Welcome Dashboard Page
+        Welcome Profile Page
       </h1>
       <h1 className="border-2 border-black text-2xl font-medium flex flex-col items-start pl-8 mt-8">
         Profile Info

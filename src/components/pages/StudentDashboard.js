@@ -260,7 +260,7 @@
 
 
 
-// current code
+// old but run code
 
 
 // import React, { useState, useEffect } from 'react';
@@ -513,16 +513,13 @@
 
 
 
-
+// current code
 
 
 
 import React, { useState, useEffect, useRef } from 'react';
-// import { updateUserData } from '../../api';
-// import { toast } from 'react-hot-toast';  
-import { Navigate, useParams } from 'react-router-dom';
-// import moment from 'moment';
-// import { Calendar, momentLocalizer } from 'react-big-calendar';
+
+import { Navigate, useParams,useNavigate } from 'react-router-dom';
 import 'react-big-calendar/lib/css/react-big-calendar.css'; // Calendar CSS styles
 import { FaBars } from 'react-icons/fa'; 
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -531,38 +528,20 @@ import MyProfileStudent from '../StudentComponents/MyProfileStudent';
 import ApplyForLeaveStudent from '../StudentComponents/ApplyForLeaveStudent';
 import ViewLeaveStatusStudent from '../StudentComponents/ViewLeaveStatusStudent';
 import LogoutStudent from '../StudentComponents/LogoutStudent';
+import ViewLeaveBalanceStudent from '../StudentComponents/ViewLeaveBalanceStudent';
 
 // const localizer = momentLocalizer(moment);
 
 const StudentDashboard = () => {
-    // const [userDataShow, setUserDataShow] = useState(false);
     const [isPopupVisible, setIsPopupVisible] = useState(false); // State for the popup menu
-    // const [formData, setFormData] = useState({
-    //     name: '',
-    //     id: '',
-    //     gender: '',
-    //     phone: '',
-    //     address: '',
-    // });
     const { studentId } = useParams();
     const user = JSON.parse(localStorage.getItem('user'));
 
     const [activeSection, setActiveSection] = useState('dashboard');
     const [sidebarOpen, setSidebarOpen] = useState(true); // State to toggle sidebar
+    const [showLogoutModal, setShowLogoutModal] = useState(false); // New state to handle logout modal
     const popupRef = useRef(null); // Ref to track the popup element
 
-    // Initialize formData with user data when component loads
-    // useEffect(() => {
-    //     if (user) {
-    //         setFormData({
-    //             name: user.name,
-    //             id: user.id,
-    //             gender: user.gender,
-    //             phone: user.phone,
-    //             address: user.address,
-    //         });
-    //     }
-    // }, [user]);
 
     // Hide popup when clicking outside
     useEffect(() => {
@@ -579,30 +558,13 @@ const StudentDashboard = () => {
         };
     }, [isPopupVisible]);
 
-    // const handleFormSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         await updateUserData(formData);
-    //         toast.success('User updated successfully!');
-    //     } catch (error) {
-    //         if (error.message === 'Email already registered') {
-    //             toast.error('Email is already registered!');
-    //         } else {
-    //             toast.error('Update failed.');
-    //         }
-    //     }
-    // };
-
-    // const handleChange = (e) => {
-    //     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // };
-
-    // const changeUserProfile = () => {
-    //     setUserDataShow(!userDataShow);
-    // };
 
     const handleNavigation = (section) => {
-        setActiveSection(section);
+        if (section === 'logout') {
+            setShowLogoutModal(true); // Show logout modal on logout navigation
+        } else {
+            setActiveSection(section);
+        }
     };
 
     const toggleSidebar = () => {
@@ -613,6 +575,9 @@ const StudentDashboard = () => {
         setIsPopupVisible(!isPopupVisible);
     };
 
+    const closeLogoutModal = () => {
+        setShowLogoutModal(false); // Function to close logout modal
+    };
     // const events = [
     //     // Events data
     // ];
@@ -664,35 +629,26 @@ const StudentDashboard = () => {
                             </div>
                         </div>
                         <ul className="flex flex-col w-full mt-0">
-                            {/* <li onClick={() => handleNavigation('dashboard')} className={`py-3 px-6 cursor-pointer w-full flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Dashboard</span>}</li> */}
                             <li onClick={() => handleNavigation('myprofile')} className={`py-3 px-6 cursor-pointer w-full flex justify-start items-center text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>My Profile</span>}</li>
                             <li onClick={() => handleNavigation('applyForLeave')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'applyForLeave' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Apply For Leave</span>}</li>
                             <li onClick={() => handleNavigation('viewLeaveStatus')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveStatus' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Status</span>}</li>
+                            {/* <li onClick={() => handleNavigation('viewLeaveBalance')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveBalance' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Balance</span>}</li> */}
                             <li onClick={() => handleNavigation('logout')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'logout' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Logout</span>}</li>
                         </ul>
                     </div>
 
                     {/* Main Content Area */}
                     <div className={`border-2 border-black pt-4 flex-1 p-6 overflow-y-auto transition-all duration-300 ${sidebarOpen ? 'ml-0' : 'ml-0'}`}>
-                        {activeSection === 'dashboard' && (
-                            <DashboardStudent/>
-                        )}
-                        {activeSection === 'myprofile' && (
-                            <MyProfileStudent/>
-                        )}
-                        {/* Calendar Section */}
-                        {activeSection === 'applyForLeave' && (
-                            <ApplyForLeaveStudent/>
-                        )}
-                        {activeSection === 'viewLeaveStatus' && (
-                            <ViewLeaveStatusStudent/>
-                        )}
-                        {activeSection === 'logout' && (
-                            <LogoutStudent/>
-                        )}
+                        {activeSection === 'dashboard' && <DashboardStudent/>}
+                        {activeSection === 'myprofile' && <MyProfileStudent/>}
+                        {activeSection === 'applyForLeave' && <ApplyForLeaveStudent/>}
+                        {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusStudent/>}
+                        {/* {activeSection === 'viewLeaveBalance' && <ViewLeaveBalanceStudent/>} */}
                     </div>
                 </div>
             </div>
+            {/* Render Logout modal */}
+            {showLogoutModal && <LogoutStudent onCancel={closeLogoutModal} />}
         </div>
     );
 };

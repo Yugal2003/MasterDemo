@@ -80,6 +80,27 @@ export const registerUser = async (data) => {
       throw error; 
     }
   };
+
+
+  export const leaveApplyUser = async (data) => {
+    try {  
+      // If the email is not found, proceed with registration
+      await API.post('/userLeaveRequests', data);
+    } 
+    catch (error) {
+      throw error; 
+    }
+  };
+
+  export const leaveApplyHOD = async (data) => {
+    try {  
+      // If the email is not found, proceed with registration
+      await API.post('/hodLeaveRequests', data);
+    } 
+    catch (error) {
+      throw error; 
+    }
+  };
   
 
 // Login User

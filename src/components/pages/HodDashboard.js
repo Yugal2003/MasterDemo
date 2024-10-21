@@ -24,6 +24,7 @@ const HODDashboard = () => {
 
     const [activeSection, setActiveSection] = useState('dashboard');
     const [sidebarOpen, setSidebarOpen] = useState(true); // State to toggle sidebar
+    const [showLogoutModal, setShowLogoutModal] = useState(false); // New state to handle logout modal
     const popupRef = useRef(null); // Ref to track the popup element
 
     // Initialize formData with user data when component loads
@@ -77,7 +78,11 @@ const HODDashboard = () => {
     // };
 
     const handleNavigation = (section) => {
-        setActiveSection(section);
+        if (section === 'logout') {
+            setShowLogoutModal(true); // Show logout modal on logout navigation
+        } else {
+            setActiveSection(section);
+        }
     };
 
     const toggleSidebar = () => {
@@ -87,7 +92,9 @@ const HODDashboard = () => {
     const togglePopup = () => {
         setIsPopupVisible(!isPopupVisible);
     };
-
+    const closeLogoutModal = () => {
+        setShowLogoutModal(false); // Function to close logout modal
+    };
     // const events = [
     //     // Events data
     // ];
@@ -149,25 +156,18 @@ const HODDashboard = () => {
 
                     {/* Main Content Area */}
                     <div className={`border-2 border-black pt-4 flex-1 p-6 overflow-y-auto transition-all duration-300 ${sidebarOpen ? 'ml-0' : 'ml-0'}`}>
-                        {activeSection === 'dashboard' && (
-                            <DashboardHOD/>
-                        )}
-                        {activeSection === 'myprofile' && (
-                            <MyProfileHOD/>
-                        )}
+                        {activeSection === 'dashboard' && <DashboardHOD/>}
+                        {activeSection === 'myprofile' && <MyProfileHOD/>}
                         {/* Calendar Section */}
-                        {activeSection === 'applyForLeave' && (
-                            <ApplyForLeaveHOD/>
-                        )}
-                        {activeSection === 'viewLeaveStatus' && (
-                            <ViewLeaveStatusHOD/>
-                        )}
-                        {activeSection === 'logout' && (
+                        {activeSection === 'applyForLeave' && <ApplyForLeaveHOD/>}
+                        {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusHOD/>}
+                        {/* {activeSection === 'logout' && (
                             <LogoutHOD/>
-                        )}
+                        )} */}
                     </div>
                 </div>
             </div>
+            {showLogoutModal && <LogoutHOD onCancel={closeLogoutModal} />}
         </div>
     );
 };

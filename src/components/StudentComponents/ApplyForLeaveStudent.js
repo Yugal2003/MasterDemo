@@ -1,110 +1,365 @@
-// import React from 'react'
+// before leave apporvel code
+
+
+// import React, { useState } from "react";
+// import toast from "react-hot-toast";
+// import { leaveApplyUser } from "../../api";
+// import { Navigate } from 'react-router-dom';
 
 // const ApplyForLeaveStudent = () => {
+
+//   const [formDataApply, setFormDataApply] = useState({
+//     id: '',
+//     reason: '',
+//     fromDate: '',
+//     toDate: '',
+//     leaveType: '',
+//     requestTo: '',
+//     status: 'Pending'
+//   });
+
+//   const user = JSON.parse(localStorage.getItem('user'));
+//   console.log(user.name);
+  
+//   if (user?.role !== 'student') {
+//     return <Navigate to="/login" />;
+//   }
+
+//   const handleChangeApply = (e) => {
+//     setFormDataApply({ ...formDataApply, [e.target.name]: e.target.value });
+//   };
+
+//   // const handleSubmitApply = async (e) => {
+//   //   e.preventDefault();
+
+//   //   try {
+//   //     await leaveApplyUser(formDataApply); // Send formData including the image base64
+//   //     toast.success('Leave Apply SuccessFully !');
+//   //     setFormDataApply({
+//   //       id: '',
+//   //       reason: '',
+//   //       fromDate: '',
+//   //       toDate: '',
+//   //       leaveType: '',
+//   //       requestTo: '',
+//   //       status: 'Pending'
+//   //     });
+//   //   } catch (error) {
+//   //     toast.error("Error While Form Submission !!!");
+//   //   }
+//   // };
+
+//   const handleSubmitApply = async (e) => {
+//     e.preventDefault();
+  
+//     if (new Date(formDataApply.fromDate) > new Date(formDataApply.toDate)) {
+//       toast.error("'From' date cannot be later than the 'To' date.");
+//       return;
+//     }
+
+//     // Generate a random ID
+//     const randomId = Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
+  
+//     // Include the generated ID in the form data
+//     const updatedFormData = { ...formDataApply, id: randomId, name : user.name };
+  
+//     try {
+//       await leaveApplyUser(updatedFormData); // Send formData including the random ID
+//       toast.success('Leave Applied Successfully!');
+      
+//       // Reset the form fields
+//       setFormDataApply({
+//         id: '',
+//         reason: '',
+//         fromDate: '',
+//         toDate: '',
+//         leaveType: '',
+//         requestTo: '',
+//         status: 'Pending'
+//       });
+//     } catch (error) {
+//       toast.error("Error While Submitting the Form!");
+//     }
+//   };
+
+  
 //   return (
-//     <div className="flex flex-col justify-center items-center">
-//         <h1 className="text-3xl font-bold">Apply For Leave</h1>
-//         {/* Your content for the View Leave Status section */}
+//     <div className="max-w-4xl mx-auto my-10 bg-white p-8 rounded-lg shadow-lg">
+//       <h1 className="text-2xl font-bold text-green-600 mb-5">Apply Leave</h1>
+
+//       <form onSubmit={handleSubmitApply}>
+//         {/* Reason Field */}
+//         <div className="mb-5">
+//           <label htmlFor="reason" className="block text-sm font-semibold text-gray-700">
+//             Reason: <span className="text-red-500">*</span>
+//           </label>
+//           <textarea
+//             id="reason"
+//             name="reason"
+//             value={formDataApply.reason}
+//             onChange={handleChangeApply}
+//             className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+//             rows="3"
+//             required
+//           />
+//         </div>
+
+//         {/* Date Range Field */}
+//         <div className="grid grid-cols-2 gap-4 mb-5">
+//           <div>
+//             <label htmlFor="fromDate" className="block text-sm font-semibold text-gray-700">
+//               From: <span className="text-red-500">*</span>
+//             </label>
+//             <input
+//               type="date"
+//               id="fromDate"
+//               name="fromDate"
+//               value={formDataApply.fromDate}
+//               onChange={handleChangeApply}
+//               className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+//               required
+//             />
+//           </div>
+//           <div>
+//             <label htmlFor="toDate" className="block text-sm font-semibold text-gray-700">
+//               To: <span className="text-red-500">*</span>
+//             </label>
+//             <input
+//               type="date"
+//               id="toDate"
+//               name="toDate"
+//               value={formDataApply.toDate}
+//               onChange={handleChangeApply}
+//               className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+//               required
+//             />
+//           </div>
+//         </div>
+
+//         {/* Leave Type Field */}
+//         <div className="mb-5">
+//           <label className="block text-sm font-semibold text-gray-700">
+//             Leave Type: <span className="text-red-500">*</span>
+//           </label>
+//           <div className="flex flex-col space-x-4 mt-1">
+//             <label className="inline-flex items-center">
+//               <input
+//                 type="radio"
+//                 name="leaveType"
+//                 value="Fullday"
+//                 checked={formDataApply.leaveType === "Fullday"}
+//                 onChange={handleChangeApply}
+//                 className="form-radio text-green-500 ml-4"
+//                 required
+//               />
+//               <span className="ml-2">
+//                 Fullday{" "}
+//                 <span className="text-gray-500 text-sm">(9AM to 6PM)</span>
+//               </span>
+//             </label>
+//             <label className="inline-flex items-center">
+//               <input
+//                 type="radio"
+//                 name="leaveType"
+//                 value="First Half"
+//                 checked={formDataApply.leaveType === "First Half"}
+//                 onChange={handleChangeApply}
+//                 className="form-radio text-green-500"
+//               />
+//               <span className="ml-2">
+//                 First Half{" "}
+//                 <span className="text-gray-500 text-sm">(9AM to 1PM)</span>
+//               </span>
+//             </label>
+//             <label className="inline-flex items-center">
+//               <input
+//                 type="radio"
+//                 name="leaveType"
+//                 value="Second Half"
+//                 checked={formDataApply.leaveType === "Second Half"}
+//                 onChange={handleChangeApply}
+//                 className="form-radio text-green-500"
+//               />
+//               <span className="ml-2">
+//                 Second Half{" "}
+//                 <span className="text-gray-500 text-sm">(1PM to 6PM)</span>
+//               </span>
+//             </label>
+//           </div>
+//         </div>
+
+//         {/* Request To Field */}
+//         <div className="mb-5">
+//           <label htmlFor="requestTo" className="block text-sm font-semibold text-gray-700">
+//             Request To: <span className="text-red-500">*</span>
+//           </label>
+//           <select
+//             id="requestTo"
+//             name="requestTo"
+//             value={formDataApply.requestTo}
+//             onChange={handleChangeApply}
+//             className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+//             required
+//           >
+//             <option>Select Request To HOD</option>
+//             <option>Raman Sir</option>
+//             <option>Shyam Sir</option>
+//             <option>Radhika Mam</option>
+//             <option>Karina Mam</option>
+//           </select>
+//         </div>
+
+//         {/* Submit Button */}
+//         <div className="text-center">
+//           <button
+//             type="submit"
+//             className="px-5 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+//           >
+//             Submit
+//           </button>
+//         </div>
+//       </form>
 //     </div>
-//   )
-// }
+//   );
+// };
 
-// export default ApplyForLeaveStudent
+// export default ApplyForLeaveStudent;
 
-import React,{useState} from "react";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// use formik npm
+
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { leaveApplyUser } from "../../api";
+import { Navigate } from 'react-router-dom';
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const ApplyForLeaveStudent = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
 
-  const [formData, setFormData] = useState({
-    name: '',
-    id: '',
-    gender: '',
-    phone: '',
-    address: '',
-});
+  // Always define your formik hook outside of any conditional logic
+  const formik = useFormik({
+    initialValues: {
+      id: '',
+      reason: '',
+      fromDate: '',
+      toDate: '',
+      leaveType: '',
+      requestTo: '',
+      status: 'Pending'
+    },
+    validationSchema: Yup.object({
+      reason: Yup.string().required('Reason is required'),
+      fromDate: Yup.date().required('From date is required'),
+      toDate: Yup.date()
+        .required('To date is required')
+        .min(Yup.ref('fromDate'), "'To' date cannot be before 'From' date"),
+      leaveType: Yup.string().required('Leave type is required'),
+      requestTo: Yup.string().required('Please select whom to request'),
+    }),
+    onSubmit: async (values) => {
+      try {
+        // Generate a random ID
+        const randomId = Math.random().toString(36).substr(2, 9);
+        
+        const updatedValues = { ...values, id: randomId, name: user?.name };
+        
+        await leaveApplyUser(updatedValues);
+        toast.success('Leave Applied Successfully!');
+        
+        formik.resetForm(); // Reset the form after successful submission
+      } catch (error) {
+        toast.error("Error While Submitting the Form!");
+      }
+    }
+  });
 
-  const [formDataApply, setFormDataApply] = useState({
-    reason: '',
-    fromDate: '',
-    toDate: '',
-    leaveType: '',
-    // workingOn: '',
-    requestTo: '',
-    status: 'Pending'
-});
-
-const handleChange = (e) => {
-  setFormData({ ...formData, [e.target.name]: e.target.value });
-};
-
-  const handleChangeApply = (e) => {
-    setFormDataApply({ ...formDataApply, [e.target.name]: e.target.value });
-};
-
-const handleSubmitApply = (e) => {
-    e.preventDefault();
-    console.log(formDataApply); // You can handle form submission here
-};
+  if (user?.role !== 'student') {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div className="max-w-4xl mx-auto my-10 bg-white p-8 rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold text-green-600 mb-5">Apply Leave</h1>
 
-      <form onSubmit={handleSubmitApply}>
+      <form onSubmit={formik.handleSubmit}>
         {/* Reason Field */}
         <div className="mb-5">
-          <label
-            htmlFor="reason"
-            className="block text-sm font-semibold text-gray-700"
-          >
+          <label htmlFor="reason" className="block text-sm font-semibold text-gray-700">
             Reason: <span className="text-red-500">*</span>
           </label>
           <textarea
             id="reason"
             name="reason"
-            value={formDataApply.reason}
-            onChange={handleChangeApply}
+            value={formik.values.reason}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
             rows="3"
             required
-          ></textarea>
+          />
+          {formik.touched.reason && formik.errors.reason ? (
+            <div className="text-red-500">{formik.errors.reason}</div>
+          ) : null}
         </div>
 
-        {/* Date Range Field */}
+        {/* Date Range Fields */}
         <div className="grid grid-cols-2 gap-4 mb-5">
           <div>
-            <label
-              htmlFor="fromDate"
-              className="block text-sm font-semibold text-gray-700"
-            >
-              Date Range: <span className="text-red-500">*</span>
+            <label htmlFor="fromDate" className="block text-sm font-semibold text-gray-700">
+              From: <span className="text-red-500">*</span>
             </label>
             <input
               type="date"
               id="fromDate"
               name="fromDate"
-              value={formDataApply.fromDate}
-              onChange={handleChangeApply}
+              value={formik.values.fromDate}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
               required
             />
+            {formik.touched.fromDate && formik.errors.fromDate ? (
+              <div className="text-red-500">{formik.errors.fromDate}</div>
+            ) : null}
           </div>
           <div>
-            <label
-              htmlFor="toDate"
-              className="block text-sm font-semibold text-gray-700"
-            >
+            <label htmlFor="toDate" className="block text-sm font-semibold text-gray-700">
               To: <span className="text-red-500">*</span>
             </label>
             <input
               type="date"
               id="toDate"
               name="toDate"
-              value={formDataApply.toDate}
-              onChange={handleChangeApply}
+              value={formik.values.toDate}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
               required
             />
+            {formik.touched.toDate && formik.errors.toDate ? (
+              <div className="text-red-500">{formik.errors.toDate}</div>
+            ) : null}
           </div>
         </div>
 
@@ -119,8 +374,8 @@ const handleSubmitApply = (e) => {
                 type="radio"
                 name="leaveType"
                 value="Fullday"
-                checked={formDataApply.leaveType === "Fullday"}
-                onChange={handleChangeApply}
+                checked={formik.values.leaveType === "Fullday"}
+                onChange={formik.handleChange}
                 className="form-radio text-green-500 ml-4"
                 required
               />
@@ -134,8 +389,8 @@ const handleSubmitApply = (e) => {
                 type="radio"
                 name="leaveType"
                 value="First Half"
-                checked={formDataApply.leaveType === "First Half"}
-                onChange={handleChangeApply}
+                checked={formik.values.leaveType === "First Half"}
+                onChange={formik.handleChange}
                 className="form-radio text-green-500"
               />
               <span className="ml-2">
@@ -148,8 +403,8 @@ const handleSubmitApply = (e) => {
                 type="radio"
                 name="leaveType"
                 value="Second Half"
-                checked={formDataApply.leaveType === "Second Half"}
-                onChange={handleChangeApply}
+                checked={formik.values.leaveType === "Second Half"}
+                onChange={formik.handleChange}
                 className="form-radio text-green-500"
               />
               <span className="ml-2">
@@ -158,73 +413,35 @@ const handleSubmitApply = (e) => {
               </span>
             </label>
           </div>
+          {formik.touched.leaveType && formik.errors.leaveType ? (
+            <div className="text-red-500">{formik.errors.leaveType}</div>
+          ) : null}
         </div>
-
-        {/* Working On Field */}
-        {/* <div className="mb-5">
-            <label htmlFor="workingOn" className="block text-sm font-semibold text-gray-700">
-                Working ON: <span className="text-red-500">*</span>
-            </label>
-            <select
-                id="workingOn"
-                name="workingOn"
-                value={formDataApply.workingOn}
-                onChange={handleChangeApply}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                required
-            >
-                <option value="" disabled>Select</option>
-                <option value="Project A">Project A</option>
-                <option value="Project B">Project B</option>
-                <option value="Project C">Project C</option>
-            </select>
-        </div> */}
 
         {/* Request To Field */}
         <div className="mb-5">
-          <label
-            htmlFor="requestTo"
-            className="block text-sm font-semibold text-gray-700"
-          >
+          <label htmlFor="requestTo" className="block text-sm font-semibold text-gray-700">
             Request To: <span className="text-red-500">*</span>
           </label>
           <select
             id="requestTo"
             name="requestTo"
-            value={formData.requestTo}
-            onChange={handleChange}
+            value={formik.values.requestTo}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
             required
           >
             <option>Select Request To HOD</option>
-            <option>Rakesh Sir</option>
+            <option>Raman Sir</option>
             <option>Shyam Sir</option>
-            <option>Kishan Sir</option>
-            <option>Rahul Sir</option>
+            <option>Radhika Mam</option>
+            <option>Karina Mam</option>
           </select>
+          {formik.touched.requestTo && formik.errors.requestTo ? (
+            <div className="text-red-500">{formik.errors.requestTo}</div>
+          ) : null}
         </div>
-
-        {/* Status Field */}
-        {/* <div className="mb-5">
-          <label
-            htmlFor="status"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Status: <span className="text-red-500">*</span>
-          </label>
-          <select
-            id="status"
-            name="status"
-            value={formDataApply.status}
-            onChange={handleChangeApply}
-            className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            required
-          >
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Rejected">Rejected</option>
-          </select>
-        </div> */}
 
         {/* Submit Button */}
         <div className="text-center">

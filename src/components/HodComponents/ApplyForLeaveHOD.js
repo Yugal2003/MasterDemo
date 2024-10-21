@@ -1,36 +1,61 @@
 import React,{useState} from "react";
+import toast from "react-hot-toast";
+import { leaveApplyHOD } from "../../api";
+import { Navigate } from 'react-router-dom';
 
 const ApplyForLeaveHOD = () => {
 
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     id: '',
-//     gender: '',
-//     phone: '',
-//     address: '',
-// });
-
   const [formDataApply, setFormDataApply] = useState({
+    id : '',
     reason: '',
     fromDate: '',
     toDate: '',
     leaveType: '',
-    // workingOn: '',
     requestTo: '',
     status: 'Pending'
 });
 
-// const handleChange = (e) => {
-//   setFormData({ ...formData, [e.target.name]: e.target.value });
-// };
+const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user.name);
+  
+  if (user?.role !== 'hod') {
+    return <Navigate to="/login" />;
+  }
 
   const handleChangeApply = (e) => {
     setFormDataApply({ ...formDataApply, [e.target.name]: e.target.value });
 };
 
-const handleSubmitApply = (e) => {
+const handleSubmitApply = async(e) => {
     e.preventDefault();
-    console.log(formDataApply); // You can handle form submission here
+
+    if (new Date(formDataApply.fromDate) > new Date(formDataApply.toDate)) {
+      toast.error("'From' date cannot be later than the 'To' date.");
+      return;
+    }
+
+    // Generate a random ID
+    const randomId = Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
+  
+    // Include the generated ID in the form data
+    const updatedFormData = { ...formDataApply, id: randomId, name : user.name };
+    try {
+      await leaveApplyHOD(updatedFormData); // Send formData including the random ID
+      toast.success('Leave Applied Successfully!');
+      
+      // Reset the form fields
+      setFormDataApply({
+        id: '',
+        reason: '',
+        fromDate: '',
+        toDate: '',
+        leaveType: '',
+        requestTo: '',
+        status: 'Pending'
+      });
+    } catch (error) {
+      toast.error("Error While Submitting the Form!");
+    }
 };
 
   return (
@@ -147,68 +172,23 @@ const handleSubmitApply = (e) => {
           </div>
         </div>
 
-        {/* Working On Field */}
-        {/* <div className="mb-5">
-            <label htmlFor="workingOn" className="block text-sm font-semibold text-gray-700">
-                Working ON: <span className="text-red-500">*</span>
-            </label>
-            <select
-                id="workingOn"
-                name="workingOn"
-                value={formDataApply.workingOn}
-                onChange={handleChangeApply}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                required
-            >
-                <option value="" disabled>Select</option>
-                <option value="Project A">Project A</option>
-                <option value="Project B">Project B</option>
-                <option value="Project C">Project C</option>
-            </select>
-        </div> */}
-
         {/* Request To Field */}
-        {/* <div className="mb-5">
-          <label
-            htmlFor="requestTo"
-            className="block text-sm font-semibold text-gray-700"
-          >
+        <div className="mb-5">
+          <label htmlFor="requestTo" className="block text-sm font-semibold text-gray-700">
             Request To: <span className="text-red-500">*</span>
           </label>
           <select
             id="requestTo"
             name="requestTo"
-            value={formData.requestTo}
-            onChange={handleChange}
+            value={formDataApply.requestTo}
+            onChange={handleChangeApply}
             className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
             required
           >
             <option>Select Request To HOD</option>
             <option>Admin</option>
           </select>
-        </div> */}
-
-        {/* Status Field */}
-        {/* <div className="mb-5">
-          <label
-            htmlFor="status"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Status: <span className="text-red-500">*</span>
-          </label>
-          <select
-            id="status"
-            name="status"
-            value={formDataApply.status}
-            onChange={handleChangeApply}
-            className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-            required
-          >
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Rejected">Rejected</option>
-          </select>
-        </div> */}
+        </div>
 
         {/* Submit Button */}
         <div className="text-center">
