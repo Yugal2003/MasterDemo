@@ -1,3 +1,4 @@
+
 // old code
 
 
@@ -632,7 +633,7 @@ const StudentDashboard = () => {
                             <li onClick={() => handleNavigation('myprofile')} className={`py-3 px-6 cursor-pointer w-full flex justify-start items-center text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>My Profile</span>}</li>
                             <li onClick={() => handleNavigation('applyForLeave')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'applyForLeave' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Apply For Leave</span>}</li>
                             <li onClick={() => handleNavigation('viewLeaveStatus')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveStatus' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Status</span>}</li>
-                            <li onClick={() => handleNavigation('viewLeaveBalance')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveBalance' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Balance</span>}</li>
+                            {/* <li onClick={() => handleNavigation('viewLeaveBalance')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveBalance' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Balance</span>}</li> */}
                             <li onClick={() => handleNavigation('logout')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'logout' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Logout</span>}</li>
                         </ul>
                     </div>
@@ -643,7 +644,7 @@ const StudentDashboard = () => {
                         {activeSection === 'myprofile' && <MyProfileStudent/>}
                         {activeSection === 'applyForLeave' && <ApplyForLeaveStudent/>}
                         {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusStudent/>}
-                        {activeSection === 'viewLeaveBalance' && <ViewLeaveBalanceStudent/>}
+                        {/* {activeSection === 'viewLeaveBalance' && <ViewLeaveBalanceStudent/>} */}
                     </div>
                 </div>
             </div>

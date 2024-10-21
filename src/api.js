@@ -163,5 +163,3 @@ export const fetchStudents = async (department) => {
         console.error('Failed to fetch students:', error.message);
     }
 };
-
-

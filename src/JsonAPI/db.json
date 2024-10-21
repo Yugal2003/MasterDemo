@@ -106,10 +106,12 @@
   ],
   "userLeaveRequests": [
     {
-      "totalLeave": 12
+      "totalLeave": 12,
+      "id": "0045"
     },
     {
-      "balanceLeave": 4
+      "balanceLeave": 4,
+      "id": "8bbc"
     },
     {
       "id": "esd65sarh",
@@ -148,7 +150,7 @@
       "toDate": "2024-10-26",
       "leaveType": "First Half",
       "requestTo": "Radhika Mam",
-      "status": "Pending",
+      "status": "Reject",
       "name": "mahesh"
     },
     {
@@ -158,7 +160,7 @@
       "toDate": "2024-10-21",
       "leaveType": "First Half",
       "requestTo": "Radhika Mam",
-      "status": "Pending",
+      "status": "Approved",
       "name": "Vivek"
     },
     {
@@ -178,7 +180,7 @@
       "toDate": "2024-10-28",
       "leaveType": "Second Half",
       "requestTo": "Shyam Sir",
-      "status": "Pending",
+      "status": "Approved",
       "name": "hitesh"
     },
     {
@@ -208,7 +210,27 @@
       "toDate": "2024-09-13",
       "leaveType": "Fullday",
       "requestTo": "Radhika Mam",
-      "status": "Pending",
+      "status": "Reject",
+      "name": "hitesh"
+    },
+    {
+      "id": "8owz1s6ns",
+      "reason": "hello",
+      "fromDate": "2024-11-12",
+      "toDate": "2024-11-13",
+      "leaveType": "Fullday",
+      "requestTo": "Radhika Mam",
+      "status": "Reject",
+      "name": "hitesh"
+    },
+    {
+      "id": "8chdbxvn5",
+      "reason": "eeeee",
+      "fromDate": "2025-01-30",
+      "toDate": "2025-01-31",
+      "leaveType": "Second Half",
+      "requestTo": "Karina Mam",
+      "status": "Approved",
       "name": "hitesh"
     }
   ],
@@ -221,7 +243,7 @@
       "leaveType": "First Half",
       "requestTo": "Admin",
       "status": "Pending",
-      "name": "Karina"
+      "name": "Karina Mam"
     },
     {
       "id": "zf42cz2gs",
@@ -231,7 +253,7 @@
       "leaveType": "Second Half",
       "requestTo": "Admin",
       "status": "Pending",
-      "name": "Radhika"
+      "name": "Radhika Mam"
     },
     {
       "id": "9etwm46pr",
@@ -241,7 +263,7 @@
       "leaveType": "Second Half",
       "requestTo": "Admin",
       "status": "Pending",
-      "name": "Radhika"
+      "name": "Radhika Mam"
     }
   ]
 }
