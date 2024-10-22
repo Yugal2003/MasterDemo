@@ -6,8 +6,9 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import DashboardHOD from '../HodComponents/DashboardHOD';
 import MyProfileHOD from '../HodComponents/MyProfileHOD';
 import ApplyForLeaveHOD from '../HodComponents/ApplyForLeaveHOD';
-import ViewLeaveStatusHOD from '../HodComponents/ViewLeaveStatusHOD';
+import ViewLeaveStatusHODStudent from '../HodComponents/ViewLeaveStatusHODStudent';
 import LogoutHOD from '../HodComponents/LogoutHOD';
+import ViewLeaveStatusHOD from '../HodComponents/ViewLeaveStatusHOD';
 
 const HODDashboard = () => {
     // const [userDataShow, setUserDataShow] = useState(false);
@@ -161,6 +162,7 @@ const HODDashboard = () => {
                         {/* Calendar Section */}
                         {activeSection === 'applyForLeave' && <ApplyForLeaveHOD/>}
                         {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusHOD/>}
+                        {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusHODStudent/>}
                         {/* {activeSection === 'logout' && (
                             <LogoutHOD/>
                         )} */}

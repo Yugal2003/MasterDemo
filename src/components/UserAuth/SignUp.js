@@ -133,7 +133,7 @@ const Signup = () => {
                   <div className='flex flex-col'>
                       <label for="department">Department:</label>
                       <select id="department" name="department" 
-                      value={formData.department} onChange={handleInputChange}>
+                      value={formData.department} onChange={handleInputChange} required>
                           <option value="">Select HOD</option>
                           <option value="hod1">Raman Sir</option>
                           <option value="hod2">Shyam Sir</option>
@@ -144,18 +144,20 @@ const Signup = () => {
                 )}
            </div>
 
-            
-            <textarea
-                cols={25}
-                rows={5}
-                className='border'
-                type="text"
-                name="address"
-                placeholder="Address"
-                value={formData.address}
-                onChange={handleInputChange}
-                required
-            ></textarea>
+            <div>
+              <label className="p-1 flex flex-row">Address :</label>
+              <textarea
+                  cols={25}
+                  rows={5}
+                  className='border'
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  required
+              ></textarea>
+            </div>
             
 
             

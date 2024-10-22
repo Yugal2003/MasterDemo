@@ -528,7 +528,7 @@ import MyProfileStudent from '../StudentComponents/MyProfileStudent';
 import ApplyForLeaveStudent from '../StudentComponents/ApplyForLeaveStudent';
 import ViewLeaveStatusStudent from '../StudentComponents/ViewLeaveStatusStudent';
 import LogoutStudent from '../StudentComponents/LogoutStudent';
-import ViewLeaveBalanceStudent from '../StudentComponents/ViewLeaveBalanceStudent';
+// import ViewLeaveBalanceStudent from '../StudentComponents/ViewLeaveBalanceStudent';
 
 // const localizer = momentLocalizer(moment);
 
@@ -582,7 +582,7 @@ const StudentDashboard = () => {
     //     // Events data
     // ];
 
-    if (user.role !== 'student' || user.id !== studentId) {
+    if (user.role !== 'student') {
         return <Navigate to="/login" />;
     }
 

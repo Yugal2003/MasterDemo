@@ -220,7 +220,7 @@ const DashboardHOD = () => {
 
   return (
     <div className='mt-8'>
-      <h3>{hodError ? hodError : <span className='text-3xl font-bold flex justify-center items-center mb-4'>Student Calendar</span>}</h3>
+      <h3>{hodError ? hodError : <span className='text-3xl font-bold flex justify-center items-center mb-4'>HOD Calendar</span>}</h3>
       <div className="flex flex-row justify-between items-center">
           <div>
             <h1 className="font-bold text-lg">Total Leave : {totalLeave}</h1>

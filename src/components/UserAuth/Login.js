@@ -437,7 +437,7 @@ const Login = () => {
             </form>
 
             <div className='flexs mt-2'>
-                <h2>Already have an account? <span className='underline text-sky-600'><NavLink to='/signup'>SignUp</NavLink></span></h2>
+                <h2>Don't have an account? <span className='underline text-sky-600'><NavLink to='/signup'>SignUp</NavLink></span></h2>
             </div>
         </div>
     );
