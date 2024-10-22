@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -60,8 +62,8 @@ const ViewLeaveReportAdmin = () => {
           <table className="min-w-full table-auto border-collapse border border-gray-300">
             <thead>
               <tr class="bg-gray-200">
-                <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
                 <th className="px-2 py-2 border border-gray-300 text-left">ID</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
                 <th className="px-2 py-2 border border-gray-300 text-left">Reason</th>
                 <th className="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
                 <th className="px-0 py-2 border border-gray-300 text-left">Total Working Days</th>
@@ -78,10 +80,10 @@ const ViewLeaveReportAdmin = () => {
               ) : (
                 leaveRequestsHOD.map((request,index) => (
                 <tr key={request.id}>
-                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
                   <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
                   <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
-                  <td className="px-2 py-2 border border-gray-300">2</td>
+                  <td className="px-2 py-2 border border-gray-300">12</td>
                   <td className="px-2 py-2 border border-gray-300">26</td>
                   <td className="px-2 py-2 border border-gray-300">88%</td>
                 </tr>
@@ -99,8 +101,8 @@ const ViewLeaveReportAdmin = () => {
           <table class="min-w-full table-auto border-collapse border border-gray-300">
             <thead>
               <tr class="bg-gray-200">
-                <th class="px-2 py-2 border border-gray-300 text-left">Name</th>
                 <th class="px-2 py-2 border border-gray-300 text-left">ID</th>
+                <th class="px-2 py-2 border border-gray-300 text-left">Name</th>
                 <th class="px-2 py-2 border border-gray-300 text-left">Reason</th>
                 <th class="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
                 <th class="px-0 py-2 border border-gray-300 text-left">Total Working Days</th>
@@ -117,10 +119,10 @@ const ViewLeaveReportAdmin = () => {
                 ) : (
                 leaveRequestsStudent.map((request,index) => (
                 <tr key={request.id}>
-                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
                   <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
                   <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
-                  <td className="px-2 py-2 border border-gray-300">2</td>
+                  <td className="px-2 py-2 border border-gray-300">12</td>
                   <td className="px-2 py-2 border border-gray-300">26</td>
                   <td className="px-2 py-2 border border-gray-300">88%</td>
                 </tr>

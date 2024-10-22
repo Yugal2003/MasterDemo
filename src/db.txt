@@ -90,7 +90,43 @@
       "department": "hod2",
       "address": "Hello",
       "role": "student"
-    }
+    },
+    {
+      "id": "e2b4",
+      "name": "Vivek",
+      "email": "vivek@gmail.com",
+      "password": "123",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "9327387563",
+      "department": "hod2",
+      "address": "Sanjaynagar,Limbayat",
+      "role": "student"
+    },
+    {
+      "id": "2f2d",
+      "name": "Yugal",
+      "email": "yugalramesh6832@gmail.com",
+      "password": "123",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "9316110894",
+      "department": "hod3",
+      "address": "Limbayat,Surat",
+      "role": "student"
+    },
+    {
+      "id": "la39",
+      "name": "Bhavik",
+      "email": "bhavik@gmail.com",
+      "password": "bk@944",
+      "gender": "male",
+      "image": "data:image/jpeg,
+      "phone": "9173065941",
+      "department": "hod2",
+      "address": "Vadodara",
+      "role": "student"
+    },
   ],
   "userLeaveRequests": [
     {

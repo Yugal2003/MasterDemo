@@ -127,21 +127,21 @@ export const loginUser = async (email, password, role) => {
 
 //updateuserdata
 
-export const updateUserData = async(data)=>{
-    try {
-        const existingUserResponse = await API.get(`/users?email=${data.email}`);
+// Update user data by merging updated fields with existing ones
+export const updateUserData = async (user, updatedFields) => {
+  try {
+      // Merge the updated fields with the original user data
+      const updatedUser = {
+          ...user,
+          ...updatedFields // Only overwrite fields that are present in updatedFields
+      };
 
-        if(existingUserResponse){
-            return await API.put(`/users/${data.id}`, data); 
-        }
-        else{
-            throw new Error('User Not Found !');
-        }
-    } 
-    catch (error) {
-        throw error; 
-    }
-}
+      // Send PUT request to update user data in db.json
+      return await API.put(`/users/${user.id}`, updatedUser);
+  } catch (error) {
+      throw error; 
+  }
+};
 
 
 // Fetch all students based on department
