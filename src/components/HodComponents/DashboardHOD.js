@@ -1,3 +1,4 @@
+
 // show hod leave in calender that wrong
 
 
@@ -348,6 +349,8 @@ const DashboardHOD = () => {
 
   const eventPropGetter = (event) => {
     let newStyle = {
+      padding : '1px',
+      fontSize : '14px',
       backgroundColor: 'green', // Default green for approved leaves
       color: 'white',
       borderRadius: '0px',

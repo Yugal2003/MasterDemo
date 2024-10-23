@@ -1,3 +1,5 @@
+
+
 // import React,{useState,useEffect}from "react";
 // // import { useParams } from 'react-router-dom';
 // import { updateUserData } from "../../api";
@@ -374,7 +376,7 @@
 
 import React, { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
-import { updateUserData } from "../../api"; // Ensure this function is correctly set up to make API requests.
+import { updateUserData } from "../../api"; 
 
 const MyProfileStudent = () => {
     const [userDataShow, setUserDataShow] = useState(false);
@@ -390,7 +392,8 @@ const MyProfileStudent = () => {
 
     // Get user data from localStorage
     const user = JSON.parse(localStorage.getItem('user'));
-
+    console.log(user);
+    
     useEffect(() => {
         if (user) {
             setFormData({
@@ -446,7 +449,7 @@ const MyProfileStudent = () => {
             localStorage.setItem('user', JSON.stringify(updatedUser));
             
             // Notify success
-            toast.success('User updated successfully!');
+            toast.success('Profle updated successfully!');
         } 
         catch (error) {
             toast.error('Update failed.');

@@ -167,10 +167,11 @@ const DashboardAdmin = () => {
 
     return {
       style: {
+        fontSize : '14px',
         backgroundColor,
         color: 'white', // Ensures the text is readable
         borderRadius: '2px',
-        padding: '5px',
+        padding: '1px',
         border: 'none',
       },
     };

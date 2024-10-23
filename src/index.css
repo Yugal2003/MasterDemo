@@ -1,4 +1,5 @@
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,7 +69,7 @@
     display: flex;
     flex-direction: row;
     background-color: rgb(208, 137, 6);
-    padding: 5px 10px;
+    padding: 5px;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
@@ -80,3 +81,13 @@
     cursor: pointer;
     background-color: rgb(247, 247, 199);
 } */
+ .bg-color{
+    background: url(../src/img/blur.jpg);
+    width: 100%;
+ }
+ .text-login{
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    font-family: cursive;
+}

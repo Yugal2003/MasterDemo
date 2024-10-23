@@ -205,6 +205,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { MdEdit } from "react-icons/md";
 
 const ManageStudentAdmin = () => {
   const [leaveRequestsStudents, setLeaveRequestsStudents] = useState([]);
@@ -298,7 +299,7 @@ const ManageStudentAdmin = () => {
                   <td className="border border-gray-300">{student.role}</td>
                   <td className="border border-gray-300">{student.phone}</td>
                   <td className="border border-gray-300">
-                    <button className="edit_btn" onClick={() => handleEditClick(student)}>Edit</button>
+                    <button className="edit_btn" onClick={() => handleEditClick(student)}><MdEdit/>Edit</button>
                   </td>
                 </tr>
               ))

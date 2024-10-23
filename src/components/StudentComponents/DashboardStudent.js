@@ -1,3 +1,5 @@
+
+
 // import moment from 'moment';
 // import React,{ useEffect, useState } from 'react'
 // import axios from 'axios';
@@ -220,6 +222,8 @@ const DashboardStudent = () => {
 
   const eventPropGetter = (event) => {
     let newStyle = {
+      padding : '1px',
+      fontSize : '14px',
       color: 'white',
       borderRadius: '0px',
       border: 'none',
