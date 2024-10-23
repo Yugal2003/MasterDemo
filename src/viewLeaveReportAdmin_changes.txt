@@ -1,0 +1,402 @@
+ViewLeaveReportAdmin.js
+
+
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const ViewLeaveReportAdmin = () => {
+  const [leaveRequestsHOD, setLeaveRequestsHOD] = useState([]);
+  const [hodError, setHodError] = useState('');
+  const [leaveRequestsStudent, setLeaveRequestsStudent] = useState([]);
+  const [studentError, setStudentError] = useState('');
+
+  const API = axios.create({
+    baseURL: 'http://localhost:3001',
+  });
+
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+    const fetchLeaveRequestsStudent = async () => {
+      try {
+        const response = await API.get(`/userLeaveRequests`);
+
+        if (response) {
+          console.log("user data :",response.data);
+          setLeaveRequestsStudent(response.data);
+        }
+        else {
+          setStudentError('No Leave Data Availbale !');
+        }
+      } 
+      catch (err) {
+        setStudentError('Error fetching leave requests');
+      }
+    };
+    const fetchLeaveRequestsHOD = async () => {
+      try {
+        const response = await API.get(`/hodLeaveRequests`);
+
+        if (response) {
+          console.log("hod data :",response.data);
+          setLeaveRequestsHOD(response.data);
+        }
+        else {
+          setHodError('No Leave Data Availbale !');
+        }
+      } 
+      catch (err) {
+        setHodError('Error fetching leave requests');
+      }
+    };
+
+    fetchLeaveRequestsStudent();
+    fetchLeaveRequestsHOD();
+  }, []);
+
+  return (
+    <div className='flex flex-col'>
+      {/* HOD */}
+      <div className="container mx-auto p-4">
+        <div className="overflow-x-auto">
+          <h1 className='mt-10 mb-6 flex justify-left items-center text-2xl font-bold'>HOD Leave Report :-</h1>
+          <table className="min-w-full table-auto border-collapse border border-gray-300">
+            <thead>
+              <tr class="bg-gray-200">
+                <th className="px-2 py-2 border border-gray-300 text-left">ID</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Reason</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Used Leave</th>
+                {/* <th className="px-0 py-2 border border-gray-300 text-left">Total Working Days</th> */}
+                <th className="px-0 py-2 border border-gray-300 text-left">Attendance Percentage</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Status</th>
+              </tr>
+            </thead>
+              <tbody>
+              {leaveRequestsHOD.length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="text-center py-4">
+                    No leave requests found.
+                  </td>
+                </tr>
+              ) : (
+                leaveRequestsHOD.map((request,index) => (
+                <tr key={request.id}>
+                  <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
+                  <td className="px-2 py-2 border border-gray-300">12</td>
+                  <td className="px-2 py-2 border border-gray-300">2</td>
+                  <td className="px-2 py-2 border border-gray-300">88%</td>
+                  <td className="px-2 py-2 border border-gray-300">
+                      <select>
+                        <option value="Pending" className="font-bold">Pending</option>
+                        <option value="Approved" className="font-bold">Approved</option>
+                        <option value="Reject" className="font-bold">Reject</option>
+                      </select>
+                  </td>
+                </tr>
+                ))
+                )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Students */}
+      <div class="container mx-auto p-4">
+        <div class="overflow-x-auto">
+          <h1 className='mt-0 mb-6 flex justify-left items-center text-2xl font-bold'>Students Leave Report :-</h1>
+          <table class="min-w-full table-auto border-collapse border border-gray-300">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="px-2 py-2 border border-gray-300 text-left">ID</th>
+                <th class="px-2 py-2 border border-gray-300 text-left">Name</th>
+                <th class="px-2 py-2 border border-gray-300 text-left">Reason</th>
+                <th class="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
+                <th class="px-2 py-2 border border-gray-300 text-left">Used Leave</th>
+                {/* <th class="px-0 py-2 border border-gray-300 text-left">Total Working Days</th> */}
+                <th class="px-0 py-2 border border-gray-300 text-left">Attendance Percentage</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+              {leaveRequestsStudent.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" className="text-center py-4">
+                      No leave requests found.
+                    </td>
+                  </tr>
+                ) : (
+                leaveRequestsStudent.map((request,index) => (
+                <tr key={request.id}>
+                  <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.name}</td>
+                  <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
+                  <td className="px-2 py-2 border border-gray-300">12</td>
+                  <td className="px-2 py-2 border border-gray-300">2</td>
+                  <td className="px-2 py-2 border border-gray-300">88%</td>
+                  <td className="px-2 py-2 border border-gray-300">
+                      <select>
+                        <option value="Pending" className="font-bold">Pending</option>
+                        <option value="Approved" className="font-bold">Approved</option>
+                        <option value="Reject" className="font-bold">Reject</option>
+                      </select>
+                  </td>
+                </tr>
+                ))
+                )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ViewLeaveReportAdmin;
+
+
+
+
+
+
+
+db.json
+
+
+
+
+ "userLeaveRequests": [
+    {
+      "totalLeave": 12,
+      "id": "0045"
+    },
+    {
+      "balanceLeave": 4,
+      "id": "8bbc"
+    },
+    {
+      "id": "0crxcxu0p",
+      "reason": "lol",
+      "fromDate": "2024-10-20",
+      "toDate": "2024-10-21",
+      "leaveType": "Fullday",
+      "requestTo": "Karina Mam",
+      "status": "Approved",
+      "name": "mahesh"
+    },
+    {
+      "id": "cgsnfm8pu",
+      "reason": "lol2",
+      "fromDate": "2024-10-23",
+      "toDate": "2024-10-26",
+      "leaveType": "First Half",
+      "requestTo": "Radhika Mam",
+      "status": "Reject",
+      "name": "mahesh"
+    },
+    {
+      "id": "tgiyb98w1",
+      "reason": "vivek",
+      "fromDate": "2024-10-20",
+      "toDate": "2024-10-21",
+      "leaveType": "First Half",
+      "requestTo": "Radhika Mam",
+      "status": "Reject",
+      "name": "Vivek"
+    },
+    {
+      "id": "fomhv780f",
+      "reason": "kite",
+      "fromDate": "2025-01-14",
+      "toDate": "2025-01-16",
+      "leaveType": "Fullday",
+      "requestTo": "Shyam Sir",
+      "status": "Pending",
+      "name": "mahesh"
+    },
+    {
+      "id": "5gnrmmgr5",
+      "reason": "Republic day",
+      "fromDate": "2025-01-25",
+      "toDate": "2025-01-26",
+      "leaveType": "Fullday",
+      "requestTo": "Raman Sir",
+      "status": "Pending",
+      "name": "mahesh"
+    },
+    {
+      "id": "pdjn8pjhn",
+      "reason": "erer",
+      "fromDate": "2025-02-14",
+      "toDate": "2025-02-14",
+      "leaveType": "Fullday",
+      "requestTo": "Shyam Sir",
+      "status": "Approved",
+      "name": "mahesh"
+    },
+    {
+      "id": "ip42gydah",
+      "reason": "yuhi",
+      "fromDate": "2024-10-24",
+      "toDate": "2024-10-24",
+      "leaveType": "Second Half",
+      "requestTo": "Shyam Sir",
+      "status": "Approved",
+      "name": "Vivek"
+    },
+    {
+      "id": "8n8rqcism",
+      "reason": "Health Not Well",
+      "fromDate": "2024-10-26",
+      "toDate": "2024-10-28",
+      "leaveType": "Fullday",
+      "requestTo": "Radhika Mam",
+      "status": "Approved",
+      "name": "Hitesh"
+    },
+    {
+      "id": "e4le1u59g",
+      "reason": "Diwali Vacation",
+      "fromDate": "2024-10-31",
+      "toDate": "2024-11-10",
+      "leaveType": "Fullday",
+      "requestTo": "Karina Mam",
+      "status": "Pending",
+      "name": "Hitesh"
+    },
+    {
+      "id": "8nl0s9h57",
+      "reason": "Tour Vacation",
+      "fromDate": "2024-10-31",
+      "toDate": "2024-11-10",
+      "leaveType": "Fullday",
+      "requestTo": "Raman Sir",
+      "status": "Reject",
+      "name": "Hitesh"
+    },
+    {
+      "id": "a7jzyv3g8",
+      "reason": "mahesh leave",
+      "fromDate": "2024-12-01",
+      "toDate": "2024-12-01",
+      "leaveType": "Second Half",
+      "requestTo": "Radhika Mam",
+      "status": "Reject",
+      "name": "mahesh"
+    },
+    {
+      "id": "uw34zn77q",
+      "reason": "Good",
+      "fromDate": "2024-10-25",
+      "toDate": "2024-10-25",
+      "leaveType": "First Half",
+      "requestTo": "Radhika Mam",
+      "status": "Pending",
+      "name": "Yugal"
+    },
+    {
+      "id": "45wupdseg",
+      "reason": "rakesh leave",
+      "fromDate": "2024-10-23",
+      "toDate": "2024-10-23",
+      "leaveType": "Fullday",
+      "requestTo": "Shyam Sir",
+      "status": "Approved",
+      "name": "rakesh"
+    }
+  ],
+  "hodLeaveRequests": [
+    {
+      "id": "lpt3l0a5m",
+      "reason": "karina",
+      "fromDate": "2024-10-20",
+      "toDate": "2024-10-21",
+      "leaveType": "First Half",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Karina Mam"
+    },
+    {
+      "id": "zf42cz2gs",
+      "reason": "jaddi",
+      "fromDate": "2024-10-22",
+      "toDate": "2024-10-24",
+      "leaveType": "Second Half",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Radhika Mam"
+    },
+    {
+      "id": "6ivthruqi",
+      "reason": "Health is not well",
+      "fromDate": "2024-10-30",
+      "toDate": "2024-10-30",
+      "leaveType": "Fullday",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Radhika Mam"
+    },
+    {
+      "id": "wv5i03sfi",
+      "reason": "radhika leave ",
+      "fromDate": "2024-11-01",
+      "toDate": "2024-11-03",
+      "leaveType": "Fullday",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Radhika Mam"
+    },
+    {
+      "id": "njm3x2s03",
+      "reason": "karina 2",
+      "fromDate": "2024-11-06",
+      "toDate": "2024-11-07",
+      "leaveType": "First Half",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Karina Mam"
+    },
+    {
+      "id": "94jn3ky5u",
+      "reason": "shyam leave",
+      "fromDate": "2024-10-23",
+      "toDate": "2024-10-23",
+      "leaveType": "Fullday",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Shyam Sir"
+    },
+    {
+      "id": "hjk88iddo",
+      "reason": "jjj",
+      "fromDate": "2024-10-22",
+      "toDate": "2024-10-23",
+      "leaveType": "First Half",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Radhika Mam"
+    }
+  ]
+  
+  
+  
+  so in this ViewLeaveReportAdmin page you can show all hod and students leave approved data on this page so in this code you have to change some functionality like an
+  
+ 1. the total leave is same as 12 only
+  
+ 2. in hod table used leave td data show hod total leave that store in hodLeaveRequests array for particular hod show their leave data in td tag this same functionality add in students table also means show total leave of particular user in td data
+  
+ 3. another changes in attendance percentage td data show hod or students their totalleave - personal total leaves and calculate that percentage 
+ 
+ 4. status field when admin can select an option approved so that data store in object of particular hod or student in db.json file
+ and also update like real time dynamic data changes
+ 
+ 5. when admin can select approved so that select tag bg-color change to bg-green-400 
+ 6. admin can select reject so that select tag bg-color change to bg-red-400 
+ 7. admin can select pending so that select tag bg-color change to bg-gray-400 
+ 
+ can you change some above change and send me proper code for that

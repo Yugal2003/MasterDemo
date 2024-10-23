@@ -1,0 +1,530 @@
+db.json
+
+
+"userLeaveRequests": [
+    {
+      "totalLeave": 12,
+      "id": "0045"
+    },
+    {
+      "balanceLeave": 4,
+      "id": "8bbc"
+    },
+    {
+      "id": "0crxcxu0p",
+      "reason": "lol",
+      "fromDate": "2024-10-20",
+      "toDate": "2024-10-21",
+      "leaveType": "Fullday",
+      "requestTo": "Karina Mam",
+      "status": "Approved",
+      "name": "mahesh"
+    },
+    {
+      "id": "cgsnfm8pu",
+      "reason": "lol2",
+      "fromDate": "2024-10-23",
+      "toDate": "2024-10-26",
+      "leaveType": "First Half",
+      "requestTo": "Radhika Mam",
+      "status": "Reject",
+      "name": "mahesh"
+    },
+    {
+      "id": "tgiyb98w1",
+      "reason": "vivek",
+      "fromDate": "2024-10-20",
+      "toDate": "2024-10-21",
+      "leaveType": "First Half",
+      "requestTo": "Radhika Mam",
+      "status": "Reject",
+      "name": "Vivek"
+    },
+    {
+      "id": "fomhv780f",
+      "reason": "kite",
+      "fromDate": "2025-01-14",
+      "toDate": "2025-01-16",
+      "leaveType": "Fullday",
+      "requestTo": "Shyam Sir",
+      "status": "Pending",
+      "name": "mahesh"
+    },
+    {
+      "id": "5gnrmmgr5",
+      "reason": "Republic day",
+      "fromDate": "2025-01-25",
+      "toDate": "2025-01-26",
+      "leaveType": "Fullday",
+      "requestTo": "Raman Sir",
+      "status": "Pending",
+      "name": "mahesh"
+    },
+    {
+      "id": "pdjn8pjhn",
+      "reason": "erer",
+      "fromDate": "2025-02-14",
+      "toDate": "2025-02-14",
+      "leaveType": "Fullday",
+      "requestTo": "Shyam Sir",
+      "status": "Approved",
+      "name": "mahesh"
+    },
+    {
+      "id": "ip42gydah",
+      "reason": "yuhi",
+      "fromDate": "2024-10-24",
+      "toDate": "2024-10-24",
+      "leaveType": "Second Half",
+      "requestTo": "Shyam Sir",
+      "status": "Approved",
+      "name": "Vivek"
+    },
+    {
+      "id": "8n8rqcism",
+      "reason": "Health Not Well",
+      "fromDate": "2024-10-26",
+      "toDate": "2024-10-28",
+      "leaveType": "Fullday",
+      "requestTo": "Radhika Mam",
+      "status": "Approved",
+      "name": "Hitesh"
+    },
+    {
+      "id": "e4le1u59g",
+      "reason": "Diwali Vacation",
+      "fromDate": "2024-10-31",
+      "toDate": "2024-11-10",
+      "leaveType": "Fullday",
+      "requestTo": "Karina Mam",
+      "status": "Pending",
+      "name": "Hitesh"
+    },
+    {
+      "id": "8nl0s9h57",
+      "reason": "Tour Vacation",
+      "fromDate": "2024-10-31",
+      "toDate": "2024-11-10",
+      "leaveType": "Fullday",
+      "requestTo": "Raman Sir",
+      "status": "Reject",
+      "name": "Hitesh"
+    },
+    {
+      "id": "a7jzyv3g8",
+      "reason": "mahesh leave",
+      "fromDate": "2024-12-01",
+      "toDate": "2024-12-01",
+      "leaveType": "Second Half",
+      "requestTo": "Radhika Mam",
+      "status": "Reject",
+      "name": "mahesh"
+    },
+    {
+      "id": "uw34zn77q",
+      "reason": "Good",
+      "fromDate": "2024-10-25",
+      "toDate": "2024-10-25",
+      "leaveType": "First Half",
+      "requestTo": "Radhika Mam",
+      "status": "Pending",
+      "name": "Yugal"
+    },
+    {
+      "id": "45wupdseg",
+      "reason": "rakesh leave",
+      "fromDate": "2024-10-23",
+      "toDate": "2024-10-23",
+      "leaveType": "Fullday",
+      "requestTo": "Shyam Sir",
+      "status": "Approved",
+      "name": "rakesh"
+    }
+  ]
+  
+  
+  
+  ViewLeaveStatusHODStudent.js
+
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Navigate } from 'react-router-dom';
+
+const ViewLeaveStatusHODStudent = () => {
+  const [studentLeaveRequests, setStudentLeaveRequests] = useState({});
+  const [hodError, setHodError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const totalLeave = 12; // Constant total leave for every student
+  const [statuses, setStatuses] = useState({});
+  
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const API = axios.create({
+    baseURL: 'http://localhost:3001',
+  });
+
+  useEffect(() => {
+    const fetchLeaveRequests = async () => {
+      try {
+        const response = await API.get(`/userLeaveRequests`);
+        const filteredRequests = response.data.filter((request) => request.requestTo === user.name);
+        const groupedRequests = filteredRequests.reduce((acc, request) => {
+          if (request.name) {
+            if (!acc[request.name]) {
+              acc[request.name] = [];
+            }
+            acc[request.name].push(request);
+          }
+          return acc;
+        }, {});
+
+        setStudentLeaveRequests(groupedRequests);
+      } catch (err) {
+        setHodError('Error fetching leave requests');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLeaveRequests();
+  }, [user.name]);
+
+  const calculateLeaveData = (requests) => {
+    return requests.length; // Total leaves taken by the student
+  };
+
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const leaveRequest = Object.values(studentLeaveRequests).flat().find((request) => request.id === id);
+
+      if (leaveRequest) {
+        setStatuses((prevStatuses) => ({
+          ...prevStatuses,
+          [id]: newStatus,
+        }));
+
+        await API.patch(`/userLeaveRequests/${id}`, {
+          ...leaveRequest,
+          status: newStatus,
+        });
+
+        setStudentLeaveRequests((prevRequests) => {
+          const updatedRequests = { ...prevRequests };
+          const studentName = leaveRequest.name;
+          if (updatedRequests[studentName]) {
+            updatedRequests[studentName] = updatedRequests[studentName].map((req) =>
+              req.id === id ? { ...req, status: newStatus } : req
+            );
+          }
+          return updatedRequests;
+        });
+      }
+    } catch (error) {
+      setHodError('Error updating leave status');
+    }
+  };
+
+  const getStatusBgColor = (status) => {
+    switch (status) {
+      case 'Approved':
+        return 'bg-green-400';
+      case 'Reject':
+        return 'bg-red-400';
+      default:
+        return 'bg-gray-400';
+    }
+  };
+
+  if (user.role !== 'hod') {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <div className="container mx-auto p-4">
+      {hodError && <div className="text-red-500">{hodError}</div>}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <h1 className="mt-20 mb-6 flex justify-left items-center text-2xl font-bold">
+            Students Leave List:
+          </h1>
+          <table className="min-w-full table-auto border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="px-2 py-2 border border-gray-300 text-left">ID</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Reason</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Used Leave</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(studentLeaveRequests).length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="text-center py-4">
+                    No leave requests found.
+                  </td>
+                </tr>
+              ) : (
+                Object.keys(studentLeaveRequests).map((studentName, index) => {
+                  const studentLeaves = studentLeaveRequests[studentName];
+                  const usedLeavesCount = calculateLeaveData(studentLeaves); // Total leaves taken by the student
+                  const availableLeavesCount = totalLeave - usedLeavesCount; // Calculate available leave for each student
+
+                  return studentLeaves.map((leaveRequest) => (
+                    <tr key={leaveRequest.id}>
+                      <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
+                      <td className="px-2 py-2 border border-gray-300">{studentName}</td>
+                      <td className="px-2 py-2 border border-gray-300">{leaveRequest.reason}</td>
+                      <td className="px-2 py-2 border border-gray-300">{totalLeave}</td>
+                      <td className="px-2 py-2 border border-gray-300">{availableLeavesCount}</td> {/* Show calculated available leaves */}
+                      <td className="px-2 py-2 border border-gray-300">
+                        <select
+                          className={`rounded-md border-2 p-1 ${getStatusBgColor(leaveRequest.status)}`}
+                          value={statuses[leaveRequest.id] || leaveRequest.status}
+                          onChange={(e) => handleStatusChange(leaveRequest.id, e.target.value)}
+                        >
+                          <option value="Pending">Pending</option>
+                          <option value="Approved">Approved</option>
+                          <option value="Reject">Reject</option>
+                        </select>
+                      </td>
+                    </tr>
+                  ));
+                })
+              )}
+            </tbody>
+          </table>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default ViewLeaveStatusHODStudent;
+
+
+so in this code you can remove an availabel leave logic and count an used leave for students 
+
+ex. in hitesh case they have 3 leave for different hods so total hitesh leave is = 3
+
+so in td used leave = 3 
+
+
+bro you why calculate used leave only this login hod requestTo field in userLeaveRequests array calculate total hitesh leave is 3 not is 1 only for this hod ok
+
+
+so in this code the availbale leave for students is calculation is
+totalleave - this login hod students total leave 
+but instead of that you can calculate an available leave is
+totalleave - students total leave in userLeaveRequests array not only count this login hod students total leave but count students total leave in available td data 
+
+ex. hitesh has 3 leave in userLeaveRequests array and you can show  totalleave - login hod students leave is 1 so instead of this hitesh total leave is 3 so in td available leave = totalleave - 3(hitesh total leaves)
+
+
+
+no brother you did not got that 
+i say that in availbale leave td you can show an students availbale leave to calculate like totalleave - login hod student total leave that wrong way you can calculate so instead of this 
+you can calculate like particular students total leave in  userLeaveRequests array that you can calculate dynamically and in the availabel leave td data show  = totalleave - particular students total leave 
+
+so you change as totalleave - login hod students leave isntead of that avaiabeleave = totalleave - students total leave not minus login hod student leave
+
+
+
+again you can calculate wrong in availabel leave td tada 
+suppose i expalin with example
+
+ex. hitesh has three total leave in userLeaveRequests array 
+so in availbale leave  = totalleave(12) - hitesh as student total leave(3) = 9 that true
+so in hitesh case you can calculate wrong is 
+availbale leave  = totalleave(12) - hitesh as student total leave in login hod name(1) = 11 that wrong 
+
+so you can calculate like this one
+
+
+
+again brother in hitesh case show 11 available leave instead of 9 why ?
+why you calculate only login hod students leave in available leave td data
+calculate an student total leave and minus that leave in totalleave(12) and show in availabel leave data as td 
+
+
+why you calculate only login hod students leave count students total leave that selected other hod leave approved also
+
+again hitesh available leave show 11 instead of 9 
+
+
+
+calculate available leave = totalleave(12) - students all leave in userLeaveRequests array 
+
+you  not include students leave this hod how many apply leaves
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+How to apply an react table in this code and don't remove and change this code only apply an react table npm on that 
+ 
+ 
+ 
+ import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Navigate } from 'react-router-dom';
+
+const ViewLeaveStatusHOD = () => {
+  const [studentLeaveRequests, setStudentLeaveRequests] = useState({});
+  const [hodError, setHodError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const totalLeave = 12; // Constant total leave for every student
+  const [statuses, setStatuses] = useState({});
+  
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const API = axios.create({
+    baseURL: 'http://localhost:3001',
+  });
+
+  useEffect(() => {
+    const fetchLeaveRequests = async () => {
+      try {
+        const response = await API.get(`/userLeaveRequests`);
+        const filteredRequests = response.data.filter((request) => request.requestTo === user.name);
+        const groupedRequests = filteredRequests.reduce((acc, request) => {
+          if (request.name) {
+            if (!acc[request.name]) {
+              acc[request.name] = [];
+            }
+            acc[request.name].push(request);
+          }
+          return acc;
+        }, {});
+
+        setStudentLeaveRequests(groupedRequests);
+      } catch (err) {
+        setHodError('Error fetching leave requests');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLeaveRequests();
+  }, [user.name]);
+
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const leaveRequest = Object.values(studentLeaveRequests).flat().find((request) => request.id === id);
+
+      if (leaveRequest) {
+        setStatuses((prevStatuses) => ({
+          ...prevStatuses,
+          [id]: newStatus,
+        }));
+
+        await API.patch(`/userLeaveRequests/${id}`, {
+          ...leaveRequest,
+          status: newStatus,
+        });
+
+        setStudentLeaveRequests((prevRequests) => {
+          const updatedRequests = { ...prevRequests };
+          const studentName = leaveRequest.name;
+          if (updatedRequests[studentName]) {
+            updatedRequests[studentName] = updatedRequests[studentName].map((req) =>
+              req.id === id ? { ...req, status: newStatus } : req
+            );
+          }
+          return updatedRequests;
+        });
+      }
+    } catch (error) {
+      setHodError('Error updating leave status');
+    }
+  };
+
+  const getStatusBgColor = (status) => {
+    switch (status) {
+      case 'Approved':
+        return 'bg-green-400';
+      case 'Reject':
+        return 'bg-red-400';
+      default:
+        return 'bg-gray-400';
+    }
+  };
+
+  if (user.role !== 'hod') {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <div className="container mx-auto p-4">
+      {hodError && <div className="text-red-500">{hodError}</div>}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <h1 className="mt-20 mb-6 flex justify-left items-center text-2xl font-bold">
+            Students Leave List:
+          </h1>
+          <table className="min-w-full table-auto border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="px-2 py-2 border border-gray-300 text-left">ID</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Reason</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Leave Type</th>
+                {/* <th className="px-2 py-2 border border-gray-300 text-left">Used Leave</th> */}
+                <th className="px-2 py-2 border border-gray-300 text-left">Status</th>
+                <th className="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(studentLeaveRequests).length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="text-center py-4">
+                    No leave requests found.
+                  </td>
+                </tr>
+              ) : (
+                Object.keys(studentLeaveRequests).map((studentName, index) => {
+                  const studentLeaves = studentLeaveRequests[studentName];
+                  const usedLeavesCount = studentLeaves.length; // Total leaves taken by the student
+                  console.log(usedLeavesCount);
+                  
+                  return studentLeaves.map((leaveRequest) => (
+                    <tr key={leaveRequest.id}>
+                      <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
+                      <td className="px-2 py-2 border border-gray-300">{studentName}</td>
+                      <td className="px-2 py-2 border border-gray-300">{leaveRequest.reason}</td>
+                      <td className="px-2 py-2 border border-gray-300">{leaveRequest.leaveType}</td>
+                      {/* <td className="px-2 py-2 border border-gray-300">{usedLeavesCount}</td>  */}
+                      <td className="px-2 py-2 border border-gray-300">
+                        <select
+                          className={`rounded-md border-2 p-1 ${getStatusBgColor(leaveRequest.status)}`}
+                          value={statuses[leaveRequest.id] || leaveRequest.status}
+                          onChange={(e) => handleStatusChange(leaveRequest.id, e.target.value)}
+                        >
+                          <option value="Pending">Pending</option>
+                          <option value="Approved">Approved</option>
+                          <option value="Reject">Reject</option>
+                        </select>
+                      </td>
+                      <td className="px-2 py-2 border border-gray-300">{totalLeave}</td>
+                    </tr>
+                  ));
+                })
+              )}
+            </tbody>
+          </table>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default ViewLeaveStatusHOD;
+

@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import 'react-big-calendar/lib/css/react-big-calendar.css'; // Calendar CSS styles
@@ -13,13 +15,7 @@ import ViewLeaveStatusHOD from '../HodComponents/ViewLeaveStatusHOD';
 const HODDashboard = () => {
     // const [userDataShow, setUserDataShow] = useState(false);
     const [isPopupVisible, setIsPopupVisible] = useState(false); // State for the popup menu
-    // const [formData, setFormData] = useState({
-    //     name: '',
-    //     id: '',
-    //     gender: '',
-    //     phone: '',
-    //     address: '',
-    // });
+
     const { hodId } = useParams();
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -28,18 +24,7 @@ const HODDashboard = () => {
     const [showLogoutModal, setShowLogoutModal] = useState(false); // New state to handle logout modal
     const popupRef = useRef(null); // Ref to track the popup element
 
-    // Initialize formData with user data when component loads
-    // useEffect(() => {
-    //     if (user) {
-    //         setFormData({
-    //             name: user.name,
-    //             id: user.id,
-    //             gender: user.gender,
-    //             phone: user.phone,
-    //             address: user.address,
-    //         });
-    //     }
-    // }, [user]);
+    
 
     // Hide popup when clicking outside
     useEffect(() => {
@@ -56,27 +41,7 @@ const HODDashboard = () => {
         };
     }, [isPopupVisible]);
 
-    // const handleFormSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         await updateUserData(formData);
-    //         toast.success('User updated successfully!');
-    //     } catch (error) {
-    //         if (error.message === 'Email already registered') {
-    //             toast.error('Email is already registered!');
-    //         } else {
-    //             toast.error('Update failed.');
-    //         }
-    //     }
-    // };
-
-    // const handleChange = (e) => {
-    //     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // };
-
-    // const changeUserProfile = () => {
-    //     setUserDataShow(!userDataShow);
-    // };
+    
 
     const handleNavigation = (section) => {
         if (section === 'logout') {
@@ -159,10 +124,16 @@ const HODDashboard = () => {
                     <div className={`border-2 border-black pt-4 flex-1 p-6 overflow-y-auto transition-all duration-300 ${sidebarOpen ? 'ml-0' : 'ml-0'}`}>
                         {activeSection === 'dashboard' && <DashboardHOD/>}
                         {activeSection === 'myprofile' && <MyProfileHOD/>}
-                        {/* Calendar Section */}
                         {activeSection === 'applyForLeave' && <ApplyForLeaveHOD/>}
                         {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusHOD/>}
-                        {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusHODStudent/>}
+
+                        {/* {activeSection === 'viewLeaveStatus' && (
+                            <>
+                                <ViewLeaveStatusHOD />
+                                <ViewLeaveStatusHODStudent />
+                            </>
+                        )} */}
+                        {/* {activeSection === 'viewLeaveStatus' && <ViewLeaveStatusHODStudent/>} */}
                         {/* {activeSection === 'logout' && (
                             <LogoutHOD/>
                         )} */}

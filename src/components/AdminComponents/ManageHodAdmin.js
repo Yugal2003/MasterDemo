@@ -1,3 +1,4 @@
+
 // import React,{useState,useEffect} from 'react'
 // import axios from 'axios';
 
@@ -101,6 +102,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { MdEdit } from "react-icons/md";
 
 const ManageHodAdmin = () => {
   const [leaveRequestsHod, setLeaveRequestsHod] = useState([]);
@@ -194,7 +196,7 @@ const ManageHodAdmin = () => {
                   <td className="border border-gray-300">{hod.role}</td>
                   <td className="border border-gray-300">{hod.phone}</td>
                   <td className="border border-gray-300">
-                    <button className="edit_btn" onClick={() => handleEditClick(hod)}>Edit</button>
+                    <button className="edit_btn" onClick={() => handleEditClick(hod)}><MdEdit/>Edit</button>
                   </td>
                 </tr>
               ))

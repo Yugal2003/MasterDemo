@@ -632,7 +632,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
-const ViewLeaveStatusHOD = () => {
+const ViewLeaveStatusHODStudent = () => {
   
   const [studentLeaveRequests, setStudentLeaveRequests] = useState([]);
   const [hodError, setHodError] = useState('');
@@ -750,68 +750,6 @@ const ViewLeaveStatusHOD = () => {
 
   return (
     <div className="container mx-auto p-4">
-
-
-{/* <div className="overflow-x-auto">
-        <h1 className="mt-20 mb-6 flex justify-left items-center text-2xl font-bold">
-          HOD Leave List:
-        </h1>
-        <table className="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="px-2 py-2 border border-gray-300 text-left">ID</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Name</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Reason</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Total Leave</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Available Leave</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Attendance Percentage</th>
-              <th className="px-2 py-2 border border-gray-300 text-left">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(studentLeaveRequests).length === 0 ? (
-              <tr>
-                <td colSpan="7" className="text-center py-4">
-                  No leave requests found.
-                </td>
-              </tr>
-            ) : (
-              Object.keys(studentLeaveRequests).map((studentName, index) => {
-                const studentLeaves = studentLeaveRequests[studentName];
-                const leaveData = calculateLeaveData(studentLeaves);
-
-                return studentLeaves.map((leaveRequest) => (
-                  <tr key={leaveRequest.id}>
-                    <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
-                    <td className="px-2 py-2 border border-gray-300">{studentName}</td>
-                    <td className="px-2 py-2 border border-gray-300">{leaveRequest.reason}</td>
-                    <td className="px-2 py-2 border border-gray-300">{totalLeave}</td>
-                    <td className="px-2 py-2 border border-gray-300">{leaveData.availableLeavesCount}</td>
-                    <td className="px-2 py-2 border border-gray-300">{leaveData.attendancePercent}%</td>
-              
-                    <td className="px-2 py-2 border border-gray-300">
-                      <select
-                        className={`rounded-md border-2 p-1 font-bold ${getStatusBgColor(statuses[leaveRequest.id] || leaveRequest.status)}`}
-                        value={statuses[leaveRequest.id] || leaveRequest.status} // Use status from state or server
-                        onChange={(e) => handleStatusChange(leaveRequest.id, e.target.value)}
-                      >
-                        <option value="Pending" className="font-bold">Pending</option>
-                        <option value="Approved" className="font-bold">Approved</option>
-                        <option value="Reject" className="font-bold">Reject</option>
-                      </select>
-                    </td>
-                  </tr>
-                ));
-              })
-            )}
-          </tbody>
-        </table>
-      </div> */}
-
-
-
-
-
       <div className="overflow-x-auto">
         <h1 className="mt-20 mb-6 flex justify-left items-center text-2xl font-bold">
           Students Leave List:
@@ -881,4 +819,4 @@ const ViewLeaveStatusHOD = () => {
   );
 };
 
-export default ViewLeaveStatusHOD;
+export default ViewLeaveStatusHODStudent;
