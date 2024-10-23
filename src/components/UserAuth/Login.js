@@ -643,6 +643,9 @@ const Login = () => {
                         Forgot your password?
                     </NavLink>
                 </div> */}
+                <div className='flexs mt-4 font-bold'>
+                    <h1>Don't have an account? <span className='underline text-sky-800'><NavLink to='/signup'>SignUp</NavLink></span></h1>
+                </div>
             </div>
         </div>
     );
