@@ -190,6 +190,10 @@ import ManageStudentAdmin from '../AdminComponents/ManageStudentAdmin'
 import ManageHodAdmin from '../AdminComponents/ManageHodAdmin';
 import ViewLeaveReportAdmin from '../AdminComponents/ViewLeaveReportAdmin';
 import LogoutAdmin from '../AdminComponents/LogoutAdmin';
+import { HiOutlineDocumentReport } from "react-icons/hi";
+import { FaRegUser } from "react-icons/fa";
+import { FaWpforms } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
 
 const AdminDashboard = () => {
     const [isPopupVisible, setIsPopupVisible] = useState(false); // State for the popup menu
@@ -273,7 +277,7 @@ const AdminDashboard = () => {
                 {/* Sidebar and content area */}
                 <div className="flex h-[92%]">
                     <div className={`bg-gray-800 h-screen text-white flex flex-col items-start transition-all duration-300 fixed inset-y-0 z-40 ${sidebarOpen ? 'w-50' : 'w-0'} md:relative`}>
-                        <div className={`py-4 md:py-1 lg:py-2 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                        <div className={`py-4 md:py-1 lg:py-1 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>
                             <button onClick={toggleSidebar} className="px-2 py-1 md:p-4 text-white z-50">
                                 <FaBars size={sidebarOpen ? 24 : 24} />
                             </button>
@@ -284,20 +288,20 @@ const AdminDashboard = () => {
                             )}
                         </div>
                         <ul className={`flex flex-col w-full mt-0`}>
-                            <li onClick={() => handleNavigation('myprofile')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>My Profile</span>}
+                            <li onClick={() => handleNavigation('myprofile')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><FaRegUser/>My Profile</span>}
                             </li>
-                            <li onClick={() => handleNavigation('studentManage')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'studentManage' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>Student Management</span>}
+                            <li onClick={() => handleNavigation('studentManage')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'studentManage' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><FaWpforms/>Student Management</span>}
                             </li>
-                            <li onClick={() => handleNavigation('HODManage')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'HODManage' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>HOD Management</span>}
+                            <li onClick={() => handleNavigation('HODManage')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'HODManage' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><FaWpforms/>HOD Management</span>}
                             </li>
-                            <li onClick={() => handleNavigation('viewLeaveReport')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'viewLeaveReport' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>View Leave Report</span>}
+                            <li onClick={() => handleNavigation('viewLeaveReport')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'viewLeaveReport' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><HiOutlineDocumentReport/>View Leave Report</span>}
                             </li>
-                            <li onClick={() => handleNavigation('logout')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'logout' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>Logout</span>}
+                            <li onClick={() => handleNavigation('logout')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'logout' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><IoMdLogOut/>Logout</span>}
                             </li>
                         </ul>
                     </div>

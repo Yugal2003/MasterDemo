@@ -530,6 +530,10 @@ import MyProfileStudent from '../StudentComponents/MyProfileStudent';
 import ApplyForLeaveStudent from '../StudentComponents/ApplyForLeaveStudent';
 import ViewLeaveStatusStudent from '../StudentComponents/ViewLeaveStatusStudent';
 import LogoutStudent from '../StudentComponents/LogoutStudent';
+import { FaRegUser } from "react-icons/fa";
+import { FaWpforms } from "react-icons/fa";
+import { GrStatusGood } from "react-icons/gr";
+import { IoMdLogOut } from "react-icons/io";
 // import ViewLeaveBalanceStudent from '../StudentComponents/ViewLeaveBalanceStudent';
 
 // const localizer = momentLocalizer(moment);
@@ -622,7 +626,7 @@ const StudentDashboard = () => {
                 <div className="flex h-[92%]">
                     {/* Sidebar Navigation */}
                     <div className={`bg-gray-800 h-screen text-white flex flex-col items-start transition-all duration-300 fixed inset-y-0 z-40 ${sidebarOpen ? 'w-50' : 'w-0'} md:relative`}>
-                        <div className={`py-4 md:py-1 lg:py-1.5 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                        <div className={`py-4 md:py-1 lg:py-1 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>
                             <button onClick={toggleSidebar} className="px-2 py-1 md:p-4 text-white z-50">
                                 <FaBars size={sidebarOpen ? 24 : 24} />
                             </button>
@@ -635,18 +639,18 @@ const StudentDashboard = () => {
                             </div> */}
                         </div>
                         <ul className="flex flex-col w-full mt-0">
-                            <li onClick={() => handleNavigation('myprofile')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>My Profile</span>}
+                            <li onClick={() => handleNavigation('myprofile')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><FaRegUser/>My Profile</span>}
                             </li>
-                            <li onClick={() => handleNavigation('applyForLeave')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'applyForLeave' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>Apply For Leave</span>}
+                            <li onClick={() => handleNavigation('applyForLeave')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'applyForLeave' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><FaWpforms/>Apply For Leave</span>}
                             </li>
-                            <li onClick={() => handleNavigation('viewLeaveStatus')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'myproviewLeaveStatusfile' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>View Leave Status</span>}
+                            <li onClick={() => handleNavigation('viewLeaveStatus')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'myproviewLeaveStatusfile' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><GrStatusGood/>View Leave Status</span>}
                             </li>
                             {/* <li onClick={() => handleNavigation('viewLeaveBalance')} className={`py-3 px-6 cursor-pointer w-full flex justify-start  items-center text-lg font-bold ${activeSection === 'viewLeaveBalance' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>View Leave Balance</span>}</li> */}
-                            <li onClick={() => handleNavigation('logout')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'logout' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>Logout</span>}
+                            <li onClick={() => handleNavigation('logout')} className={`border-2 border-b-white py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'logout' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                                {sidebarOpen && <span className='flex items-center gap-2'><IoMdLogOut/>Logout</span>}
                             </li>
                         </ul>
                     </div>

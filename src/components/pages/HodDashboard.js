@@ -160,9 +160,13 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import DashboardHOD from '../HodComponents/DashboardHOD';
 import MyProfileHOD from '../HodComponents/MyProfileHOD';
 import ApplyForLeaveHOD from '../HodComponents/ApplyForLeaveHOD';
-import ViewLeaveStatusHODStudent from '../HodComponents/ViewLeaveStatusHODStudent';
+// import ViewLeaveStatusHODStudent from '../HodComponents/ViewLeaveStatusHODStudent';
 import LogoutHOD from '../HodComponents/LogoutHOD';
 import ViewLeaveStatusHOD from '../HodComponents/ViewLeaveStatusHOD';
+import { FaRegUser } from "react-icons/fa";
+import { FaWpforms } from "react-icons/fa";
+import { GrStatusGood } from "react-icons/gr";
+import { IoMdLogOut } from "react-icons/io";
 
 const HODDashboard = () => {
     // const [userDataShow, setUserDataShow] = useState(false);
@@ -255,7 +259,7 @@ const HODDashboard = () => {
                 <div className="flex h-[92%]">
                     {/* Sidebar Navigation */}
                     <div className={`bg-gray-800 h-screen text-white flex flex-col items-start transition-all duration-300 fixed inset-y-0 z-40 ${sidebarOpen ? 'w-50' : 'w-0'} md:relative`}>
-                        <div className={`py-4 md:py-1 lg:py-2 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>
+                        <div className={`py-4 md:py-1 lg:py-1 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>
                             {/* <div className="p-4 text-white z-50 items-center">
                             </div> */}
                             <button onClick={toggleSidebar} className="px-2 py-1 md:p-4 text-white z-50">
@@ -271,16 +275,16 @@ const HODDashboard = () => {
                         <ul className={`flex flex-col w-full mt-0`}>
                             {/* <li onClick={() => handleNavigation('dashboard')} className={`py-3 px-6 cursor-pointer w-full flex items-center ${activeSection === 'dashboard' ? 'bg-red-500' : 'bg-gray-800'}`}>{sidebarOpen && <span>Dashboard</span>}</li> */}
                             <li onClick={() => handleNavigation('myprofile')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'myprofile' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>My Profile</span>}
+                                {sidebarOpen && <span className='flex items-center gap-2'><FaRegUser/>My Profile</span>}
                                 </li>
                             <li onClick={() => handleNavigation('applyForLeave')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'applyForLeave' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>Apply For Leave</span>}
+                                {sidebarOpen && <span className='flex items-center gap-2'><FaWpforms/>Apply For Leave</span>}
                                 </li>
                             <li onClick={() => handleNavigation('viewLeaveStatus')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'viewLeaveStatus' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>View Leave Status</span>}
+                                {sidebarOpen && <span className='flex items-center gap-2'><GrStatusGood/>View Leave Status</span>}
                                 </li>
                             <li onClick={() => handleNavigation('logout')} className={`py-3 ${sidebarOpen ? 'px-4' : 'px-0'} cursor-pointer w-full flex justify-start items-center text-sm md:text-lg font-bold ${activeSection === 'logout' ? 'bg-red-500' : 'bg-gray-800'}`}>
-                                {sidebarOpen && <span>Logout</span>}
+                                {sidebarOpen && <span className='flex items-center gap-2'><IoMdLogOut/>Logout</span>}
                             </li>
                         </ul>
                     </div>
