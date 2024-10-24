@@ -1,3 +1,4 @@
+
 //without change an status by admin code 
 
 // import React, { useEffect, useState } from 'react';
@@ -844,7 +845,7 @@ const ViewLeaveReportAdmin = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col md:mt-8">
       {/* HOD */}
       <div className="container mx-auto p-4">
         <div className="overflow-x-auto">
@@ -914,4 +915,3 @@ const ViewLeaveReportAdmin = () => {
 };
 
 export default ViewLeaveReportAdmin;
-

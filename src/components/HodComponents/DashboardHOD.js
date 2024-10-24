@@ -368,7 +368,7 @@ const DashboardHOD = () => {
   };
 
   return (
-    <div className='mt-8'>
+    <div className='mt-8 md:mt-16'>
       <h3>{hodError ? hodError : <span className='text-3xl font-bold flex justify-center items-center mb-4'>HOD Calendar</span>}</h3>
       <div className="flex flex-row justify-between items-center">
         <div>

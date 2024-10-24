@@ -81,3 +81,16 @@
     cursor: pointer;
     background-color: rgb(247, 247, 199);
 } */
+ .bg-color{
+    background: url(../src/image/blur.jpg);
+    width: 100%;
+ }
+ .text-login{
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    font-family: cursive;
+}
+.colo{
+    background-color: rgb(137, 145, 251);
+}

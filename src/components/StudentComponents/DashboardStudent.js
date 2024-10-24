@@ -1,4 +1,5 @@
 
+
 // import moment from 'moment';
 // import React,{ useEffect, useState } from 'react'
 // import axios from 'axios';
@@ -245,7 +246,7 @@ const DashboardStudent = () => {
   };
 
   return (
-    <div className='mt-8'>
+    <div className='mt-8 md:mt-16'>
       <h3>
         {studentError ? (
           studentError
