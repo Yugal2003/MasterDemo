@@ -143,6 +143,19 @@ export const forgetPassword = async (emailValue) => {
   }
 };
 
+export const resetPassword = async (user,userData) => {
+  try {
+    const updatedUser = {
+      ...user,
+      ...userData // Only overwrite fields that are present in updatedFields
+    };
+  // Send PUT request to update user data in db.json
+  return await API.put(`/users/${user.id}`, updatedUser);
+  } catch (error) {
+      throw error;
+  }
+};
+
 //updateuserdata
 
 // Update user data by merging updated fields with existing ones
