@@ -8,6 +8,7 @@ import Login from './components/UserAuth/Login';
 import AdminDashbaord from './components/pages/AdminDashboard'
 import HodDashboard from './components/pages/HodDashboard'
 import StudentDashboard from './components/pages/StudentDashboard'
+import ForgetPassword from './components/pages/ForgetPassword';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +16,7 @@ root.render(
     <BrowserRouter>
         <Routes>
               <Route path='/' element={<Login/>} />
+              <Route path='/forgot-password' element={<ForgetPassword/>} />
               <Route path="/signup" element={<Signup/>} />
               <Route path="/admin-dashboard/:adminId" element={<AdminDashbaord/>} />
               <Route path="/hod-dashboard/:hodId" element={<HodDashboard />} />

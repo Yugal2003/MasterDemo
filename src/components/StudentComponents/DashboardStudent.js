@@ -171,7 +171,7 @@ const DashboardStudent = () => {
           setApplyStudentLeave(filteredRequests);
           calculateLeaveData(filteredRequests);
         } else {
-          setStudentError('No Leave Data Available !');
+          setStudentError('');
         }
       } catch (err) {
         setStudentError('Error fetching leave requests');
@@ -246,7 +246,7 @@ const DashboardStudent = () => {
   };
 
   return (
-    <div className='mt-8'>
+    <div className='mt-8 md:mt-16'>
       <h3>
         {studentError ? (
           studentError

@@ -1,5 +1,6 @@
 
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -82,7 +83,7 @@
     background-color: rgb(247, 247, 199);
 } */
  .bg-color{
-    background: url(../src/img/blur.jpg);
+    /* background: url(../src/image/blur.jpg); */
     width: 100%;
  }
  .text-login{
@@ -90,4 +91,7 @@
     font-weight: bold;
     color: black;
     font-family: cursive;
+}
+.colo{
+    background-color: rgb(137, 145, 251);
 }

@@ -525,7 +525,7 @@
 
 
 
-
+// code with responsive style
 
 import React, { useState } from 'react';
 import { FaUser } from "react-icons/fa";
@@ -572,22 +572,22 @@ const Login = () => {
     
             setFormData({ email: '', password: '', role: '' });
         } catch (error) {
-            toast.error('Login failed.');
+            toast.error('Email OR Password Are Invalid !');
         }
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-orange-400 to-purple-800">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-orange-400 to-purple-600">
             <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg p-8 rounded-xl shadow-md max-w-sm w-full">
                 <div className="text-center mb-8">
                     <div>
-                        <h1 className='text-login'>Login Page</h1>
+                        <h1 className='text-3xl font-bold text-center mb-6'>Login Page</h1>
                     </div>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="relative">
                         <input
-                            className="text-black w-full pl-10 p-3 bg-white bg-opacity-20 text-white placeholder-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            className="text-black w-full pl-10 p-3 bg-white bg-opacity-20 placeholder-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
                             type="email"
                             name="email"
                             placeholder="USERNAME"
@@ -615,7 +615,7 @@ const Login = () => {
                     </div>
                     <div> {/* className='flex flex-row' */}
                         <select
-                            className="bg-black w-full mx-auto p-3 bg-white bg-opacity-20 text-white placeholder-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            className="bg-black w-full mx-auto p-3 bg-opacity-20 text-white placeholder-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
                             name="role"
                             value={formData.role}
                             onChange={handleInputChange}
@@ -634,15 +634,11 @@ const Login = () => {
                         LOGIN
                     </button>
                 </form>
-                {/* <div className="flex items-center justify-between mt-4 text-white">
-                    <label className="flex items-center">
-                        <input type="checkbox" className="h-4 w-4 text-pink-500 border-gray-300 rounded focus:ring-pink-500" />
-                        <span className="ml-2 text-sm">Remember me</span>
-                    </label>
-                    <NavLink to="/forgot-password" className="text-sm hover:underline">
+                <div className="font-bold flex items-center justify-between mt-4">
+                    <NavLink to="/forgot-password" className="text-sky-800 text-md hover:text-sky-900">
                         Forgot your password?
                     </NavLink>
-                </div> */}
+                </div>
                 <div className='flexs mt-4 font-bold'>
                     <h1>Don't have an account? <span className='underline text-sky-800'><NavLink to='/signup'>SignUp</NavLink></span></h1>
                 </div>

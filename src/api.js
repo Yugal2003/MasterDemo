@@ -125,6 +125,24 @@ export const loginUser = async (email, password, role) => {
     }
 };
 
+
+export const forgetPassword = async (emailValue) => {
+  try {
+    const response = await API.get(`/users?email=${emailValue}`);
+
+    if (response.data && response.data.length > 0) {
+      console.log("apijs",response.data);
+      return response.data[0];
+    } else {
+        console.log("user not register");
+        throw new Error('Email Not Register !'); // Throw an error if no user is found
+    }
+  } catch (error) {
+      console.error('Failed To Forget Password :', error.message);
+      throw error;
+  }
+};
+
 //updateuserdata
 
 // Update user data by merging updated fields with existing ones
