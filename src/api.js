@@ -125,6 +125,21 @@ export const loginUser = async (email, password, role) => {
     }
 };
 
+
+export const forgetPassword = async (emailValue) => {
+  try {
+    const response = await API.get(`/users?email=${emailValue}`);
+
+    if (response) {
+      console.log("apijs",response);
+    } else {
+        throw new Error('Invalid Email !'); // Throw an error if no user is found
+    }
+  } catch (error) {
+      console.error('Failed To Forget Password :', error.message);
+  }
+};
+
 //updateuserdata
 
 // Update user data by merging updated fields with existing ones
@@ -163,3 +178,4 @@ export const fetchStudents = async (department) => {
         console.error('Failed to fetch students:', error.message);
     }
 };
+

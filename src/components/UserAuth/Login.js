@@ -525,7 +525,7 @@
 
 
 
-
+// code with responsive style
 
 import React, { useState } from 'react';
 import { FaUser } from "react-icons/fa";
@@ -581,7 +581,7 @@ const Login = () => {
             <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg p-8 rounded-xl shadow-md max-w-sm w-full">
                 <div className="text-center mb-8">
                     <div>
-                        <h1 className='text-login'>Login Page</h1>
+                        <h1 className='text-3xl font-bold text-center mb-6'>Login Page</h1>
                     </div>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -634,15 +634,11 @@ const Login = () => {
                         LOGIN
                     </button>
                 </form>
-                {/* <div className="flex items-center justify-between mt-4 text-white">
-                    <label className="flex items-center">
-                        <input type="checkbox" className="h-4 w-4 text-pink-500 border-gray-300 rounded focus:ring-pink-500" />
-                        <span className="ml-2 text-sm">Remember me</span>
-                    </label>
-                    <NavLink to="/forgot-password" className="text-sm hover:underline">
+                <div className="font-bold flex items-center justify-between mt-4">
+                    <NavLink to="/forgot-password" className="text-sky-800 text-md hover:text-sky-900">
                         Forgot your password?
                     </NavLink>
-                </div> */}
+                </div>
                 <div className='flexs mt-4 font-bold'>
                     <h1>Don't have an account? <span className='underline text-sky-800'><NavLink to='/signup'>SignUp</NavLink></span></h1>
                 </div>

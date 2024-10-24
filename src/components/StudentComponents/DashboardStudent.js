@@ -171,7 +171,7 @@ const DashboardStudent = () => {
           setApplyStudentLeave(filteredRequests);
           calculateLeaveData(filteredRequests);
         } else {
-          setStudentError('No Leave Data Available !');
+          setStudentError('');
         }
       } catch (err) {
         setStudentError('Error fetching leave requests');
