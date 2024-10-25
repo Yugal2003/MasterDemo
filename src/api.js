@@ -1,4 +1,4 @@
-// yester day change above
+// yesterday change above
 
 
 
@@ -130,13 +130,29 @@ export const forgetPassword = async (emailValue) => {
   try {
     const response = await API.get(`/users?email=${emailValue}`);
 
-    if (response) {
-      console.log("apijs",response);
+    if (response.data && response.data.length > 0) {
+      console.log("apijs",response.data);
+      return response.data[0];
     } else {
-        throw new Error('Invalid Email !'); // Throw an error if no user is found
+        console.log("user not register");
+        throw new Error('Email Not Register !'); // Throw an error if no user is found
     }
   } catch (error) {
       console.error('Failed To Forget Password :', error.message);
+      throw error;
+  }
+};
+
+export const resetPassword = async (user,userData) => {
+  try {
+    const updatedUser = {
+      ...user,
+      ...userData // Only overwrite fields that are present in updatedFields
+    };
+  // Send PUT request to update user data in db.json
+  return await API.put(`/users/${user.id}`, updatedUser);
+  } catch (error) {
+      throw error;
   }
 };
 
@@ -178,4 +194,3 @@ export const fetchStudents = async (department) => {
         console.error('Failed to fetch students:', error.message);
     }
 };
-
