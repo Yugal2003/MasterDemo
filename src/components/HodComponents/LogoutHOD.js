@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const LogoutHOD = ({ onCancel }) => {
     const navigate = useNavigate();
 
-    // Logout handler
     const handleLogout = () => {
-        localStorage.removeItem('user'); // Clear user data from localStorage
-        navigate('/'); // Navigate back to login
+        localStorage.removeItem('user'); 
+        navigate('/'); 
     };
 
     return (
@@ -17,13 +16,13 @@ const LogoutHOD = ({ onCancel }) => {
                 <div className="flex justify-end space-x-4">
                     <button 
                         className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
-                        onClick={onCancel} // Trigger the cancel function passed as props
+                        onClick={onCancel} 
                     >
                         Cancel
                     </button>
                     <button 
                         className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-                        onClick={handleLogout} // Handle logout on button click
+                        onClick={handleLogout} 
                     >
                         Logout
                     </button>

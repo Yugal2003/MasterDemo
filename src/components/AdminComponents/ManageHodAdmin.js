@@ -1,106 +1,3 @@
-
-
-
-// import React,{useState,useEffect} from 'react'
-// import axios from 'axios';
-
-// const ManageHodAdmin = () => {
-
-//   const [leaveRequestsHOD, setLeaveRequestsHOD] = useState([]);
-//   const [hodError, setHodError] = useState('');
-
-//   const API = axios.create({
-//     baseURL: 'http://localhost:3001',
-//   });
-
-//   useEffect(() => {
-//     const fetchLeaveRequests = async () => {
-//       try {
-//         const response = await API.get(`/users?role=hod`);
-    
-//         if (response) {
-//           setLeaveRequestsHOD(response.data);
-//         }
-//         else {
-//           setHodError('No Leave Data Availbale !');
-//         }
-//       }
-//       catch (err) {
-//         setHodError('Error fetching leave requests');
-//       }
-//     };
-
-//     fetchLeaveRequests();
-//   }, []);
-
-//   return (
-//     <div class="container mx-auto p-4">
-//       <div class="overflow-x-auto">
-//         <h1 className='mt-20 mb-6 flex justify-left items-center text-2xl font-bold'>HOD Management List :-</h1>
-//         <table class="min-w-full table-auto border-collapse border border-gray-300">
-//           <thead>
-//             <tr class="bg-gray-200">
-//               <th class="px-2 py-2 border border-gray-300 text-left">Name</th>
-//               {/* <th class="px-2 py-2 border border-gray-300 text-left">ID</th> */}
-//               <th class="px-2 py-2 border border-gray-300 text-left">Departmens</th>
-//               <th class="px-2 py-2 border border-gray-300 text-left">Gender</th>
-//               <th class="px-1 py-2 border border-gray-300 text-left">Role</th>
-//               <th class="px-0 py-2 border border-gray-300 text-left">Phone Number</th>
-//               <th class="px-0 py-2 border border-gray-300 text-left">Edit</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {leaveRequestsHOD.length === 0 ? (
-//                 <tr>
-//                   <td colSpan="6" className="text-center py-4">
-//                     No leave requests found.
-//                   </td>
-//                 </tr>
-//               ) : (
-//                 leaveRequestsHOD.map((request) => (
-//                   <tr key={request.id}>
-//                     <td className="px-2 py-2 border border-gray-300">{request.name}</td>
-//                     {/* <td className="px-2 py-2 border border-gray-300">{request.id}</td> */}
-//                     <td className="px-2 py-2 border border-gray-300">{request.id}</td>
-//                     <td className="px-2 py-2 border border-gray-300">{request.gender}</td>
-//                     <td className="px-2 py-2 border border-gray-300">{request.role}</td>
-//                     <td className="px-2 py-2 border border-gray-300">{request.phone}</td>
-//                     <td className="px-2 py-2 border border-gray-300">
-//                       <button className='edit_btn'>Edit</button>
-//                     </td>
-//                   </tr>
-//                 ))
-//             )}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default ManageHodAdmin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -117,7 +14,7 @@ const ManageHodAdmin = () => {
     baseURL: 'http://localhost:3001',
   });
 
-  const departments = ['hod1', 'hod2', 'hod3', 'hod4']; // Define available departments
+  const departments = ['hod1', 'hod2', 'hod3', 'hod4'];
 
   useEffect(() => {
     const fetchLeaveRequests = async () => {
@@ -207,7 +104,6 @@ const ManageHodAdmin = () => {
         </table>
       </div>
 
-      {/* Modal for editing student */}
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">

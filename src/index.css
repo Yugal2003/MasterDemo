@@ -79,14 +79,7 @@
     border-radius: 5px;
     font-weight: bold;
 }
-/* .upload_btn{
-    border-radius: 5px;
-    padding: 0.2rem;
-    cursor: pointer;
-    background-color: rgb(247, 247, 199);
-} */
  .bg-color{
-    /* background: url(../src/image/blur.jpg); */
     width: 100%;
  }
  .text-login{
