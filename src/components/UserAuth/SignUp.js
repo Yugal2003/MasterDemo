@@ -18,13 +18,16 @@ const Signup = () => {
     phone: '',
     department: '',
     address: '',
-    role: 'student',
+    // role: 'student',
   });
 
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    // Restrict phone input to 10 digits
+    if (name === "phone" && value.length > 10) return;
+    setFormData({ ...formData, [name]: value });
   };
 
   const uploadImage = async (e) => {
@@ -40,6 +43,16 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.phone.length !== 10) {
+      toast.error("Phone number must be exactly 10 digits.");
+      return;
+    }
+    // Validate email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
     try {
       await registerUser(formData); 
       toast.success('User registered successfully!');
@@ -52,7 +65,7 @@ const Signup = () => {
         phone: '',
         department: '',
         address: '',
-        role: 'student',
+        // role: 'student',
       });
       navigate('/');
     } catch (error) {
@@ -119,6 +132,7 @@ const Signup = () => {
             placeholder="Phone"
             value={formData.phone}
             onChange={handleInputChange}
+            maxLength={10}
             required
           />
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -148,7 +162,7 @@ const Signup = () => {
               </div>
             </div>
 
-            {formData.role === 'student' && (
+            {/* {formData.role === 'student' && ( */}
               <div className="flex flex-col items-center">
                 <label className='font-bold'>Department:</label>
                 <select
@@ -158,14 +172,14 @@ const Signup = () => {
                   onChange={handleInputChange}
                   required
                 >
-                  <option className='bg-purple-500 text-black font-bold' value="">Select HOD</option>
+                  {/* <option className='bg-purple-500 text-black font-bold' value="">Select HOD</option> */}
                   <option className='bg-purple-500 text-black font-bold' value="hod1">Raman Sir</option>
                   <option className='bg-purple-500 text-black font-bold' value="hod2">Shyam Sir</option>
                   <option className='bg-purple-500 text-black font-bold' value="hod3">Radhika Mam</option>
                   <option className='bg-purple-500 text-black font-bold' value="hod4">Karina Mam</option>
                 </select>
               </div>
-            )}
+            {/* )} */}
           </div>
 
           <div>
@@ -182,17 +196,17 @@ const Signup = () => {
 
           <div className="mt-2">
             <label>Upload Image:</label>
-            <input type="file" name="image" onChange={uploadImage} />
+            <input required type="file" name="image" onChange={uploadImage} />
           </div>
 
-          <select
+          {/* <select
             className="text-black w-full p-3 bg-white bg-opacity-20 placeholder-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
             name="role"
             value={formData.role}
             onChange={handleInputChange}
           >
             <option className='bg-purple-500 text-black font-bold' value="student">Student</option>
-          </select>
+          </select> */}
 
           <button
             type="submit"

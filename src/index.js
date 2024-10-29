@@ -37,7 +37,7 @@ import './index.css';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from '../src/auth/AuthContext';
 import  AuthGuard  from '../src/auth/AuthGuard'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Signup from './components/UserAuth/SignUp';
 import Login from './components/UserAuth/Login';
 import AdminDashboard from './components/pages/AdminDashboard'
@@ -50,7 +50,8 @@ root.render(
   <AuthProvider>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/signup" element={<Signup />} />
         

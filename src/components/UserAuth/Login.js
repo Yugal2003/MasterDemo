@@ -330,34 +330,71 @@ const Login = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const response = await loginUser(formData.email, formData.password, formData.role);
+
+    //         if (response && response.data.length > 0) {
+    //             const user = response.data[0];
+    //             toast.success(`Welcome, ${user.name || user.role.toUpperCase()}`);
+
+    //             localStorage.setItem('user', JSON.stringify(user));
+    //             login(user); 
+
+    //             if (user.role === 'admin') {
+    //                 navigate(`/admin-dashboard/${user.id}`);
+    //             } else if (user.role === 'hod') {
+    //                 navigate(`/hod-dashboard/${user.id}`);
+    //             } else if (user.role === 'student') {
+    //                 navigate(`/student-dashboard/${user.id}`);
+    //             }
+    //         } else {
+    //             toast.error('Invalid User!');
+    //         }
+
+    //         setFormData({ email: '', password: '', role: '' });
+    //     } catch (error) {
+    //         toast.error('Email OR Password Are Invalid!');
+    //     }
+    // };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await loginUser(formData.email, formData.password, formData.role);
-
+    
             if (response && response.data.length > 0) {
                 const user = response.data[0];
-                toast.success(`Welcome, ${user.name || user.role.toUpperCase()}`);
-
-                localStorage.setItem('user', JSON.stringify(user));
-                login(user); 
-
-                if (user.role === 'admin') {
-                    navigate(`/admin-dashboard/${user.id}`);
-                } else if (user.role === 'hod') {
-                    navigate(`/hod-dashboard/${user.id}`);
-                } else if (user.role === 'student') {
-                    navigate(`/student-dashboard/${user.id}`);
+                console.log(user);
+                // Trim spaces and ensure both are strings before comparing
+                if (user.password.trim() === formData.password.trim()) {
+                    toast.success(`Welcome, ${user.name || user.role.toUpperCase()}`);
+    
+                    localStorage.setItem('user', JSON.stringify(user));
+                    login(user); 
+    
+                    if (user.role === 'admin') {
+                        navigate(`/admin-dashboard/${user.id}`);
+                    } else if (user.role === 'hod') {
+                        navigate(`/hod-dashboard/${user.id}`);
+                    } else if (user.role === 'student') {
+                        navigate(`/student-dashboard/${user.id}`);
+                    }
+                } else {
+                    toast.error('Incorrect password!');
                 }
             } else {
                 toast.error('Invalid User!');
             }
-
+    
             setFormData({ email: '', password: '', role: '' });
         } catch (error) {
             toast.error('Email OR Password Are Invalid!');
         }
     };
+    
+    
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-orange-400 to-purple-600">

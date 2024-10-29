@@ -162,8 +162,8 @@ const MyProfileStudent = () => {
                 ) : (
                     <div className="pb-8 flex flex-col gap-4 mt-4 md:mt-0 md:ml-12">
                         <div className="flex flex-row gap-4">
-                            <label className="font-medium">User ID :</label>
-                            <p>{user.id}</p>
+                            {/* <label className="font-medium">User ID :</label>
+                            <p>{user.id}</p> */}
                         </div>
                         <div className="flex flex-row gap-4">
                             <label className="font-medium">Email :</label>
