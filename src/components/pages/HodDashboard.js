@@ -630,10 +630,10 @@ const HODDashboard = () => {
                             <div ref={popupRef} className="absolute mt-20 z-50 w-52 bg-black">
                                 <ul className="flex flex-col shadow-xl text-white rounded-md gap-2 py-2">
                                     <li className="profile_zoom py-2 px-4 cursor-pointer rounded-md">
-                                        <Link to={`/hod-dashboard/${hodId}/myprofile`}>My Profile</Link>
+                                        <Link to={`/hod-dashboard/${hodId}/myprofile`}>&#9642; &nbsp;My Profile</Link>
                                     </li>
                                     <li className="profile_zoom py-2 px-4 cursor-pointer rounded-md" onClick={() => setShowLogoutModal(true)}>
-                                        Logout
+                                        &#9642; &nbsp; Logout
                                     </li>
                                 </ul>
                             </div>
@@ -645,7 +645,7 @@ const HODDashboard = () => {
             {/* Sidebar */}
             <div className="flex h-[92%]">
                 <div className={`bg-gray-800 h-screen text-white flex flex-col items-start transition-all duration-300 fixed inset-y-0 z-40 ${sidebarOpen ? 'w-50' : 'w-0'} md:relative`}>
-                    <div className={`py-4 md:py-1 lg:py-1.5 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${isActive(`/hod-dashboard/${hodId}`) ? 'bg-red-500' : ''}`}>
+                    <div className={`py-4 md:py-1 lg:py-0.5 xl:py-1 2xl:py-1.5 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${isActive(`/hod-dashboard/${hodId}`) ? 'bg-red-500' : ''}`}>
                         <button onClick={toggleSidebar} className="px-2 py-1 md:p-4 text-white z-50">
                             <FaBars size={sidebarOpen ? 24 : 24} />
                         </button>
@@ -653,17 +653,20 @@ const HODDashboard = () => {
                             <Link to={`/hod-dashboard/${hodId}`} className="flex items-center gap-2">Dashboard</Link>
                         </li>
                     </div>
-                    <ul className="flex flex-col w-full mt-0">
-                        <li className={`border-2 border-b-white py-3 cursor-pointer ${isActive(`/hod-dashboard/${hodId}/myprofile`) ? 'bg-red-500' : ''}`}>
+                    <ul className="flex flex-col justify-center items-center w-full mt-0">
+                        <li className={`w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer ${isActive(`/hod-dashboard/${hodId}/myprofile`) ? 'bg-red-500' : ''}`}>
                             <Link to={`/hod-dashboard/${hodId}/myprofile`} className={`flex items-center gap-2`}><FaRegUser />{sidebarOpen ? "My Profile" : ""}</Link>
                         </li>
-                        <li className={`border-2 border-b-white py-3 cursor-pointer ${isActive(`/hod-dashboard/${hodId}/applyForLeaveHOD`) ? 'bg-red-500' : ''}`}>
+                        <li className={`w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer ${isActive(`/hod-dashboard/${hodId}/applyForLeaveHOD`) ? 'bg-red-500' : ''}`}>
                             <Link to={`/hod-dashboard/${hodId}/applyForLeaveHOD`} className={`flex items-center gap-2`}><FaWpforms />{sidebarOpen ? "Apply For Leave" : ""}</Link>
                         </li>
-                        <li className={`border-2 border-b-white py-3 cursor-pointer ${isActive(`/hod-dashboard/${hodId}/viewLeaveStatusHOD`) ? 'bg-red-500' : ''}`}>
-                            <Link to={`/hod-dashboard/${hodId}/viewLeaveStatusHOD`} className={`flex items-center gap-2`}><HiOutlineDocumentReport />{sidebarOpen ? "View Leave Status" : ""}</Link>
+                        <li className={`w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer ${isActive(`/hod-dashboard/${hodId}/viewLeaveStatusHOD`) ? 'bg-red-500' : ''}`}>
+                            <Link to={`/hod-dashboard/${hodId}/viewLeaveStatusHOD`} className={`flex items-center gap-2`}><HiOutlineDocumentReport />{sidebarOpen ? "HOD Leave Status" : ""}</Link>
                         </li>
-                        <li className="border-2 border-b-white py-3 cursor-pointer">
+                        <li className={`w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer ${isActive(`/hod-dashboard/${hodId}/viewLeaveStatusHODStudent`) ? 'bg-red-500' : ''}`}>
+                            <Link to={`/hod-dashboard/${hodId}/viewLeaveStatusHODStudent`} className={`flex items-center gap-2`}><HiOutlineDocumentReport />{sidebarOpen ? "Student Leave Status" : ""}</Link>
+                        </li>
+                        <li className="w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer">
                             <div onClick={() => setShowLogoutModal(true)} className={`flex items-center gap-2`}><IoMdLogOut />{sidebarOpen ? "Logout" : ""}</div>
                         </li>
                     </ul>

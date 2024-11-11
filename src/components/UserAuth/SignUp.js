@@ -655,8 +655,12 @@ const Signup = () => {
       toast.error("Please enter a valid email address.");
       return;
     }
+
+      // Set the "active" status to "Active" for new students
+      const newUserData = { ...formData, active: "Active" };
+
     try {
-      await registerUser(formData); 
+      await registerUser(newUserData); 
       toast.success('User registered successfully!');
       setFormData({
         name: '',

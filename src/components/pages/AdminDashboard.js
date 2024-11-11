@@ -659,7 +659,7 @@ const AdminDashboard = () => {
             {/* Sidebar */}
             <div className="flex h-[92%]">
                 <div className={`bg-gray-800 h-screen text-white flex flex-col items-start transition-all duration-300 fixed inset-y-0 z-40 ${sidebarOpen ? 'w-50' : 'w-0'} md:relative`}>
-                    <div className={`py-4 md:py-1 lg:py-1.5 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${isActive(`/admin-dashboard/${adminId}`) ? 'bg-red-500' : ''}`}>
+                    <div className={`py-4 md:py-1 lg:py-0.5 xl:py-1 2xl:py-1.5 md:relative px-3 text-xl md:text-2xl font-bold flex items-center ${isActive(`/admin-dashboard/${adminId}`) ? 'bg-red-500' : ''}`}>
                         <button onClick={toggleSidebar} className="px-2 py-1 md:p-4 text-white z-50">
                             <FaBars size={sidebarOpen ? 24 : 24} />
                         </button>
@@ -667,20 +667,20 @@ const AdminDashboard = () => {
                             <Link to={`/admin-dashboard/${adminId}`} className="flex items-center gap-2">Dashboard</Link>
                         </li>
                     </div>
-                    <ul className="flex flex-col w-full mt-0">
-                        <li className={`border-2 border-b-white py-3 cursor-pointer ${isActive(`/admin-dashboard/${adminId}/myprofile`) ? 'bg-red-500' : ''}`}>
+                    <ul className="flex flex-col justify-center items-center w-full mt-0">
+                        <li className={`w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer ${isActive(`/admin-dashboard/${adminId}/myprofile`) ? 'bg-red-500' : ''}`}>
                             <Link to={`/admin-dashboard/${adminId}/myprofile`} className={`flex items-center gap-2`}><FaRegUser />{sidebarOpen ? "My Profile" : ""}</Link>
                         </li>
-                        <li className={`border-2 border-b-white py-3 cursor-pointer ${isActive(`/admin-dashboard/${adminId}/studentManage`) ? 'bg-red-500' : ''}`}>
+                        <li className={`w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer ${isActive(`/admin-dashboard/${adminId}/studentManage`) ? 'bg-red-500' : ''}`}>
                             <Link to={`/admin-dashboard/${adminId}/studentManage`} className={`flex items-center gap-2`}><FaWpforms />{sidebarOpen ? "Student Management" : ""}</Link>
                         </li>
-                        <li className={`border-2 border-b-white py-3 cursor-pointer ${isActive(`/admin-dashboard/${adminId}/HODManage`) ? 'bg-red-500' : ''}`}>
+                        <li className={`w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer ${isActive(`/admin-dashboard/${adminId}/HODManage`) ? 'bg-red-500' : ''}`}>
                             <Link to={`/admin-dashboard/${adminId}/HODManage`} className={`flex items-center gap-2`}><HiOutlineDocumentReport />{sidebarOpen ? "HOD Management" : ""}</Link>
                         </li>
-                        <li className={`border-2 border-b-white py-3 cursor-pointer ${isActive(`/admin-dashboard/${adminId}/viewLeaveReport`) ? 'bg-red-500' : ''}`}>
+                        <li className={`w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer ${isActive(`/admin-dashboard/${adminId}/viewLeaveReport`) ? 'bg-red-500' : ''}`}>
                             <Link to={`/admin-dashboard/${adminId}/viewLeaveReport`} className={`flex items-center gap-2`}><HiOutlineDocumentReport />{sidebarOpen ? "View Leave Report" : ""}</Link>
                         </li>
-                        <li className="border-2 border-b-white py-3 cursor-pointer">
+                        <li className="w-full flex flex-row justify-center items-center border-2 border-b-white py-3 cursor-pointer">
                             <div onClick={() => setShowLogoutModal(true)} className={`flex items-center gap-2`}><IoMdLogOut />{sidebarOpen ? "Logout" : ""}</div>
                         </li>
                     </ul>

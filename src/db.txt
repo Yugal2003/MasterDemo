@@ -1,4 +1,3 @@
-
 {
   "users": [
     {
@@ -9,7 +8,7 @@
       "gender": "male",
       "image": "data:image/jpeg,
       "phone": "9316110894",
-      "address": "AHAH",
+      "address": "Udhna",
       "role": "admin"
     },
     {
@@ -19,9 +18,10 @@
       "password": "raman@123",
       "gender": "male",
       "image": "data:image/jpeg,
-      "phone": "9845124578",
+      "phone": "4545455976",
       "address": "gfdgf",
-      "role": "hod"
+      "role": "hod",
+      "active":"Active"
     },
     {
       "id": "hod2",
@@ -30,20 +30,22 @@
       "password": "shyam@123",
       "gender": "male",
       "image": "data:image/jpeg,
-      "phone": "9841236510",
-      "address": "gfdgf",
-      "role": "hod"
+      "phone": "8484868688",
+      "address": "Surat",
+      "role": "hod",
+      "active":"Active"
     },
     {
       "id": "hod3",
-      "name": "Radhika",
+      "name": "radhika",
       "email": "radhika@gmail.com",
       "password": "radhika@123",
       "gender": "female",
       "image": "data:image/jpeg,
-      "phone": "7541245891",
-      "address": "gfdgf",
-      "role": "hod"
+      "phone": "7575969630",
+      "address": "Surat",
+      "role": "hod",
+      "active":"Active"
     },
     {
       "id": "hod4",
@@ -52,19 +54,20 @@
       "password": "karina@123",
       "gender": "female",
       "image": "data:image/jpeg,
-      "phone": "8210546910",
+      "phone": "5485451210",
       "address": "gfdgf",
-      "role": "hod"
+      "role": "hod",
+      "active":"Active"
     },
     {
       "id": "44b9",
       "name": "rakesh",
       "email": "rakesh@gmail.com",
       "password": "123",
-      "gender": "male",
+      "gender": "Male",
       "image": "data:image/jpeg,
-      "phone": "54454",
-      "department": "",
+      "phone": "9999999999",
+      "department": "hod3",
       "address": "gfdgf",
       "role": "student"
     },
@@ -75,9 +78,9 @@
       "password": "123",
       "gender": "male",
       "image": "data:image/jpeg,
-      "phone": "348764834",
-      "department": "hod2",
-      "address": "erer",
+      "phone": "7845789657",
+      "department": "hod4",
+      "address": "33",
       "role": "student"
     },
     {
@@ -136,7 +139,7 @@
       "fromDate": "2024-10-20",
       "toDate": "2024-10-21",
       "leaveType": "Fullday",
-      "requestTo": "Radhika Mam",
+      "requestTo": "Radhika",
       "status": "Pending"
     },
     {
@@ -145,8 +148,51 @@
       "fromDate": "2024-10-22",
       "toDate": "2024-11-22",
       "leaveType": "Fullday",
-      "requestTo": "Karina Mam",
+      "requestTo": "Karina",
       "status": "Pending"
+    }
+  ],
+  "hodLeaveRequests": [
+    {
+      "id": "lpt3l0a5m",
+      "reason": "karina",
+      "fromDate": "2024-10-20",
+      "toDate": "2024-10-21",
+      "leaveType": "First Half",
+      "requestTo": "Admin",
+      "status": "Pending",
+      "name": "Karina"
+    },
+    {
+      "id": "zf42cz2gs",
+      "reason": "jaddi",
+      "fromDate": "2024-10-22",
+      "toDate": "2024-10-24",
+      "leaveType": "Second Half",
+      "requestTo": "Admin",
+      "status": "Approved",
+      "name": "Radhika"
     }
   ]
 }
+
+
+// remaining code of package json file
+
+
+ "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "json-server": "json-server --watch src/JsonAPI/db.json --port 3001"
+  }
+
+
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "json-server": "npx json-server --watch src/JsonAPI/db.json --port 3001"
+  }

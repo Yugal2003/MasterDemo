@@ -430,17 +430,17 @@ const DashboardHOD = () => {
         const studentResponse = await API.get('/userLeaveRequests');
         
         const filteredStudentRequests = studentResponse.data.filter(
-          (request) => request.requestTo === user.name
+          (request) => request.requestTo === user.id
         );
 
         const hodResponse = await API.get('/hodLeaveRequests');
 
         const filteredHodRequests = hodResponse.data.filter(
-          (request) => request.name === user.name
+          (request) => request.name === user.id
         );
 
         if (filteredStudentRequests.length === 0 && filteredHodRequests.length === 0) {
-          setHodError('No Leave Data Available for this HOD!');
+          setHodError('No Leave Data Available for HOD!');
         }
 
         setApplyStudentLeave(filteredStudentRequests);
@@ -512,15 +512,20 @@ const DashboardHOD = () => {
   };
 
   return (
-    <div className='mt-8 md:mt-16'>
-      <h3>{hodError ? hodError : <span className='text-3xl 2xl:text-4xl 2xl:pt-12 font-bold flex justify-center items-center mb-4'>HOD Calendar</span>}</h3>
-      <div className="flex flex-row justify-between items-center">
+    <div className='mt-8 md:mt-8'>
+      {/* <h3>{hodError ? hodError : <span className='text-3xl 2xl:text-4xl 2xl:pt-12 font-bold flex justify-center items-center mb-4'>HOD Calendar</span>}</h3> */}
+      <div className="flex flex-row justify-between items-center mb-4 w-[90%] mx-auto">
         <div>
-          <h1 className="font-bold text-lg">Total Leave: {totalLeave}</h1>
-          <h1 className="font-bold text-lg mb-2">Used Leave: {usedLeave}</h1>
+          {/* <h3>{hodError ? hodError : <span className='text-3xl 2xl:text-4xl font-bold flex justify-center items-center'>HOD Calendar</span>}</h3> 2xl:pt-12 */}
         </div>
         <div>
-          <h1 className="font-bold text-lg mb-2">Balance Leave: {balanceLeave}</h1>
+          <h3>{hodError ? hodError : <span className='text-3xl 2xl:text-4xl font-bold flex justify-center items-center'>HOD Calendar</span>}</h3> {/*2xl:pt-12*/}
+        </div>
+        <div className='pt-8'>
+            <h1 className="font-bold text-sm md:text-lg border-2 border-black py-1 px-2 m-1 rounded-lg">Used Leave: {usedLeave}</h1>
+            <h1 className="font-bold text-sm md:text-lg border-2 border-black py-1 px-2 m-1 rounded-lg">Balance Leave: {balanceLeave}</h1>
+            <h1 className="font-bold text-sm md:text-lg border-2 border-black py-1 px-2 m-1 rounded-lg">Total Leave: {totalLeave}</h1>
+          {/* <h1 className="font-bold text-lg mb-2">Balance Leave: {balanceLeave}</h1> */}
         </div>
       </div>
       <Calendar

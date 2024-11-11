@@ -49,7 +49,14 @@ const LogoutStudent = ({ onCancel }) => {
     
     const handleLogout = () => {
         localStorage.removeItem('user');
-        navigate('/'); 
+        sessionStorage.removeItem('user');
+
+        navigate('/');
+
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = function () {
+            window.history.go(1);
+        };
     };
 
     return (

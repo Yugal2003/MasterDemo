@@ -437,14 +437,14 @@ const DashboardAdmin = () => {
         // Combine user and HOD leave events into a single array
         const combinedEvents = [
           ...userLeaveRequests.map((leave) => ({
-            title: `${leave.name}'s (${leave.status})`,
+            title: `${leave.name}'s leave (${leave.status})`,
             start: new Date(leave.fromDate),
             end: new Date(leave.toDate),
             allDay: true,
             status: leave.status,
           })),
           ...hodLeaveRequests.map((leave) => ({
-            title: `${leave.name}'s (${leave.status})`,
+            title: `${leave.name}'s leave (${leave.status})`,
             start: new Date(leave.fromDate),
             end: new Date(leave.toDate),
             allDay: true,
@@ -493,8 +493,8 @@ const DashboardAdmin = () => {
   };
 
   return (
-    <div className="mt-8 md:mt-16">
-      <h1 className="text-3xl 2xl:text-4xl 2xl:pt-12 font-bold flex justify-center items-center mb-4">
+    <div className="mt-8 md:mt-16 xl:mt-24 2xl:mt-16">
+      <h1 className="text-3xl 2xl:text-4xl 2xl:pt-12 font-bold flex justify-center items-center mb-8">
         Admin Calendar
       </h1>
       <div className="w-full lg:w-11/12 xl:w-10/12 mx-auto">

@@ -1,0 +1,332 @@
+{
+    "userLeaveRequests": [
+        {
+            "totalLeave": 12,
+            "id": "0045"
+        },
+        {
+            "balanceLeave": 4,
+            "id": "8bbc"
+        },
+        {
+            "id": "0crxcxu0p",
+            "reason": "lol",
+            "fromDate": "2024-10-20",
+            "toDate": "2024-10-21",
+            "leaveType": "Fullday",
+            "requestTo": "Karina",
+            "status": "Approved",
+            "name": "mahesh"
+        },
+        {
+            "id": "cgsnfm8pu",
+            "reason": "lol2",
+            "fromDate": "2024-10-23",
+            "toDate": "2024-10-26",
+            "leaveType": "First Half",
+            "requestTo": "Radhika",
+            "status": "Reject",
+            "name": "mahesh"
+        },
+        {
+            "id": "tgiyb98w1",
+            "reason": "vivek",
+            "fromDate": "2024-10-20",
+            "toDate": "2024-10-21",
+            "leaveType": "First Half",
+            "requestTo": "Radhika",
+            "status": "Approved",
+            "name": "Vivek"
+        },
+        {
+            "id": "fomhv780f",
+            "reason": "kite",
+            "fromDate": "2025-01-14",
+            "toDate": "2025-01-16",
+            "leaveType": "Fullday",
+            "requestTo": "Shyam",
+            "status": "Approved",
+            "name": "mahesh"
+        },
+        {
+            "id": "5gnrmmgr5",
+            "reason": "Republic day",
+            "fromDate": "2025-01-25",
+            "toDate": "2025-01-26",
+            "leaveType": "Fullday",
+            "requestTo": "Raman",
+            "status": "Pending",
+            "name": "mahesh"
+        },
+        {
+            "id": "pdjn8pjhn",
+            "reason": "erer",
+            "fromDate": "2025-02-14",
+            "toDate": "2025-02-14",
+            "leaveType": "Fullday",
+            "requestTo": "Shyam",
+            "status": "Reject",
+            "name": "mahesh"
+        },
+        {
+            "id": "ip42gydah",
+            "reason": "yuhi",
+            "fromDate": "2024-10-24",
+            "toDate": "2024-10-24",
+            "leaveType": "Second Half",
+            "requestTo": "Shyam",
+            "status": "Approved",
+            "name": "Vivek"
+        },
+        {
+            "id": "8n8rqcism",
+            "reason": "Health Not Well",
+            "fromDate": "2024-10-26",
+            "toDate": "2024-10-28",
+            "leaveType": "Fullday",
+            "requestTo": "Radhika",
+            "status": "Reject",
+            "name": "Hitesh"
+        },
+        {
+            "id": "e4le1u59g",
+            "reason": "Diwali Vacation",
+            "fromDate": "2024-10-31",
+            "toDate": "2024-11-10",
+            "leaveType": "Fullday",
+            "requestTo": "Karina",
+            "status": "Approved",
+            "name": "Hitesh"
+        },
+        {
+            "id": "8nl0s9h57",
+            "reason": "Tour Vacation",
+            "fromDate": "2024-10-31",
+            "toDate": "2024-11-10",
+            "leaveType": "Fullday",
+            "requestTo": "Raman",
+            "status": "Reject",
+            "name": "Hitesh"
+        },
+        {
+            "id": "a7jzyv3g8",
+            "reason": "mahesh leave",
+            "fromDate": "2024-12-01",
+            "toDate": "2024-12-01",
+            "leaveType": "Second Half",
+            "requestTo": "Radhika",
+            "status": "Approved",
+            "name": "mahesh"
+        },
+        {
+            "id": "uw34zn77q",
+            "reason": "Good",
+            "fromDate": "2024-10-25",
+            "toDate": "2024-10-25",
+            "leaveType": "First Half",
+            "requestTo": "Radhika",
+            "status": "Reject",
+            "name": "Yugal"
+        },
+        {
+            "id": "45wupdseg",
+            "reason": "rakesh leave",
+            "fromDate": "2024-10-23",
+            "toDate": "2024-10-23",
+            "leaveType": "Fullday",
+            "requestTo": "Shyam",
+            "status": "Approved",
+            "name": "rakesh"
+        },
+        {
+            "id": "o8n06jcqk",
+            "reason": "BK",
+            "fromDate": "2025-04-24",
+            "toDate": "2025-04-24",
+            "leaveType": "Fullday",
+            "requestTo": "Radhika",
+            "status": "Reject",
+            "name": "Bhavik"
+        },
+        {
+            "id": "7a141790v",
+            "reason": "31 December",
+            "fromDate": "2024-12-31",
+            "toDate": "2024-12-31",
+            "leaveType": "Fullday",
+            "requestTo": "Karina",
+            "status": "Approved",
+            "name": "Hitesh"
+        },
+        {
+            "id": "7fsdlpuu8",
+            "reason": "Bhavesh Leave",
+            "fromDate": "2024-11-03",
+            "toDate": "2024-11-03",
+            "leaveType": "First Half",
+            "requestTo": "Karina",
+            "status": "Pending",
+            "name": "Bhavesh"
+        },
+        {
+            "id": "8ohj9js4a",
+            "reason": "Hello Hitesh",
+            "fromDate": "2025-03-12",
+            "toDate": "2025-03-12",
+            "leaveType": "First Half",
+            "requestTo": "Shyam",
+            "status": "Reject",
+            "name": "Hitesh"
+        },
+        {
+            "id": "cxaue654w",
+            "reason": "hitesh 123",
+            "fromDate": "2025-01-01",
+            "toDate": "2025-01-01",
+            "leaveType": "Fullday",
+            "requestTo": "Karina",
+            "status": "Reject",
+            "name": "Hitesh"
+        },
+        {
+            "id": "u308kmbmv",
+            "reason": "www",
+            "fromDate": "2025-01-30",
+            "toDate": "2025-01-30",
+            "leaveType": "Fullday",
+            "requestTo": "Raman",
+            "status": "Approved",
+            "name": "www"
+        },
+        {
+            "id": "a3fn5ajm1",
+            "reason": "last day",
+            "fromDate": "2024-12-31",
+            "toDate": "2024-12-31",
+            "leaveType": "Second Half",
+            "requestTo": "Karina",
+            "status": "Reject",
+            "name": "wwe"
+        },
+        {
+            "id": "6epuqpxnl",
+            "reason": "personal reason",
+            "fromDate": "2024-11-01",
+            "toDate": "2024-11-01",
+            "leaveType": "Fullday",
+            "requestTo": "Karina",
+            "status": "Approved",
+            "name": "www"
+        },
+        {
+            "id": "y3zdt0pfy",
+            "reason": "Diwali",
+            "fromDate": "2024-10-31",
+            "toDate": "2024-11-05",
+            "leaveType": "Fullday",
+            "requestTo": "Raman",
+            "status": "Approved",
+            "name": "Hitesh"
+        },
+        {
+            "id": "186f3txp3",
+            "reason": "Holi",
+            "fromDate": "2025-03-27",
+            "toDate": "2025-03-27",
+            "leaveType": "Second Half",
+            "requestTo": "Shyam",
+            "status": "Approved",
+            "name": "Hitesh"
+        },
+        {
+            "id": "9wawrxurq",
+            "reason": "personal reason",
+            "fromDate": "2024-12-12",
+            "toDate": "2024-12-12",
+            "leaveType": "Fullday",
+            "requestTo": "Karina",
+            "status": "Approved",
+            "name": "Bhavik"
+        },
+        {
+            "id": "lrs6dyfy0",
+            "reason": "reason nothing",
+            "fromDate": "2024-12-31",
+            "toDate": "2024-12-31",
+            "leaveType": "First Half",
+            "requestTo": "Radhika",
+            "status": "Approved",
+            "name": "Yugal"
+        },
+        {
+            "id": "vv085keis",
+            "reason": "new year",
+            "fromDate": "2025-01-01",
+            "toDate": "2025-01-01",
+            "leaveType": "Fullday",
+            "requestTo": "Radhika",
+            "status": "Approved",
+            "name": "sachin"
+        },
+        {
+            "id": "ffh1g741b",
+            "reason": "Holi",
+            "fromDate": "2025-03-29",
+            "toDate": "2025-03-29",
+            "leaveType": "Fullday",
+            "requestTo": "Raman",
+            "status": "Reject",
+            "name": "Gujju"
+        },
+        {
+            "id": "gqgnp2fow",
+            "reason": "Holiday",
+            "fromDate": "2025-02-22",
+            "toDate": "2025-02-22",
+            "leaveType": "Fullday",
+            "requestTo": "Radhika",
+            "status": "Pending",
+            "name": "Nikki"
+        },
+        {
+            "id": "yf5mn1ryl",
+            "reason": "First Holiday",
+            "fromDate": "2025-02-20",
+            "toDate": "2025-02-20",
+            "leaveType": "Fullday",
+            "requestTo": "Shyam",
+            "status": "Pending",
+            "name": "Nikki"
+        },
+        {
+            "id": "n7wmz5lhv",
+            "reason": "Birthday",
+            "fromDate": "2025-08-08",
+            "toDate": "2025-08-08",
+            "leaveType": "Fullday",
+            "requestTo": "Karina",
+            "status": "Approved",
+            "name": "varun"
+        },
+        {
+            "id": "8kxc93rhz",
+            "reason": "BirthDay 2",
+            "fromDate": "2025-08-09",
+            "toDate": "2025-08-09",
+            "leaveType": "Fullday",
+            "requestTo": "Karina",
+            "status": "Reject",
+            "name": "varun"
+        },
+        {
+            "id": "4ms25kbbb",
+            "reason": "Bhavik Birthday",
+            "fromDate": "2025-09-25",
+            "toDate": "2025-09-25",
+            "leaveType": "Second Half",
+            "requestTo": "Shyam",
+            "status": "Approved",
+            "name": "Vipul"
+        }
+    ]
+}

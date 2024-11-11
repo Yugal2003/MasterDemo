@@ -1,0 +1,7 @@
+{
+    "admin": "/admin",
+    "hods": "/hods",
+    "students": "/students",
+    "userLeaveRequests": "/userLeaveRequests",
+    "hodLeaveRequests": "/hodLeaveRequests"
+}

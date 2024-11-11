@@ -430,7 +430,7 @@ const ApplyForLeaveHOD = () => {
       fromDate: '',
       toDate: '',
       leaveType: '',
-      requestTo: '',
+      requestTo: 'Admin',
       status: 'Pending'
     },
     onSubmit: async (values) => {
@@ -441,7 +441,7 @@ const ApplyForLeaveHOD = () => {
 
       const randomId = Math.random().toString(36).substr(2, 9);
 
-      const updatedFormData = { ...values, id: randomId, name: user.name };
+      const updatedFormData = { ...values, id: randomId, name: user.id };
 
       try {
         await leaveApplyHOD(updatedFormData);
@@ -576,8 +576,8 @@ const ApplyForLeaveHOD = () => {
             className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
             required
           >
-            <option>Select Request To HOD</option>
-            <option>Admin</option>
+            {/* <option>Select Request To HOD</option> */}
+            <option value="Admin">Admin</option>
           </select>
         </div>
 

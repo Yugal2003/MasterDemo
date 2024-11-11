@@ -1,0 +1,164 @@
+{
+    "hodLeaveRequests" : [
+        {
+            "id": "lpt3l0a5m",
+            "reason": "karina",
+            "fromDate": "2024-10-20",
+            "toDate": "2024-10-21",
+            "leaveType": "First Half",
+            "requestTo": "Admin",
+            "status": "Pending",
+            "name": "Karina"
+          },
+          {
+            "id": "zf42cz2gs",
+            "reason": "jaddi",
+            "fromDate": "2024-10-22",
+            "toDate": "2024-10-24",
+            "leaveType": "Second Half",
+            "requestTo": "Admin",
+            "status": "Approved",
+            "name": "Radhika"
+          },
+          {
+            "id": "6ivthruqi",
+            "reason": "Health is not well",
+            "fromDate": "2024-10-30",
+            "toDate": "2024-10-30",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Approved",
+            "name": "Radhika"
+          },
+          {
+            "id": "wv5i03sfi",
+            "reason": "radhika leave ",
+            "fromDate": "2024-11-01",
+            "toDate": "2024-11-03",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Approved",
+            "name": "Radhika"
+          },
+          {
+            "id": "njm3x2s03",
+            "reason": "karina 2",
+            "fromDate": "2024-11-06",
+            "toDate": "2024-11-07",
+            "leaveType": "First Half",
+            "requestTo": "Admin",
+            "status": "Approved",
+            "name": "Karina"
+          },
+          {
+            "id": "94jn3ky5u",
+            "reason": "shyam leave",
+            "fromDate": "2024-10-23",
+            "toDate": "2024-10-23",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Pending",
+            "name": "Shyam"
+          },
+          {
+            "id": "hjk88iddo",
+            "reason": "jjj",
+            "fromDate": "2024-10-22",
+            "toDate": "2024-10-23",
+            "leaveType": "First Half",
+            "requestTo": "Admin",
+            "status": "Approved",
+            "name": "Radhika"
+          },
+          {
+            "id": "kgxj41vvl",
+            "reason": "raman leave",
+            "fromDate": "2024-04-24",
+            "toDate": "2024-04-24",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Approved",
+            "name": "Raman"
+          },
+          {
+            "id": "b340j6m7b",
+            "reason": "karina leave",
+            "fromDate": "2024-04-24",
+            "toDate": "2024-04-24",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Reject",
+            "name": "Karina"
+          },
+          {
+            "id": "8ukr1r60z",
+            "reason": "shyam leave",
+            "fromDate": "2025-04-24",
+            "toDate": "2025-04-25",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Pending",
+            "name": "Shyam"
+          },
+          {
+            "id": "xr6nv2p0r",
+            "reason": "radhika leave",
+            "fromDate": "2025-04-25",
+            "toDate": "2025-04-27",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Reject",
+            "name": "Radhika"
+          },
+          {
+            "id": "o4hwfedwa",
+            "reason": "last day",
+            "fromDate": "2024-12-31",
+            "toDate": "2024-12-31",
+            "leaveType": "Second Half",
+            "requestTo": "Admin",
+            "status": "Approved",
+            "name": "Karina"
+          },
+          {
+            "id": "b7ltowfht",
+            "reason": "Vacation",
+            "fromDate": "2025-04-12",
+            "toDate": "2025-04-14",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Reject",
+            "name": "Shyam"
+          },
+          {
+            "id": "dxtv7m4qi",
+            "reason": "kite festival",
+            "fromDate": "2025-01-14",
+            "toDate": "2025-01-14",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Pending",
+            "name": "Raman"
+          },
+          {
+            "id": "jh9qggio2",
+            "reason": "kite festival 2",
+            "fromDate": "2025-01-15",
+            "toDate": "2025-01-15",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Pending",
+            "name": "Raman"
+          },
+          {
+            "id": "kukbmz85h",
+            "reason": "shyam leave ",
+            "fromDate": "2024-11-03",
+            "toDate": "2024-11-05",
+            "leaveType": "Fullday",
+            "requestTo": "Admin",
+            "status": "Pending",
+            "name": "Shyam"
+          }
+    ]
+}

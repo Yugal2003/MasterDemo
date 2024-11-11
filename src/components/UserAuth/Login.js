@@ -876,7 +876,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await loginUser(formData.email, formData.password, formData.role);
-
+            console.log(response);
+            
             if (response && response.data.length > 0) {
                 const user = response.data[0];
                 // console.log("userdata",user);
@@ -899,7 +900,12 @@ const Login = () => {
 
             setFormData({ email: '', password: '', role: '' });
         } catch (error) {
-            toast.error('Email OR Password Are Invalid!');
+            if (error.message === 'DeActive User') {
+                toast.error('Deactive User !');
+            }
+            else{
+                toast.error('Email OR Password Are Invalid!');
+            }
         }
     };
 

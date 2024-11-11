@@ -1,4 +1,5 @@
 
+
 // before leave apporvel code
 
 
@@ -479,7 +480,7 @@ const ApplyForLeaveStudent = () => {
   const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user.id);
+  // console.log(user.id);
   const userId = user.id;
 
   const formik = useFormik({
@@ -655,11 +656,11 @@ const ApplyForLeaveStudent = () => {
             className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
             required
           >
-            <option>Select Request To HOD</option>
-            <option>Raman Sir</option>
-            <option>Shyam Sir</option>
-            <option>Radhika Mam</option>
-            <option>Karina Mam</option>
+            {/* <option>Select Request To HOD</option> */}
+            <option value="hod1">Raman Sir</option>
+            <option value="hod2">Shyam Sir</option>
+            <option value="hod3">Radhika Mam</option>
+            <option value="hod4">Karina Mam</option>
           </select>
           {formik.touched.requestTo && formik.errors.requestTo ? (
             <div className="text-red-500">{formik.errors.requestTo}</div>
