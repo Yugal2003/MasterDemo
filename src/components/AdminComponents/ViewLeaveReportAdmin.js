@@ -2721,7 +2721,7 @@ const ViewLeaveReportAdmin = () => {
               <tbody>
                 {paginate(leaveRequestsHOD, hodCurrentPage, hodItemsPerPage).map((request, index) => (
                   <tr key={request.id}>
-                    <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
+                    <td className="px-2 py-2 border border-gray-300">{(hodCurrentPage - 1) * hodItemsPerPage + index + 1}</td>
                     <td className="px-2 py-2 border border-gray-300">{request.name}</td>
                     <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
                     <td className="px-2 py-2 border border-gray-300">{request.leaveType}</td>
@@ -2799,7 +2799,7 @@ const ViewLeaveReportAdmin = () => {
               <tbody>
                 {paginate(leaveRequestsStudent, studentCurrentPage, studentItemsPerPage).map((request, index) => (
                   <tr key={request.id}>
-                    <td className="px-2 py-2 border border-gray-300">{index + 1}</td>
+                    <td className="px-2 py-2 border border-gray-300">{(studentCurrentPage - 1) * studentItemsPerPage + index + 1}</td>
                     <td className="px-2 py-2 border border-gray-300">{request.name}</td>
                     <td className="px-2 py-2 border border-gray-300">{request.reason}</td>
                     <td className="px-2 py-2 border border-gray-300">{request.leaveType}</td>

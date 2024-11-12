@@ -1371,7 +1371,7 @@ const ViewLeaveStatusHOD = () => {
           </table>
           <div className="flex justify-center items-center mt-4 gap-2">
             <button
-              className="px-4 py-2 bg-gray-200 border border-gray-400 rounded-l"
+              className="px-4 py-2 bg-gray-200 border-gray-400 rounded-l"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
@@ -1380,8 +1380,8 @@ const ViewLeaveStatusHOD = () => {
             {[...Array(totalPages)].map((_, index) => (
               <button
                 key={index}
-                className={`px-4 py-2 border-t border-b border-gray-400 rounded ${
-                  currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                className={`px-4 py-2 border-gray-400 rounded ${
+                  currentPage === index + 1 ? 'bg-blue-500 text-white rounded' : 'bg-gray-200 rounded'
                 }`}
                 onClick={() => handlePageChange(index + 1)}
               >
@@ -1389,7 +1389,7 @@ const ViewLeaveStatusHOD = () => {
               </button>
             ))}
             <button
-              className="px-4 py-2 bg-gray-200 border border-gray-400 rounded-r"
+              className="px-4 py-2 bg-gray-200 border-gray-400 rounded"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
             >

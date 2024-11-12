@@ -1404,7 +1404,7 @@ const ManageHodAdmin = () => {
             ) : (
               currentLeaveRequests.map((hod, index) => (
                 <tr key={hod.id}>
-                  <td className="border border-gray-300">{index + 1}</td>
+                  <td className="border border-gray-300">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                   <td className="border border-gray-300">{hod.name}</td>
                   <td className="border border-gray-300">{hod.gender}</td>
                   <td className="border border-gray-300">{hod.id}</td>

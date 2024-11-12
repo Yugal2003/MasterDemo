@@ -2217,7 +2217,7 @@ const ViewLeaveStatusStudent = () => {
     const [sortOption, setSortOption] = useState("Sort By");
     const [editRequestData, setEditRequestData] = useState({});
 
-    const itemsPerPage = 5;
+    const itemsPerPage = 4;
     const totalPages = Math.ceil(leaveRequests.length / itemsPerPage);
 
     const API = axios.create({
@@ -2226,35 +2226,36 @@ const ViewLeaveStatusStudent = () => {
 
     const user = JSON.parse(localStorage.getItem('user'));
 
-    useEffect(() => {
-        const fetchLeaveData = async () => {
-            try {
-                const response = await API.get(`/userLeaveRequests?name=${user.name}`);
-                const filteredRequests = response.data.filter(
-                    (request) => request.name === user.name
-                );
-                setLeaveRequests(filteredRequests);
-                setOriginalRequests(filteredRequests);
-                setDisplayedRequests(filteredRequests.slice(0, itemsPerPage));
+   
+    const fetchLeaveData = async () => {
+        try {
+            const response = await API.get(`/userLeaveRequests?name=${user.name}`);
+            const filteredRequests = response.data.filter(
+                (request) => request.name === user.name
+            );
+            setLeaveRequests(filteredRequests);
+            setOriginalRequests(filteredRequests);
+            setDisplayedRequests(filteredRequests.slice(0, itemsPerPage));
 
-                const leaveDataResponse = await API.get('/userLeaveRequests');
-                const totalLeaveData = leaveDataResponse.data.find((item) => item.totalLeave);
-                const balanceLeaveData = leaveDataResponse.data.find((item) => item.balanceLeave);
+            const leaveDataResponse = await API.get('/userLeaveRequests');
+            const totalLeaveData = leaveDataResponse.data.find((item) => item.totalLeave);
+            const balanceLeaveData = leaveDataResponse.data.find((item) => item.balanceLeave);
 
-                if (totalLeaveData && balanceLeaveData) {
-                    setTotalLeave(totalLeaveData.totalLeave);
-                    setBalanceLeave(balanceLeaveData.balanceLeave - filteredRequests.length);
-                    if (balanceLeave <= 0) {
-                        setBalanceLeave(0);
-                    }
-                } else {
-                    setError('No Leave Data Available!');
+            if (totalLeaveData && balanceLeaveData) {
+                setTotalLeave(totalLeaveData.totalLeave);
+                setBalanceLeave(balanceLeaveData.balanceLeave - filteredRequests.length);
+                if (balanceLeave <= 0) {
+                    setBalanceLeave(0);
                 }
-            } catch (err) {
-                setError('Error fetching leave requests');
+            } else {
+                setError('No Leave Data Available!');
             }
-        };
+        } catch (err) {
+            setError('Error fetching leave requests');
+        }
+    };
 
+    useEffect(() => {
         fetchLeaveData();
     }, []);
 
@@ -2300,29 +2301,33 @@ const ViewLeaveStatusStudent = () => {
         const { name, value } = e.target;
         setEditRequestData((prevData) => ({ ...prevData, [name]: value }));
     };
+        
+    // after sort by chnages code
 
     const handleEditSubmit = async () => {
         if (!editRequestData.reason) {
-            toast.error("Reason are required!");
+            toast.error("Reason is required!");
             return;
         }
-
-         // Convert date strings to Date objects for comparison
+    
         const fromDate = new Date(editRequestData.fromDate);
         const toDate = new Date(editRequestData.toDate);
     
         if (fromDate > toDate) {
-        toast.error("'From' date cannot be later than the 'To' date.");
-        return;
+            toast.error("'From' date cannot be later than the 'To' date.");
+            return;
         }
-        
+    
         try {
             await API.put(`/userLeaveRequests/${editRequestData.id}`, editRequestData);
-            setLeaveRequests((prevRequests) =>
-                prevRequests.map((request) =>
-                    request.id === editRequestData.id ? editRequestData : request
-                )
+            
+            // Update both leaveRequests and originalRequests to reflect the change
+            const updatedRequests = leaveRequests.map((request) =>
+                request.id === editRequestData.id ? editRequestData : request
             );
+            setLeaveRequests(updatedRequests);
+            setOriginalRequests(updatedRequests); // Update the originalRequests as well
+    
             toast.success("Leave Updated Successfully!");
             closeEditModal();
         } catch (error) {
@@ -2330,26 +2335,75 @@ const ViewLeaveStatusStudent = () => {
         }
     };
 
+    // (const handleEditSubmit = async () => {
+    //     if (!editRequestData.reason) {
+    //         toast.error("Reason are required!");
+    //         return;
+    //     }
+
+    //      // Convert date strings to Date objects for comparison
+    //     const fromDate = new Date(editRequestData.fromDate);
+    //     const toDate = new Date(editRequestData.toDate);
+    
+    //     if (fromDate > toDate) {
+    //     toast.error("'From' date cannot be later than the 'To' date.");
+    //     return;
+    //     }
+        
+    //     try {
+    //         await API.put(`/userLeaveRequests/${editRequestData.id}`, editRequestData);
+    //         setLeaveRequests((prevRequests) =>
+    //             prevRequests.map((request) =>
+    //                 request.id === editRequestData.id ? editRequestData : request
+    //             )
+    //         );
+    //         toast.success("Leave Updated Successfully!");
+    //         closeEditModal();
+    //     } catch (error) {
+    //         setError("Failed to update the leave request");
+    //     }
+    // };)
+
+    // after sort by chnages code
+
     const handleSortChange = (event) => {
         const selectedOption = event.target.value;
         setSortOption(selectedOption);
-
+    
+        let sortedRequests = [...leaveRequests];
+    
         if (selectedOption === "Sort By Date") {
-            const sortedByDate = [...leaveRequests].sort((a, b) => new Date(a.fromDate) - new Date(b.fromDate));
-            setLeaveRequests(sortedByDate);
+            sortedRequests.sort((a, b) => new Date(a.fromDate) - new Date(b.fromDate));
         } else if (selectedOption === "Sort By Name") {
-            const sortedByName = [...leaveRequests].sort((a, b) => a.name.localeCompare(b.name));
-            setLeaveRequests(sortedByName);
+            sortedRequests.sort((a, b) => a.name.localeCompare(b.name));
         } else {
-            setLeaveRequests(originalRequests);
-            setCurrentPage(1);
+            sortedRequests = [...originalRequests]; // Reset to originalRequests if "Sort By" is selected
         }
+    
+        setLeaveRequests(sortedRequests);
+        setDisplayedRequests(sortedRequests.slice(0, itemsPerPage)); // Reflect the sorting in displayedRequests as well
     };
+    
+    // const handleSortChange = (event) => {
+    //     const selectedOption = event.target.value;
+    //     setSortOption(selectedOption);
+
+    //     if (selectedOption === "Sort By Date") {
+    //         const sortedByDate = [...leaveRequests].sort((a, b) => new Date(a.fromDate) - new Date(b.fromDate));
+    //         setLeaveRequests(sortedByDate);
+    //     } else if (selectedOption === "Sort By Name") {
+    //         const sortedByName = [...leaveRequests].sort((a, b) => a.name.localeCompare(b.name));
+    //         setLeaveRequests(sortedByName);
+    //     } else {
+    //         setLeaveRequests(originalRequests);
+    //         setCurrentPage(1);
+    //     }
+    // };
 
     const columns = useMemo(() => [
         {
             Header: 'No',
-            accessor: (row, i) => i + 1,
+            accessor: (row, i) => (currentPage - 1) * itemsPerPage + i + 1,
         },
         {
             Header: 'Reason',
@@ -2403,7 +2457,7 @@ const ViewLeaveStatusStudent = () => {
                 </div>
             ),
         },
-    ], []);
+    ], [currentPage,itemsPerPage]);
 
     const tableInstance = useTable({ columns, data: displayedRequests });
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
@@ -2425,9 +2479,9 @@ const ViewLeaveStatusStudent = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 mt-20">
+        <div className="container mx-auto mt-8">
             <div className="overflow-x-auto">
-                <div className="mb-2 flex flex-row justify-between items-center w-[95%] mx-auto">
+                <div className="mt-4 mb-0 flex flex-row justify-between items-center w-[95%] mx-auto">
                     <h1 className="flex justify-left items-center text-2xl font-bold">Leave List:</h1>
                     <select
                         className="max-w-36 mt-4 mb-6 flex justify-left items-center text-md font-bold"
@@ -2479,7 +2533,7 @@ const ViewLeaveStatusStudent = () => {
                 </table>
 
                 {/* Pagination */}
-                <div className="flex justify-center mt-4 space-x-2">
+                <div className="flex justify-center mt-2 space-x-2">
                     <button
                         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
@@ -2506,13 +2560,13 @@ const ViewLeaveStatusStudent = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col justify-center items-center mt-8'>
-                <h1 className='text-3xl font-bold'>Students Attendance Graph</h1>
+            <div className='flex flex-col justify-center items-center mt-2'>
+                <h1 className='text-2xl font-bold'>Students Attendance Graph</h1>
                 <ApexCharts
                     options={pieChartData.options}
                     series={pieChartData.series}
                     type="pie"
-                    height={350}
+                    height={250}
                 />
             </div>
             {/* Delete Modal */}
@@ -2520,7 +2574,7 @@ const ViewLeaveStatusStudent = () => {
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
                     <div className="bg-white p-6 rounded-md">
                         <h2 className="text-lg font-bold mb-4">Confirm Delete</h2>
-                        <p>Are you sure you want to delete this leave request?</p>
+                        <p>Are you sure To Delete this Leave Request?</p>
                         <div className="flex justify-end mt-4">
                             <button onClick={closeModal} className="bg-gray-300 px-4 py-2 rounded-md">Cancel</button>
                             <button onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 rounded-md ml-2">Delete</button>

@@ -2516,7 +2516,7 @@ const ViewLeaveStatusHOD = () => {
     () => [
       {
         Header: 'No',
-        accessor: (row, i) => i + 1,
+        accessor: (row, i) => (currentPage - 1) * itemsPerPage + i + 1,
       },
       {
         Header: 'Reason',
@@ -2573,7 +2573,7 @@ const ViewLeaveStatusHOD = () => {
         ),
       },
     ],
-    []
+    [currentPage, itemsPerPage]
   );
 
   const tableInstance = useTable({ columns, data: currentRequests });
@@ -2727,7 +2727,7 @@ const ViewLeaveStatusHOD = () => {
                 Cancel
               </button>
               <button onClick={handleEditSubmit} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Submit
+                Save
               </button>
             </div>
           </div>

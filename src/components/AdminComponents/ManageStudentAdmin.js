@@ -2889,6 +2889,7 @@ const ManageStudentAdmin = () => {
             <option value="phone">Sort By Number</option>
           </select>
         </div>
+        
         <table className="min-w-full text-center table-auto border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
@@ -2933,7 +2934,7 @@ const ManageStudentAdmin = () => {
             ) : (
               currentData.map((student, index) => (
                 <tr key={student.id}>
-                  <td className="border border-gray-300">{index + 1}</td>
+                  <td className="border border-gray-300">{(currentPage - 1) * dataPerPage + index + 1}</td>
                   <td className="border border-gray-300">{student.name}</td>
                   <td className="border border-gray-300">{student.department}</td> {/* Display HOD ID here */}
                   <td className="border border-gray-300">{student.gender}</td>
@@ -2969,7 +2970,7 @@ const ManageStudentAdmin = () => {
         <div className="flex justify-center mt-4">
           <button
             onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
-            className="px-4 py-2 bg-gray-300 text-black rounded-l"
+            className="px-4 py-2 bg-gray-300 text-black rounded"
           >
             {'<'}
           </button>
@@ -2977,14 +2978,14 @@ const ManageStudentAdmin = () => {
             <button
               key={page + 1}
               onClick={() => paginate(page + 1)}
-              className={`px-4 py-2 mx-1 ${currentPage === page + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+              className={`px-4 py-2 mx-1 ${currentPage === page + 1 ? 'bg-blue-500 text-white rounded' : 'bg-gray-300 rounded'}`}
             >
               {page + 1}
             </button>
           ))}
           <button
             onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
-            className="px-4 py-2 bg-gray-300 text-black rounded-r"
+            className="px-4 py-2 bg-gray-300 text-black rounded"
           >
             {'>'}
           </button>
