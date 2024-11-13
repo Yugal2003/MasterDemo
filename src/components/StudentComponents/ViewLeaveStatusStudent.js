@@ -2561,7 +2561,7 @@ const ViewLeaveStatusStudent = () => {
             </div>
 
             <div className='flex flex-col justify-center items-center mt-2'>
-                <h1 className='text-2xl font-bold'>Students Attendance Graph</h1>
+                <h1 className='text-2xl font-bold'>Students Leave Graph</h1>
                 <ApexCharts
                     options={pieChartData.options}
                     series={pieChartData.series}
